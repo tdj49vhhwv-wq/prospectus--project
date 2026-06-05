@@ -1,0 +1,9 @@
+timestamp,sample_id,company,candidate_texts,events_extracted,json_output,confidence_high,confidence_medium,confidence_low,schema_valid,status,error
+2026-06-05 11:44:00,MB001,三联锻造,14,5,yes,2,3,0,PASS,success,部分事件仅flowchart证据
+2026-06-05 11:44:00,MB002,友升股份,11,0,no,0,0,0,N/A,skipped,融资事件不足未输出JSON
+2026-06-05 11:44:00,GEM001,黄山谷捷,16,6,yes,6,0,0,PASS,success,
+2026-06-05 11:44:00,GEM002,云汉芯城,13,8,yes,6,2,0,PASS,success,修复:缺少inferred_round字段
+2026-06-05 11:44:00,STAR001,赛分科技,17,3,yes,0,0,3,PASS,success,MinerU解析不完整导致confidence低
+2026-06-05 11:44:00,STAR002,影石创新,18,4,yes,3,1,0,PASS,success,6次增资合并为1事件
+2026-06-05 11:44:00,BSE001,三协电机,14,0,no,0,0,0,N/A,skipped,北交所企业融资历史简单
+2026-06-05 11:44:00,BSE002,星图测控,14,0,no,0,0,0,N/A,skipped,北交所企业融资历史简单

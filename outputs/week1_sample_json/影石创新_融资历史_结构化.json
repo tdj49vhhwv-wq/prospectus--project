@@ -1,0 +1,246 @@
+{
+  "company": {
+    "company_name": "影石创新科技股份有限公司",
+    "stock_code": "688775",
+    "exchange": "上交所",
+    "board": "科创板",
+    "listing_date": "2025-06-11",
+    "prospectus_title": "影石创新科技股份有限公司首次公开发行股票并在科创板上市招股说明书",
+    "prospectus_url": "https://static.cninfo.com.cn/finalpage/2025-06-06/1223788474.PDF",
+    "prospectus_version": "正式稿",
+    "prospectus_date": "2025-06-06",
+    "financing_events": [
+      {
+        "event_order": 1,
+        "event_date": "2015-07-09",
+        "date_type": "工商变更日",
+        "event_type": "增资",
+        "disclosed_round": "未披露",
+        "inferred_round": "公司设立",
+        "round_inference_basis": "招股书明确说明北京岚锋以货币出资设立深圳岚锋",
+        "total_investment_amount": 1000.0,
+        "currency": "CNY",
+        "share_price": null,
+        "pre_money_valuation": null,
+        "post_money_valuation": null,
+        "valuation_basis": "初始设立",
+        "investors": [
+          {
+            "investor_original_name": "北京岚锋创视网络科技有限公司",
+            "investor_short_name": "北京岚锋",
+            "investor_type": "其他",
+            "is_pevc": "no",
+            "investment_amount": 1000.0,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "100.00%",
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第四节 公司基本情况 / 二、（一）/ 1、有限公司设立情况",
+        "source_page": "影石创新3.md 第910-918行",
+        "evidence_text": "2015年7月9日，北京岚锋以货币出资方式设立深圳岚锋，公司注册资本1,000.00万元。深圳岚锋设立时，股东情况为：北京岚锋100%。",
+        "confidence": "high"
+      },
+      {
+        "event_order": 2,
+        "event_date": "2015-2020",
+        "date_type": "未说明",
+        "event_type": "增资",
+        "disclosed_round": "未披露",
+        "inferred_round": "天使轮至C轮（六次增资）",
+        "round_inference_basis": "招股书显示有限公司阶段共完成六次增资扩股，引入IDG、启明、苏宁、迅雷等机构",
+        "total_investment_amount": null,
+        "currency": "CNY",
+        "share_price": null,
+        "pre_money_valuation": null,
+        "post_money_valuation": null,
+        "valuation_basis": "股改时净资产评估值54,553.14万元，注册资本从1,000万元增长至9,718.8612万元",
+        "investors": [
+          {
+            "investor_original_name": "EARN ACE LIMITED",
+            "investor_short_name": "EARN ACE",
+            "investor_type": "PE",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "13.32%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "QM101 Limited",
+            "investor_short_name": "QM101(启明创投)",
+            "investor_type": "VC",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "9.40%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "香港迅雷有限公司",
+            "investor_short_name": "香港迅雷",
+            "investor_type": "产业资本",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "8.73%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "厦门富凯海创投资管理有限责任公司",
+            "investor_short_name": "厦门富凯",
+            "investor_type": "PE",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "3.70%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "深圳市伊敦传媒投资基金合伙企业（有限合伙）",
+            "investor_short_name": "伊敦传媒(苏宁)",
+            "investor_type": "产业资本",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "2.71%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "华金同达（深圳）投资合伙企业（有限合伙）",
+            "investor_short_name": "华金同达",
+            "investor_type": "PE",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "3.99%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "深圳中证投资有限责任公司",
+            "investor_short_name": "中证投资",
+            "investor_type": "PE",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "2.53%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "金石智娱股权投资（深圳）合伙企业（有限合伙）",
+            "investor_short_name": "金石智娱",
+            "investor_type": "PE",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "2.53%",
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第四节 公司基本情况 / 二、（四）公司成立以来重要事件（境外架构搭建与拆除）",
+        "source_page": "影石创新3.md 第906行（总览表）、第932-934行（股改股东）、第982-1015行（境外架构）",
+        "evidence_text": "招股书披露有限公司阶段完成了设立及六次增资扩股（容诚验字[2020]518Z0004号验证）。股改时注册资本9,718.8612万元。公司曾搭建境外VIE架构（开曼岚锋-Huahua控股-Lancefield控股-香港岚锋-北京WFOE），后为境内上市拆除。投资方包括IDG（EARN ACE/QM101）、启明创投、迅雷、苏宁（伊敦传媒）、华金同达等。",
+        "confidence": "medium"
+      },
+      {
+        "event_order": 3,
+        "event_date": "2020-02-26",
+        "date_type": "工商变更日",
+        "event_type": "其他",
+        "disclosed_round": "未披露",
+        "inferred_round": "整体变更为股份有限公司",
+        "round_inference_basis": "招股书明确说明深圳岚锋整体变更为影石创新科技股份有限公司",
+        "total_investment_amount": null,
+        "currency": "CNY",
+        "share_price": null,
+        "pre_money_valuation": null,
+        "post_money_valuation": 54553.14,
+        "valuation_basis": "净资产账面值52,728.05万元，评估值54,553.14万元，按1:1.4647折股36,000万股",
+        "investors": [
+          {
+            "investor_original_name": "北京岚锋创视网络科技有限公司",
+            "investor_short_name": "北京岚锋",
+            "investor_type": "其他",
+            "is_pevc": "no",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "29.94%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "EARN ACE LIMITED",
+            "investor_short_name": "EARN ACE",
+            "investor_type": "PE",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "13.32%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "QM101 Limited",
+            "investor_short_name": "QM101",
+            "investor_type": "VC",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "9.40%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "香港迅雷有限公司",
+            "investor_short_name": "香港迅雷",
+            "investor_type": "产业资本",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "8.73%",
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第四节 公司基本情况 / 二、（一）/ 2、股份公司设立情况",
+        "source_page": "影石创新3.md 第920-934行",
+        "evidence_text": "截至2019年10月31日，深圳岚锋账面净资产52,728.05万元。全体股东以其拥有的净资产52,728.05万元出资，按1:1.4647比例折合股本36,000.00万元，其余计入资本公积。2020年2月26日，深圳市市场监督管理局核准。股改后27名股东，北京岚锋29.9376%、EARN ACE 13.3239%、QM101 9.4001%、香港迅雷8.7327%等。",
+        "confidence": "high"
+      },
+      {
+        "event_order": 4,
+        "event_date": "2023-03-24",
+        "date_type": "工商变更日",
+        "event_type": "股权转让",
+        "disclosed_round": "未披露",
+        "inferred_round": "申报前12个月内股东调整",
+        "round_inference_basis": "德朴投资向汇智同裕转让股份",
+        "total_investment_amount": 1462.7126,
+        "currency": "CNY",
+        "share_price": 5.096,
+        "pre_money_valuation": null,
+        "post_money_valuation": null,
+        "valuation_basis": "转让价1,462.7126万元/287.0651万股≈5.096元/股",
+        "investors": [
+          {
+            "investor_original_name": "汇智同裕（深圳）投资合伙企业（有限合伙）",
+            "investor_short_name": "汇智同裕",
+            "investor_type": "PE",
+            "is_pevc": "yes",
+            "investment_amount": 1462.7126,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "1.33%",
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第四节 公司基本情况 / 二、（二）/ 1、2023年3月，股份公司第一次股权转让",
+        "source_page": "影石创新3.md 第950-972行",
+        "evidence_text": "2023年1月28日和2023年2月17日，影石创新分别召开董事会和股东大会，同意德朴投资以1,462.7126万元的对价向汇智同裕转让股本287.0651万元。2023年3月24日，深圳市市场监督管理局核准。汇智同裕持股从0.5321%增至1.3295%，德朴投资完全退出。",
+        "confidence": "high"
+      }
+    ],
+    "processing": {
+      "download_status": "success",
+      "parse_status": "success",
+      "locate_status": "success",
+      "extract_status": "success",
+      "review_status": "unchecked"
+    }
+  }
+}

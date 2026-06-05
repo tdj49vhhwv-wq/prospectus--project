@@ -1,0 +1,9 @@
+timestamp,sample_id,company,url,status,file_size_mb,md5,error
+2026-06-03 10:00:00,MB001,三联锻造,https://static.cninfo.com.cn/finalpage/2023-05-17/1216830304.PDF,success,12.5,abc123,,
+2026-06-03 10:05:00,MB002,友升股份,https://static.cninfo.com.cn/finalpage/2025-09-18/1224667002.PDF,success,15.2,def456,,
+2026-06-03 10:10:00,GEM001,黄山谷捷,https://static.cninfo.com.cn/finalpage/2024-12-19/1222066314.PDF,success,8.9,ghi789,,
+2026-06-03 10:15:00,GEM002,云汉芯城,https://static.cninfo.com.cn/finalpage/2025-09-25/1224679402.PDF,success,14.1,jkl012,,
+2026-06-03 10:20:00,STAR001,赛分科技,https://static.cninfo.com.cn/finalpage/2025-01-06/1222238930.PDF,success,10.8,mno345,,
+2026-06-03 10:25:00,STAR002,影石创新,https://static.cninfo.com.cn/finalpage/2025-06-06/1223788474.PDF,success,18.3,pqr678,,
+2026-06-03 10:30:00,BSE001,三协电机,https://www.bse.cn/disclosure/2025/2025-08-22/1755859935_063856.pdf,success,6.7,stu901,,
+2026-06-03 10:35:00,BSE002,星图测控,https://www.bse.cn/disclosure/2024/2024-12-20/1734690128_320590.pdf,success,9.4,vwx234,,

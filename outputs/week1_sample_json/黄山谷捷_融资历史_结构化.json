@@ -1,0 +1,308 @@
+{
+  "company": {
+    "company_name": "黄山谷捷股份有限公司",
+    "stock_code": "301581",
+    "exchange": "深交所",
+    "board": "创业板",
+    "listing_date": "2025-01-03",
+    "prospectus_title": "黄山谷捷股份有限公司首次公开发行股票并在创业板上市招股说明书",
+    "prospectus_url": "https://static.cninfo.com.cn/finalpage/2024-12-19/1222066314.PDF",
+    "prospectus_version": "正式稿",
+    "prospectus_date": "2024-12-19",
+    "financing_events": [
+      {
+        "event_order": 1,
+        "event_date": "2012-06-12",
+        "date_type": "工商变更日",
+        "event_type": "增资",
+        "disclosed_round": "未披露",
+        "inferred_round": "公司设立",
+        "round_inference_basis": "招股书明确说明为有限公司设立",
+        "total_investment_amount": 1000.0,
+        "currency": "CNY",
+        "share_price": null,
+        "pre_money_valuation": null,
+        "post_money_valuation": null,
+        "valuation_basis": "无估值，初始设立",
+        "investors": [
+          {
+            "investor_original_name": "昆山谷捷金属制品有限公司",
+            "investor_short_name": "昆山谷捷",
+            "investor_type": "产业资本",
+            "is_pevc": "no",
+            "investment_amount": 1000.0,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "100.00%",
+            "exit_status_before_ipo": "全部退出"
+          }
+        ],
+        "source_section": "第四节 发行人基本情况 / 二、（一）发行人的设立情况 / 1、有限公司设立情况",
+        "source_page": "黄山谷捷2.md 第590-602行",
+        "evidence_text": "2012年4月11日，黄山市供销社出具《关于同意投资昆山谷捷项目的批复》（黄供财[2012]22号），同意设立谷捷有限。2012年5月28日，谷捷有限股东昆山谷捷作出股东决定，同意由昆山谷捷出资1,000万元设立谷捷有限。2012年6月12日，安徽天正达会计师事务所出具《验资报告》，确认谷捷有限已收到昆山谷捷缴纳的注册资本1,000万元，出资方式为货币。设立时昆山谷捷持股100%。",
+        "confidence": "high"
+      },
+      {
+        "event_order": 2,
+        "event_date": "2021-04-07",
+        "date_type": "工商变更日",
+        "event_type": "股权转让",
+        "disclosed_round": "未披露",
+        "inferred_round": "同一控制下股权重组",
+        "round_inference_basis": "招股书明确说明为同一股权结构下的公司架构调整",
+        "total_investment_amount": 0,
+        "currency": "CNY",
+        "share_price": 0,
+        "pre_money_valuation": null,
+        "post_money_valuation": null,
+        "valuation_basis": "同一控制下重组，零对价转让",
+        "investors": [
+          {
+            "investor_original_name": "黄山供销集团有限公司",
+            "investor_short_name": "黄山供销集团",
+            "investor_type": "政府基金",
+            "is_pevc": "no",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "78.00%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "张俊武",
+            "investor_short_name": "张俊武",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "11.00%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "周斌",
+            "investor_short_name": "周斌",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "11.00%",
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第四节 发行人基本情况 / 二、（二）/ 2、2021年4月，第一次股权转让",
+        "source_page": "黄山谷捷2.md 第652-697行",
+        "evidence_text": "2020年12月30日，黄山市供销社、黄山供销集团出具批复，同意昆山谷捷将其所持谷捷有限78%、11%、11%的股权以零对价分别转让给黄山供销集团、张俊武、周斌。2021年4月3日，昆山谷捷分别与黄山供销集团、张俊武、周斌签署了股权转让相关协议。本次股权转让系同一股权结构下的公司架构调整，转让价格为0元。转让后股权结构：黄山供销集团78.00%、张俊武11.00%、周斌11.00%。",
+        "confidence": "high"
+      },
+      {
+        "event_order": 3,
+        "event_date": "2021-04-13",
+        "date_type": "工商变更日",
+        "event_type": "其他",
+        "disclosed_round": "未披露",
+        "inferred_round": "吸收合并",
+        "round_inference_basis": "谷捷有限吸收合并母公司昆山谷捷",
+        "total_investment_amount": null,
+        "currency": "CNY",
+        "share_price": null,
+        "pre_money_valuation": null,
+        "post_money_valuation": null,
+        "valuation_basis": "昆山谷捷净资产账面价值380.94万元（追溯评估）",
+        "investors": [
+          {
+            "investor_original_name": "黄山供销集团有限公司",
+            "investor_short_name": "黄山供销集团",
+            "investor_type": "政府基金",
+            "is_pevc": "no",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "78.00%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "张俊武",
+            "investor_short_name": "张俊武",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "11.00%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "周斌",
+            "investor_short_name": "周斌",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "11.00%",
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第四节 发行人基本情况 / 二、（二）/ 3、2021年4月，吸收合并",
+        "source_page": "黄山谷捷2.md 第698-720行",
+        "evidence_text": "2020年12月24日，谷捷有限及昆山谷捷召开股东会，同意谷捷有限吸收合并昆山谷捷。2021年4月7日，谷捷有限召开股东会，吸收合并后注册资本变更为1,200万元（黄山供销集团936万、张俊武132万、周斌132万）。本次吸收合并系同一股权结构下的公司架构调整。截至2021年3月31日，昆山谷捷净资产账面价值380.94万元，谷捷有限净资产账面价值2,912.30万元，评估价值9,651.75万元。",
+        "confidence": "high"
+      },
+      {
+        "event_order": 4,
+        "event_date": "2021-11-11",
+        "date_type": "工商变更日",
+        "event_type": "增资",
+        "disclosed_round": "未披露",
+        "inferred_round": "A轮（首次引入外部投资者）",
+        "round_inference_basis": "引入赛格高技术和上汽科技两家外部战略/产业投资者",
+        "total_investment_amount": 11530.2857,
+        "currency": "CNY",
+        "share_price": 22.42,
+        "pre_money_valuation": 26904.0,
+        "post_money_valuation": 38434.2857,
+        "valuation_basis": "增资价格22.42元/注册资本。2020年12月31日评估值26,461.86万元",
+        "investors": [
+          {
+            "investor_original_name": "上海广弘实业有限公司",
+            "investor_short_name": "赛格高技术",
+            "investor_type": "产业资本",
+            "is_pevc": "yes",
+            "investment_amount": 10377.0,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "27.00%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "SAIC TECHNOLOGIES FUND II, LLC",
+            "investor_short_name": "上汽科技",
+            "investor_type": "产业资本",
+            "is_pevc": "yes",
+            "investment_amount": 1153.0,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "3.00%",
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第四节 发行人基本情况 / 二、（二）/ 4、2021年11月，第一次增资",
+        "source_page": "黄山谷捷2.md 第722-738行",
+        "evidence_text": "2021年9月18日，赛格高技术、上汽科技与黄山供销集团、张俊武、周斌及谷捷有限签署《增资协议》，约定谷捷有限增加注册资本514.2857万元，其中赛格高技术认缴462.8571万元、上汽科技认缴51.4286万元，增资价格为22.42元/注册资本，出资方式为货币。增资后：黄山供销集团54.60%、赛格高技术27.00%、张俊武7.70%、周斌7.70%、上汽科技3.00%。",
+        "confidence": "high"
+      },
+      {
+        "event_order": 5,
+        "event_date": "2022-05-26",
+        "date_type": "工商变更日",
+        "event_type": "增资",
+        "disclosed_round": "未披露",
+        "inferred_round": "员工股权激励",
+        "round_inference_basis": "新增注册资本由员工持股平台黄山佳捷全额认缴",
+        "total_investment_amount": 2124.81,
+        "currency": "CNY",
+        "share_price": 23.55,
+        "pre_money_valuation": 40370.0,
+        "post_money_valuation": 42494.81,
+        "valuation_basis": "增资价格23.55元/注册资本。2021年12月31日评估值40,370万元",
+        "investors": [
+          {
+            "investor_original_name": "黄山佳捷股权管理中心（有限合伙）",
+            "investor_short_name": "黄山佳捷",
+            "investor_type": "员工持股平台",
+            "is_pevc": "no",
+            "investment_amount": 2124.81,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "5.00%",
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第四节 发行人基本情况 / 二、（二）/ 5、2022年5月，第二次增资",
+        "source_page": "黄山谷捷2.md 第740-758行",
+        "evidence_text": "2022年5月20日，谷捷有限召开股东会，同意注册资本由1,714.2857万元增至1,804.5113万元，新增注册资本90.2256万元由员工持股平台黄山佳捷全额认缴。增资价格为23.55元/注册资本，出资方式为货币。增资后：黄山供销集团51.87%、赛格高技术25.65%、张俊武7.315%、周斌7.315%、黄山佳捷5.00%、上汽科技2.85%。",
+        "confidence": "high"
+      },
+      {
+        "event_order": 6,
+        "event_date": "2022-09-13",
+        "date_type": "工商变更日",
+        "event_type": "其他",
+        "disclosed_round": "未披露",
+        "inferred_round": "整体变更为股份有限公司",
+        "round_inference_basis": "招股书明确说明谷捷有限整体变更为黄山谷捷股份有限公司",
+        "total_investment_amount": null,
+        "currency": "CNY",
+        "share_price": null,
+        "pre_money_valuation": null,
+        "post_money_valuation": 28244.0,
+        "valuation_basis": "净资产账面值20,152.51万元，评估值28,244.00万元，按1:0.29773折股6,000万股",
+        "investors": [
+          {
+            "investor_original_name": "黄山供销集团有限公司",
+            "investor_short_name": "黄山供销集团",
+            "investor_type": "政府基金",
+            "is_pevc": "no",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "51.87%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "上海广弘实业有限公司",
+            "investor_short_name": "赛格高技术",
+            "investor_type": "产业资本",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "25.65%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "张俊武",
+            "investor_short_name": "张俊武",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "7.315%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "周斌",
+            "investor_short_name": "周斌",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "7.315%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "黄山佳捷股权管理中心（有限合伙）",
+            "investor_short_name": "黄山佳捷",
+            "investor_type": "员工持股平台",
+            "is_pevc": "no",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "5.00%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "SAIC TECHNOLOGIES FUND II, LLC",
+            "investor_short_name": "上汽科技",
+            "investor_type": "产业资本",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "2.85%",
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第四节 发行人基本情况 / 二、（一）/ 2、股份公司设立情况",
+        "source_page": "黄山谷捷2.md 第604-624行",
+        "evidence_text": "2022年8月24日，谷捷有限召开股东会，同意以截至2022年5月31日经审计的净资产20,152.51万元按1:0.29773比例折成6,000万股，每股面值1元，净资产余额14,152.51万元转为资本公积，整体变更后各股东持股比例保持不变。2022年9月13日取得换发营业执照。",
+        "confidence": "high"
+      }
+    ],
+    "processing": {
+      "download_status": "success",
+      "parse_status": "success",
+      "locate_status": "success",
+      "extract_status": "success",
+      "review_status": "unchecked"
+    }
+  }
+}

@@ -1,0 +1,277 @@
+{
+  "company": {
+    "company_name": "芜湖三联锻造股份有限公司",
+    "stock_code": "001282",
+    "exchange": "深交所",
+    "board": "主板",
+    "listing_date": "2023-05-24",
+    "prospectus_title": "芜湖三联锻造股份有限公司首次公开发行股票并在主板上市招股说明书",
+    "prospectus_url": "https://static.cninfo.com.cn/finalpage/2023-05-17/1216830304.PDF",
+    "prospectus_version": "正式稿",
+    "prospectus_date": "2023-05-17",
+    "financing_events": [
+      {
+        "event_order": 1,
+        "event_date": "2004-06-18",
+        "date_type": "工商变更日",
+        "event_type": "增资",
+        "disclosed_round": "未披露",
+        "inferred_round": "公司设立",
+        "round_inference_basis": "招股书明确说明为有限公司设立",
+        "total_investment_amount": 500.0,
+        "currency": "CNY",
+        "share_price": null,
+        "pre_money_valuation": null,
+        "post_money_valuation": null,
+        "valuation_basis": "初始设立",
+        "investors": [
+          {
+            "investor_original_name": "孙国奉",
+            "investor_short_name": "孙国奉",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": 175.0,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "35.00%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "孙国敏",
+            "investor_short_name": "孙国敏",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": 162.5,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "32.50%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "张松满",
+            "investor_short_name": "张松满",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": 162.5,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "32.50%",
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第四节 发行人基本情况 / 二、（一）有限公司设立情况",
+        "source_page": "三联锻造3.md 第411-425行",
+        "evidence_text": "2004年6月1日，孙国奉、孙国敏和张松满就设立三联有限签署了股东协议书及公司章程，注册资本500万元，孙国奉以机器设备出资175万元（35%）；孙国敏以货币和机器设备出资162.5万元（32.5%）；张松满以货币和机器设备出资162.5万元（32.5%）。2004年6月18日经芜湖市工商行政管理局核准。",
+        "confidence": "high"
+      },
+      {
+        "event_order": 2,
+        "event_date": "2007-12",
+        "date_type": "未说明",
+        "event_type": "增资及股权转让",
+        "disclosed_round": "未披露",
+        "inferred_round": "第一次增资（家族内部资金注入）",
+        "round_inference_basis": "温州三联、张爱连、孙娟丽等关联方增资",
+        "total_investment_amount": 1500.0,
+        "currency": "CNY",
+        "share_price": null,
+        "pre_money_valuation": null,
+        "post_money_valuation": null,
+        "valuation_basis": "未披露估值",
+        "investors": [
+          {
+            "investor_original_name": "温州三联锻造有限公司",
+            "investor_short_name": "温州三联",
+            "investor_type": "其他",
+            "is_pevc": "no",
+            "investment_amount": 620.0,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": null,
+            "exit_status_before_ipo": "全部退出"
+          },
+          {
+            "investor_original_name": "张爱连",
+            "investor_short_name": "张爱连",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": 400.0,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": null,
+            "exit_status_before_ipo": "全部退出"
+          },
+          {
+            "investor_original_name": "孙娟丽",
+            "investor_short_name": "孙娟丽",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": 380.0,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": null,
+            "exit_status_before_ipo": "全部退出"
+          },
+          {
+            "investor_original_name": "孙国奉",
+            "investor_short_name": "孙国奉",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": 100.0,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": null,
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第四节 发行人基本情况 / 二、（三）/ 1、三联锻造设立以来股本演变情况概图",
+        "source_page": "三联锻造3.md 第469-522行（flowchart）",
+        "evidence_text": "2007年12月，三联有限第一次增资1,500万元，温州三联出资620万元，张爱连出资400万元，孙娟丽出资380万元，孙国奉出资100万元。注册资本增至2,000万元。2008年1月，温州三联将395万元转让予孙国奉、97.5万元予孙国敏、127.5万元予张松满；孙娟丽将380万元转让予张松满；张爱连将400万元转让予孙国敏。",
+        "confidence": "medium"
+      },
+      {
+        "event_order": 3,
+        "event_date": "2014-05",
+        "date_type": "未说明",
+        "event_type": "增资",
+        "disclosed_round": "未披露",
+        "inferred_round": "第二次增资（创始人增资）",
+        "round_inference_basis": "孙国奉、张松满按比例增资",
+        "total_investment_amount": 3000.0,
+        "currency": "CNY",
+        "share_price": null,
+        "pre_money_valuation": null,
+        "post_money_valuation": null,
+        "valuation_basis": "未披露估值",
+        "investors": [
+          {
+            "investor_original_name": "孙国奉",
+            "investor_short_name": "孙国奉",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": 1995.0,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "66.50%",
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "张松满",
+            "investor_short_name": "张松满",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": 1005.0,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": "33.50%",
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第四节 发行人基本情况 / 二、（三）/ 1、股本演变情况概图",
+        "source_page": "三联锻造3.md 第488-489行（flowchart）",
+        "evidence_text": "2014年5月，三联有限第二次增资3,000万元，孙国奉出资1,995万元，张松满出资1,005万元。注册资本增至5,000万元。增资后孙国奉66.50%，张松满33.50%。",
+        "confidence": "medium"
+      },
+      {
+        "event_order": 4,
+        "event_date": "2017-02",
+        "date_type": "未说明",
+        "event_type": "增资",
+        "disclosed_round": "未披露",
+        "inferred_round": "Pre-IPO轮（首次引入外部机构）",
+        "round_inference_basis": "高新同华出资1,150万元，为首次引入私募基金",
+        "total_investment_amount": 1150.0,
+        "currency": "CNY",
+        "share_price": null,
+        "pre_money_valuation": null,
+        "post_money_valuation": null,
+        "valuation_basis": "未披露估值",
+        "investors": [
+          {
+            "investor_original_name": "芜湖高新同华创业投资合伙企业（有限合伙）",
+            "investor_short_name": "高新同华",
+            "investor_type": "VC",
+            "is_pevc": "yes",
+            "investment_amount": 1150.0,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": null,
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第四节 发行人基本情况 / 二、（三）/ 1、股本演变情况概图",
+        "source_page": "三联锻造3.md 第491-492行（flowchart）",
+        "evidence_text": "2017年2月，三联有限第三次增资1,150万元，由高新同华出资1,150万元。注册资本增至6,150万元。高新同华为私募创业投资基金。",
+        "confidence": "medium"
+      },
+      {
+        "event_order": 5,
+        "event_date": "2018-11-26",
+        "date_type": "工商变更日",
+        "event_type": "其他",
+        "disclosed_round": "未披露",
+        "inferred_round": "整体变更为股份有限公司",
+        "round_inference_basis": "招股书明确说明三联有限整体变更设立股份有限公司",
+        "total_investment_amount": null,
+        "currency": "CNY",
+        "share_price": null,
+        "pre_money_valuation": null,
+        "post_money_valuation": 36433.51,
+        "valuation_basis": "净资产账面值29,828.50万元（调整后），评估值36,433.51万元，按1:0.2732折股8,150万股",
+        "investors": [
+          {
+            "investor_original_name": "孙国奉",
+            "investor_short_name": "孙国奉",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": null,
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "张一衡",
+            "investor_short_name": "张一衡",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": null,
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "孙国敏",
+            "investor_short_name": "孙国敏",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": null,
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "孙仁豪",
+            "investor_short_name": "孙仁豪",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": null,
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "芜湖高新同华创业投资合伙企业（有限合伙）",
+            "investor_short_name": "高新同华",
+            "investor_type": "VC",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": null,
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第四节 发行人基本情况 / 二、（二）股份公司设立情况",
+        "source_page": "三联锻造3.md 第443-465行",
+        "evidence_text": "2018年10月11日，三联有限召开股东会，同意整体变更设立股份有限公司。截至2018年7月31日，经审计净资产29,828.50万元（调整后），按1:0.2732折股81,500,000股，每股面值1元。发起人为孙国奉、张一衡、孙国敏、孙仁豪、高新同华5名股东。2018年11月26日经芜湖市工商行政管理局核准。",
+        "confidence": "high"
+      }
+    ],
+    "processing": {
+      "download_status": "success",
+      "parse_status": "success",
+      "locate_status": "success",
+      "extract_status": "success",
+      "review_status": "unchecked"
+    }
+  }
+}

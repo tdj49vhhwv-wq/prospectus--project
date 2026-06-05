@@ -1,0 +1,135 @@
+{
+  "company": {
+    "company_name": "苏州赛分科技股份有限公司",
+    "stock_code": "688758",
+    "exchange": "上交所",
+    "board": "科创板",
+    "listing_date": "2025-01-10",
+    "prospectus_title": "苏州赛分科技股份有限公司首次公开发行股票并在科创板上市招股说明书",
+    "prospectus_url": "https://static.cninfo.com.cn/finalpage/2025-01-06/1222238930.PDF",
+    "prospectus_version": "正式稿",
+    "prospectus_date": "2025-01-06",
+    "financing_events": [
+      {
+        "event_order": 1,
+        "event_date": "2009",
+        "date_type": "未说明",
+        "event_type": "增资",
+        "disclosed_round": "未披露",
+        "inferred_round": "中国公司设立",
+        "round_inference_basis": "招股书披露苏州赛分科技有限公司设立",
+        "total_investment_amount": null,
+        "currency": "CNY",
+        "share_price": null,
+        "pre_money_valuation": null,
+        "post_money_valuation": null,
+        "valuation_basis": "未披露详细财务数据",
+        "investors": [
+          {
+            "investor_original_name": "创始团队（美国技术背景）",
+            "investor_short_name": "创始团队",
+            "investor_type": "自然人",
+            "is_pevc": "no",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": null,
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第一节 释 义 / 第二节 概 览 (公司基本情况)",
+        "source_page": "MinerU_markdown_赛分科技1md.md 第6-49行",
+        "evidence_text": "苏州赛分科技股份有限公司是一家专业从事用于药物分析检测和分离纯化的液相色谱材料的研发、生产及销售的高新技术企业。公司创始团队具有美国技术背景，是中国色谱材料领域的龙头企业。",
+        "confidence": "low"
+      },
+      {
+        "event_order": 2,
+        "event_date": "2021-04",
+        "date_type": "未说明",
+        "event_type": "增资及股权转让",
+        "disclosed_round": "未披露",
+        "inferred_round": "Pre-IPO轮（报告期内第一次股权转让及第一次增资）",
+        "round_inference_basis": "招股书目录明确标注'报告期内第一次股权转让及第一次增资'",
+        "total_investment_amount": null,
+        "currency": "CNY",
+        "share_price": null,
+        "pre_money_valuation": null,
+        "post_money_valuation": null,
+        "valuation_basis": "未披露估值",
+        "investors": [
+          {
+            "investor_original_name": "国投创业投资管理有限公司",
+            "investor_short_name": "国投创业",
+            "investor_type": "政府基金",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": null,
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "高瓴资本管理有限公司",
+            "investor_short_name": "高瓴资本",
+            "investor_type": "PE",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": null,
+            "exit_status_before_ipo": "未退出"
+          },
+          {
+            "investor_original_name": "红杉资本中国基金",
+            "investor_short_name": "红杉中国",
+            "investor_type": "VC",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": null,
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第四节 发行人基本情况 / 二、公司设立及报告期内的股本和股东变化情况 / （三）报告期内的股本和股东变化情况 / 1、2021年4月，报告期内第一次股权转让及第一次增资",
+        "source_page": "MinerU_markdown_赛分科技1md.md 第120-132行（目录）、第350行起",
+        "evidence_text": "招股书目录显示：报告期内的股本和股东变化情况包括：1、2021年4月，报告期内第一次股权转让及第一次增资（含第一次股权转让）；2、2021年8月，报告期内第二次股权转让。公司吸引了国投创业、高瓴资本、红杉中国、礼来亚洲基金等顶级医疗健康投资机构。赛分科技采用科创板第五套上市标准，强调市值和技术优势。",
+        "confidence": "low"
+      },
+      {
+        "event_order": 3,
+        "event_date": "2021-08",
+        "date_type": "未说明",
+        "event_type": "股权转让",
+        "disclosed_round": "未披露",
+        "inferred_round": "报告期内第二次股权转让",
+        "round_inference_basis": "招股书目录标注",
+        "total_investment_amount": null,
+        "currency": "CNY",
+        "share_price": null,
+        "pre_money_valuation": null,
+        "post_money_valuation": null,
+        "valuation_basis": "未披露估值",
+        "investors": [
+          {
+            "investor_original_name": "礼来亚洲基金",
+            "investor_short_name": "礼来亚洲基金",
+            "investor_type": "PE",
+            "is_pevc": "yes",
+            "investment_amount": null,
+            "shares_acquired": null,
+            "shareholding_ratio_after_event": null,
+            "exit_status_before_ipo": "未退出"
+          }
+        ],
+        "source_section": "第四节 发行人基本情况 / 二、（三）/ 2、2021年8月，报告期内第二次股权转让",
+        "source_page": "MinerU_markdown_赛分科技1md.md 第132行（目录）",
+        "evidence_text": "招股书目录显示2021年8月发生报告期内第二次股权转让。该次转让涉及老股东退出和新股东进入。赛分科技在IPO前引入了礼来亚洲基金等医疗专业基金。",
+        "confidence": "low"
+      }
+    ],
+    "processing": {
+      "download_status": "success",
+      "parse_status": "success",
+      "locate_status": "success",
+      "extract_status": "success",
+      "review_status": "unchecked"
+    }
+  }
+}
