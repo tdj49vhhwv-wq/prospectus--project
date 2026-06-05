@@ -1,0 +1,32 @@
+{
+  "company_name": "三协电机",
+  "source_files": [
+    "三协电机1.md",
+    "三协电机2.md"
+  ],
+  "financing_chapters_found": [
+    "发行人基本情况",
+    "（二） 本次发行前公司前十名股东情况",
+    "1、申报前12 个月新增股东情况",
+    "（三）公司设立以来主营业务、主要产品或服务、主要经营模式的演变情况",
+    "（1）关联方股权转让"
+  ],
+  "equity_timeline": [],
+  "financing_events": [
+    {
+      "type": "股权转让",
+      "date": null,
+      "description": "（1）关联方股权转让\n\n单位：万元\n\n关联方关联交易内容2024 年度2023 年度2022 年度盛月瑶向三合融创转让晟亿电气 40%股权--160.00",
+      "amount": null,
+      "participants": [],
+      "source_chapter": "（1）关联方股权转让"
+    }
+  ],
+  "key_shareholders": [],
+  "statistics": {
+    "total_chapters_scanned": 1001,
+    "financing_chapters": 5,
+    "timeline_entries": 0,
+    "financing_events_found": 1
+  }
+}

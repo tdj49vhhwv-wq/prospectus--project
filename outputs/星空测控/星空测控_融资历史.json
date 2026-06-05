@@ -1,0 +1,20 @@
+{
+  "company_name": "星空测控",
+  "source_files": [
+    "星空测控1.md",
+    "星空测控2.md"
+  ],
+  "financing_chapters_found": [
+    "发行人基本情况",
+    "（二） 本次发行前公司前十名股东情况"
+  ],
+  "equity_timeline": [],
+  "financing_events": [],
+  "key_shareholders": [],
+  "statistics": {
+    "total_chapters_scanned": 1033,
+    "financing_chapters": 2,
+    "timeline_entries": 0,
+    "financing_events_found": 0
+  }
+}

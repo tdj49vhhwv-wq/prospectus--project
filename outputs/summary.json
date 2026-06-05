@@ -1,0 +1,50 @@
+{
+  "三协电机": {
+    "total_chapters_scanned": 1001,
+    "financing_chapters": 5,
+    "timeline_entries": 0,
+    "financing_events_found": 1
+  },
+  "三联锻造": {
+    "total_chapters_scanned": 877,
+    "financing_chapters": 10,
+    "timeline_entries": 32,
+    "financing_events_found": 9
+  },
+  "云汉芯城": {
+    "total_chapters_scanned": 904,
+    "financing_chapters": 6,
+    "timeline_entries": 20,
+    "financing_events_found": 7
+  },
+  "友声股份": {
+    "total_chapters_scanned": 911,
+    "financing_chapters": 2,
+    "timeline_entries": 2,
+    "financing_events_found": 1
+  },
+  "影石创新": {
+    "total_chapters_scanned": 1047,
+    "financing_chapters": 7,
+    "timeline_entries": 9,
+    "financing_events_found": 6
+  },
+  "星空测控": {
+    "total_chapters_scanned": 1033,
+    "financing_chapters": 2,
+    "timeline_entries": 0,
+    "financing_events_found": 0
+  },
+  "赛分科技": {
+    "total_chapters_scanned": 1011,
+    "financing_chapters": 5,
+    "timeline_entries": 5,
+    "financing_events_found": 3
+  },
+  "黄山谷捷": {
+    "total_chapters_scanned": 849,
+    "financing_chapters": 7,
+    "timeline_entries": 20,
+    "financing_events_found": 7
+  }
+}

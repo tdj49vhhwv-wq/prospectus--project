@@ -1,0 +1,40 @@
+{
+  "company_name": "友声股份",
+  "source_files": [
+    "友声股份1.md",
+    "友声股份2.md"
+  ],
+  "financing_chapters_found": [
+    "第四节 发行人基本情况.... .40",
+    "二、发行人设立情况和报告期内股本、股东变化情况"
+  ],
+  "equity_timeline": [
+    {
+      "date": "2020-09",
+      "event": "A[\"友升股份设立\\n(2020年9月, 股本12,000.00万元)\"] --> B[\"友升股份增资1,380万元\\n(2020年9月, 股本13,380.00万元)\"]"
+    },
+    {
+      "date": "2022-12",
+      "event": "B --> C[\"友升股份增资1,100.1333万元\\n(2022年12月, 股本14,480.1333万元)\"]"
+    }
+  ],
+  "financing_events": [
+    {
+      "type": "增资",
+      "date": "2020-09",
+      "description": "二、发行人设立情况和报告期内股本、股东变化情况\n\n公司是由友升有限整体变更设立的股份有限公司。公司报告期内股本变化情况如下：\n\n\n\n\nflowchart",
+      "amount": "1,380万元",
+      "participants": [
+        "限整体变更设立的股份有限公司"
+      ],
+      "source_chapter": "二、发行人设立情况和报告期内股本、股东变化情况"
+    }
+  ],
+  "key_shareholders": [],
+  "statistics": {
+    "total_chapters_scanned": 911,
+    "financing_chapters": 2,
+    "timeline_entries": 2,
+    "financing_events_found": 1
+  }
+}
