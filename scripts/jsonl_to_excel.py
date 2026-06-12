@@ -59,20 +59,24 @@ def jsonl_to_excel(path, out_path):
     # ── Sheet 1: 认缴流量 ──
     ws1 = wb.active
     ws1.title = "认缴流量"
-    h1 = ["PDF页码", "增资日期", "认购方", "认购数量(万股)", "认购金额(万元)", "认购价格(元/股)", "原文证据"]
+    h1 = ["PDF页码", "增资日期", "认购方", "认购数量(万股)", "认购金额(万元)",
+          "认购价格(元/股)", "事件类型", "增资后总股本(万股)", "认购占比", "原文证据"]
     _header(ws1, h1)
     for r in sub_flows:
         ws1.append([
             r.get("source_page"), r.get("subscription_date"), r.get("subscriber_name"),
             r.get("shares_subscribed"), r.get("amount_subscribed"),
-            r.get("price_per_share"), (r.get("evidence_text") or "")[:500],
+            r.get("price_per_share"), r.get("event_context"),
+            r.get("post_event_total_shares"), r.get("subscription_ratio"),
+            (r.get("evidence_text") or "")[:500],
         ])
-    _widths(ws1, [14, 13, 22, 14, 14, 14, 60])
+    _widths(ws1, [14, 13, 22, 14, 14, 14, 10, 14, 10, 60])
 
     # ── Sheet 2: 股权存量 ──
     ws2 = wb.create_sheet("股权存量")
     h2 = ["PDF页码", "时点", "股权结构口径", "总股本(万股)", "总出资额(万元)",
-          "股东名称", "持股数(万股)", "出资额(万元)", "持股比例", "原文证据"]
+          "股东名称", "持股数(万股)", "出资额(万元)", "持股比例",
+          "快照序号", "股东类型", "原始创始人", "原文证据"]
     _header(ws2, h2)
     for r in eq_snaps:
         ws2.append([
@@ -80,9 +84,11 @@ def jsonl_to_excel(path, out_path):
             r.get("total_shares"), r.get("total_capital"),
             r.get("shareholder_name"), r.get("shares_held"),
             r.get("capital_contribution"), r.get("shareholding_ratio"),
+            f"t{r.get('snapshot_order','?')}" if r.get('snapshot_order') is not None else "",
+            r.get("shareholder_type_detail"), r.get("is_original_founder"),
             (r.get("evidence_text") or "")[:500],
         ])
-    _widths(ws2, [14, 13, 18, 13, 13, 22, 13, 13, 10, 60])
+    _widths(ws2, [14, 13, 18, 13, 13, 22, 13, 13, 10, 8, 12, 8, 60])
 
     # ── Sheet 3: schema_cross_check ──
     ws3 = wb.create_sheet("schema_cross_check")
@@ -101,6 +107,11 @@ def jsonl_to_excel(path, out_path):
         ("subscription_flow", "shares_subscribed", "float|null", ""),
         ("subscription_flow", "amount_subscribed", "float|null", ""),
         ("subscription_flow", "price_per_share", "float|null", ""),
+        ("subscription_flow", "event_context", "enum", ""),
+        ("subscription_flow", "post_event_total_shares", "float|null", ""),
+        ("subscription_flow", "post_event_total_capital", "float|null", ""),
+        ("subscription_flow", "payment_method", "enum", ""),
+        ("subscription_flow", "subscription_ratio", "str|null", ""),
         ("subscription_flow", "evidence_text", "str(min=20)", "✓"),
     ]
     es_fields = [
@@ -113,6 +124,9 @@ def jsonl_to_excel(path, out_path):
         ("equity_snapshot", "shares_held", "float|null", ""),
         ("equity_snapshot", "capital_contribution", "float|null", ""),
         ("equity_snapshot", "shareholding_ratio", "str|null", ""),
+        ("equity_snapshot", "snapshot_order", "int|null", ""),
+        ("equity_snapshot", "shareholder_type_detail", "enum", ""),
+        ("equity_snapshot", "is_original_founder", "yes/no/unknown", ""),
         ("equity_snapshot", "evidence_text", "str(min=20)", "✓"),
     ]
     row = 3

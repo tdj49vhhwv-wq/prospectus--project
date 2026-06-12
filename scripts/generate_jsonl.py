@@ -190,12 +190,20 @@ def build_subscription_flows(events, info):
         investors = ev.get("investors", [])
         total_amt = ev.get("total_investment_amount")
         share_price = ev.get("share_price")
+        ev_type = ev.get("event_type", "")
+        post_val = ev.get("post_money_valuation")
 
         for inv in investors:
             inv_amt = inv.get("investment_amount")
-            # 如果单个投资人无金额但总金额只有一个投资人，用总金额
             if inv_amt is None and len(investors) == 1 and total_amt:
                 inv_amt = total_amt
+
+            # 尝试从 evidence 提取增资后总股本
+            post_shares = None
+            post_capital = None
+            cap_match = re.search(r'(?:增资后.*?股本|注册资本)[^\d]*?([\d,]+\.?\d*)\s*万', evidence)
+            if cap_match:
+                post_capital = float(cap_match.group(1).replace(",", ""))
 
             rows.append({
                 "record_type": "subscription_flow",
@@ -207,6 +215,10 @@ def build_subscription_flows(events, info):
                 "shares_subscribed": inv.get("shares_acquired"),
                 "amount_subscribed": inv_amt,
                 "price_per_share": share_price,
+                "event_context": ev_type,
+                "post_event_total_shares": post_shares,
+                "post_event_total_capital": post_capital,
+                "subscription_ratio": inv.get("shareholding_ratio_after_event"),
                 "evidence_text": evidence[:800],
                 "notes": ev.get("notes", ""),
             })
@@ -251,10 +263,30 @@ def build_equity_snapshots(events, info):
             if cap_match:
                 total_capital = float(cap_match.group(1).replace(",", ""))
 
+        snap_order = len(seen_snapshots)  # t0=0, t1=1, ...
+
         for inv in investors:
             ratio = inv.get("shareholding_ratio_after_event")
             if not ratio:
                 continue
+            # 推断股东类型
+            inv_name = inv.get("investor_original_name", "")
+            inv_type = "其他"
+            if "有限合伙" in inv_name or "基金" in inv_name or "创投" in inv_name or "投资" in inv_name:
+                inv_type = "外部PE"
+            elif "员工" in inv_name or "持股平台" in inv_name:
+                inv_type = "员工持股平台"
+            elif inv.get("investor_type") == "自然人":
+                inv_type = "自然人"
+            elif inv.get("investor_type") == "PE":
+                inv_type = "外部PE"
+            elif inv.get("investor_type") == "VC":
+                inv_type = "外部VC"
+            elif inv.get("investor_type") == "产业资本":
+                inv_type = "产业资本"
+            elif inv.get("investor_type") == "政府基金":
+                inv_type = "政府基金"
+
             rows.append({
                 "record_type": "equity_snapshot",
                 "company_name": info["full"],
@@ -268,6 +300,9 @@ def build_equity_snapshots(events, info):
                 "shares_held": inv.get("shares_acquired"),
                 "capital_contribution": inv.get("investment_amount"),
                 "shareholding_ratio": ratio,
+                "snapshot_order": snap_order,
+                "shareholder_type_detail": inv_type,
+                "is_original_founder": "yes" if snap_order == 0 else "unknown",
                 "evidence_text": evidence[:800],
                 "notes": ev.get("notes", ""),
             })
