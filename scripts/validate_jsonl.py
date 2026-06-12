@@ -182,7 +182,7 @@ def validate_file(path):
         if shares_sum > 0 and ts is not None and ts > 0:
             diff = shares_sum - ts
             st = "待复核" if abs(diff) > 0.01 else "PASS"
-            detail = f"持股合计{shares_sum:.1f} vs 总股本{ts:.1f}"
+            detail = f"持股合计{shares_sum:.1f}万股 vs 总股本{ts:.1f}万股"
             if st == "待复核":
                 detail += " ←待复核"
             log_cross(company, "", key.split("|")[0], f"[合计 {len(group)}股东]",
@@ -254,6 +254,54 @@ def validate_file(path):
                       review_mark,
                       detail_text)
 
+
+    # ── 认购合计对应相邻存量时点股本变化 ──
+    # 按 subscription_date 分组 (YYYY-MM)，合计每个月的认购数量
+    sub_by_month = defaultdict(float)
+    for sf in sub_flows:
+        if sf.subscription_date and sf.shares_subscribed:
+            month_key = sf.subscription_date[:7]
+            sub_by_month[month_key] += sf.shares_subscribed
+
+    # 找相邻快照的总股本变化，与认购合计对比
+    for idx in range(len(snap_list) - 1):
+        key_prev, group_prev = snap_list[idx]
+        key_curr, group_curr = snap_list[idx + 1]
+        date_curr = key_curr.split("|")[0]
+
+        ts_prev = next((es.total_shares for es in group_prev if es.total_shares is not None), None)
+        ts_curr = next((es.total_shares for es in group_curr if es.total_shares is not None), None)
+
+        tc_prev = next((es.total_capital for es in group_prev if es.total_capital is not None), None)
+        tc_curr = next((es.total_capital for es in group_curr if es.total_capital is not None), None)
+
+        # 找最接近的认购月合计
+        sub_total = None
+        for month_key, total in sorted(sub_by_month.items()):
+            if month_key <= date_curr[:7]:
+                sub_total = total
+
+        if ts_prev is not None and ts_curr is not None and ts_curr != ts_prev:
+            delta = ts_curr - ts_prev
+            if sub_total is not None and sub_total > 0:
+                diff = sub_total - delta
+                st = "待复核" if abs(diff) > 0.01 else "PASS"
+                dt = f"认购合计{sub_total:.1f}万股 vs 股本变化{delta:.1f}万股"
+                if st == "待复核":
+                    dt += " ←待复核"
+                log_cross(company, date_curr, "", "[股本变化合计]",
+                          ts_prev, None, sub_total, ts_prev + sub_total, ts_curr,
+                          diff, st, dt)
+
+        if tc_prev is not None and tc_curr is not None and tc_curr != tc_prev:
+            delta_cap = tc_curr - tc_prev
+            if sub_total is not None and sub_total > 0:
+                diff_cap = sub_total - delta_cap
+                st = "待复核" if abs(diff_cap) > 0.01 else "PASS"
+                dt = f"认购合计{sub_total:.1f}万股 vs 出资额变化{delta_cap:.1f}万元"
+                log_cross(company, date_curr, "", "[出资额变化合计]",
+                          tc_prev, None, sub_total, tc_prev + sub_total, tc_curr,
+                          diff_cap, st, dt)
 
     # ── 认缴→存量对应 ──
     for sf in sub_flows:
