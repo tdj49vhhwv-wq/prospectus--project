@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T17:00:58.385242",
+  "generated_at": "2026-06-12T17:05:42.141998",
   "record_types": [
     "subscription_flow",
     "equity_snapshot"
@@ -14,9 +14,9 @@
     },
     "友升股份": {
       "code": "603418",
-      "subscription_flow": 13,
-      "equity_snapshot": 2,
-      "src": "auto"
+      "subscription_flow": 19,
+      "equity_snapshot": 19,
+      "src": "review"
     },
     "黄山谷捷": {
       "code": "301581",
@@ -32,9 +32,9 @@
     },
     "赛分科技": {
       "code": "688758",
-      "subscription_flow": 5,
-      "equity_snapshot": 0,
-      "src": "auto"
+      "subscription_flow": 31,
+      "equity_snapshot": 13,
+      "src": "manual"
     },
     "影石创新": {
       "code": "688775",

@@ -338,38 +338,30 @@ def main():
     for name, info in TARGET.items():
         print(f"\n处理: {name} ({info['code']}) [{info['src']}]")
 
-        # 1. 优先用自动提取结果
-        auto_flows = []
-        auto_snaps = []
-        if name in auto_results:
-            auto_flows = auto_results[name].get("flows", [])
-            auto_snaps = auto_results[name].get("snaps", [])
+        # 自动提取结果 (作为兜底)
+        auto_flows = auto_results.get(name, {}).get("flows", []) if name in auto_results else []
+        auto_snaps = auto_results.get(name, {}).get("snaps", []) if name in auto_results else []
 
-        # 2. 手动数据作为补充
+        # 手动数据优先加载
         if info["src"] == "manual":
             events = load_structured(name)
         else:
             events = load_review_events(name)
 
-        # 3. 合并: 自动 + 手动
-        if auto_flows or auto_snaps:
+        # 手动数据质量高 → 优先使用; 无手动数据时用自动兜底
+        if events:
+            sub_flows = build_subscription_flows(events, info)
+            eq_snaps = build_equity_snapshots(events, info)
+        elif auto_flows or auto_snaps:
             all_rows = auto_flows + auto_snaps
             out = JSONL_DIR / f"{info['code']}_{name}.jsonl"
             with open(out, "w", encoding="utf-8") as f:
                 for row in all_rows:
                     f.write(json.dumps(row, ensure_ascii=False) + "\n")
             stats[name] = {"code": info["code"], "subscription_flow": len(auto_flows),
-                          "equity_snapshot": len(auto_snaps), "src": "auto"}
-            print(f"  -> {out.name}: {len(auto_flows)} flows + {len(auto_snaps)} snaps (自动)")
+                          "equity_snapshot": len(auto_snaps), "src": "auto_fallback"}
+            print(f"  -> {out.name}: {len(auto_flows)} flows + {len(auto_snaps)} snaps (自动兜底)")
             continue
-
-        # 4. 纯手动回退
-        if not events:
-            print(f"  ⚠ 无事件数据")
-            continue
-
-        sub_flows = build_subscription_flows(events, info)
-        eq_snaps = build_equity_snapshots(events, info)
 
         all_rows = sub_flows + eq_snaps
 
