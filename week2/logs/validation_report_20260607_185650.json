@@ -1,0 +1,325 @@
+[
+  {
+    "company": "688411_海博思创",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 15,
+      "event_field_issues": 0,
+      "has_setup_event": true,
+      "has_change_event": false,
+      "timeline_count": 29,
+      "has_investors": true,
+      "total_participant_refs": 34,
+      "date_range": "2011-11 → 2024-03"
+    }
+  },
+  {
+    "company": "688545_兴福电子",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 18,
+      "event_field_issues": 0,
+      "has_setup_event": true,
+      "has_change_event": true,
+      "timeline_count": 30,
+      "has_investors": true,
+      "total_participant_refs": 30,
+      "date_range": "2020-01 → 2023-11"
+    }
+  },
+  {
+    "company": "688583_思看科技",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 15,
+      "event_field_issues": 0,
+      "has_setup_event": true,
+      "has_change_event": true,
+      "timeline_count": 18,
+      "has_investors": true,
+      "total_participant_refs": 51,
+      "date_range": "2015-03 → 2024-12"
+    }
+  },
+  {
+    "company": "688727_恒坤新材",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 19,
+      "event_field_issues": 0,
+      "has_setup_event": true,
+      "has_change_event": true,
+      "timeline_count": 30,
+      "has_investors": true,
+      "total_participant_refs": 24,
+      "date_range": "2005-04 → 2022-12"
+    }
+  },
+  {
+    "company": "688729_屹唐股份",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 14,
+      "event_field_issues": 0,
+      "has_setup_event": false,
+      "has_change_event": true,
+      "timeline_count": 27,
+      "has_investors": true,
+      "total_participant_refs": 28,
+      "date_range": "2007-04 → 2024-01"
+    }
+  },
+  {
+    "company": "688755_汉邦科技",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 24,
+      "event_field_issues": 0,
+      "has_setup_event": true,
+      "has_change_event": true,
+      "timeline_count": 30,
+      "has_investors": true,
+      "total_participant_refs": 46,
+      "date_range": "1998-10 → 2023-12"
+    }
+  },
+  {
+    "company": "688757_胜科纳米",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 24,
+      "event_field_issues": 0,
+      "has_setup_event": false,
+      "has_change_event": true,
+      "timeline_count": 30,
+      "has_investors": true,
+      "total_participant_refs": 39,
+      "date_range": "2012-08 → 2024-09"
+    }
+  },
+  {
+    "company": "688758_赛分科技",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 15,
+      "event_field_issues": 0,
+      "has_setup_event": false,
+      "has_change_event": true,
+      "timeline_count": 23,
+      "has_investors": true,
+      "total_participant_refs": 54,
+      "date_range": "2011-10 → 2024-02"
+    }
+  },
+  {
+    "company": "688759_必贝特",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 16,
+      "event_field_issues": 0,
+      "has_setup_event": false,
+      "has_change_event": true,
+      "timeline_count": 27,
+      "has_investors": true,
+      "total_participant_refs": 77,
+      "date_range": "2012-01 → 2025-08"
+    }
+  },
+  {
+    "company": "688765_禾元生物",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 20,
+      "event_field_issues": 0,
+      "has_setup_event": false,
+      "has_change_event": true,
+      "timeline_count": 30,
+      "has_investors": true,
+      "total_participant_refs": 33,
+      "date_range": "2007-08 → 2025-10"
+    }
+  },
+  {
+    "company": "688775_影石创新",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 6,
+      "event_field_issues": 0,
+      "has_setup_event": true,
+      "has_change_event": false,
+      "timeline_count": 13,
+      "has_investors": true,
+      "total_participant_refs": 37,
+      "date_range": "2015-07 → 2023-06"
+    }
+  },
+  {
+    "company": "688783_西安奕材",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 20,
+      "event_field_issues": 0,
+      "has_setup_event": true,
+      "has_change_event": true,
+      "timeline_count": 30,
+      "has_investors": true,
+      "total_participant_refs": 64,
+      "date_range": "2017-09 → 2024-09"
+    }
+  },
+  {
+    "company": "688790_昂瑞微",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 17,
+      "event_field_issues": 0,
+      "has_setup_event": false,
+      "has_change_event": true,
+      "timeline_count": 22,
+      "has_investors": true,
+      "total_participant_refs": 52,
+      "date_range": "2016-12 → 2025-06"
+    }
+  },
+  {
+    "company": "688795_摩尔线程",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 12,
+      "event_field_issues": 0,
+      "has_setup_event": false,
+      "has_change_event": true,
+      "timeline_count": 23,
+      "has_investors": true,
+      "total_participant_refs": 58,
+      "date_range": "2022-01 → 2025-01"
+    }
+  },
+  {
+    "company": "688796_百奥赛图",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 13,
+      "event_field_issues": 0,
+      "has_setup_event": true,
+      "has_change_event": true,
+      "timeline_count": 30,
+      "has_investors": true,
+      "total_participant_refs": 45,
+      "date_range": "2009-11 → 2025-01"
+    }
+  },
+  {
+    "company": "688802_沐曦股份",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 14,
+      "event_field_issues": 0,
+      "has_setup_event": true,
+      "has_change_event": true,
+      "timeline_count": 15,
+      "has_investors": true,
+      "total_participant_refs": 53,
+      "date_range": "2020-09 → 2025-03"
+    }
+  },
+  {
+    "company": "688805_健信超导",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 8,
+      "event_field_issues": 0,
+      "has_setup_event": true,
+      "has_change_event": true,
+      "timeline_count": 20,
+      "has_investors": true,
+      "total_participant_refs": 31,
+      "date_range": "2013-12 → 2025-01"
+    }
+  },
+  {
+    "company": "688807_优迅股份",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 24,
+      "event_field_issues": 0,
+      "has_setup_event": true,
+      "has_change_event": true,
+      "timeline_count": 26,
+      "has_investors": true,
+      "total_participant_refs": 36,
+      "date_range": "2003-02 → 2025-01"
+    }
+  },
+  {
+    "company": "688809_强一股份",
+    "overall": "PASS",
+    "issues": [],
+    "details": {
+      "top_fields_ok": true,
+      "has_stats": true,
+      "event_count": 22,
+      "event_field_issues": 0,
+      "has_setup_event": false,
+      "has_change_event": true,
+      "timeline_count": 25,
+      "has_investors": true,
+      "total_participant_refs": 22,
+      "date_range": "2015-08 → 2024-10"
+    }
+  }
+]

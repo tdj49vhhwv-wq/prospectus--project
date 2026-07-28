@@ -1,0 +1,24 @@
+{"date": ["2021-08-25", "2021-05-31"], "rule": "增资_验资报告", "page": 52, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"date": ["2021-08-25", "2021-08-25", "2021-08-25", "2021-05-31", "2021-09-16"], "rule": "资本公积转增", "page": 52, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"net_assets": 295800700.26, "rule": "股改", "page": 52, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2021-05-31", "rule": "资本公积转增", "page": 53, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"registered_capital": 2408.0, "rule": "设立", "page": 53, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"transferee": "复星惟盈", "date": ["2021-02-22", "2021-02-24"], "rule": "股权转让", "page": 55, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"date": ["2021-02-25", "2021-02-26", "2021-03-09", "2021-04-20"], "rule": "增资_标准发行", "page": 56, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"date": ["2021-02-25", "2021-04-20"], "rule": "股改", "page": 56, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"date": ["2021-02-25", "2021-02-26", "2021-03-09", "2021-04-20"], "rule": "股权转让", "page": 56, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"ratio": 105.0, "date": ["2022-06-30", "2022-06-30", "2021-12-06", "2021-11-25", "2021-12-15"], "rule": "资本公积转增", "page": 62, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2017-12-05", "registered_capital": 427.302, "rule": "设立", "page": 72, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"registered_capital": [57000.0, 2400.0], "rule": "设立", "page": 74, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"registered_capital": 500000.0, "rule": "设立", "page": 75, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"registered_capital": 5000.0, "rule": "设立", "page": 76, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"fund_name": "南京华泰大健康一号股权投资合伙企业", "rule": "PE备案", "page": 76, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"registered_capital": 145950.0, "rule": "设立", "page": 77, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"registered_capital": 10000.0, "rule": "设立", "page": 78, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"registered_capital": 3.0, "rule": "设立", "page": 80, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"fund_name": ["苏州敦行价值创业投资合伙企业", "国寿疌泉的基金管理人国寿股权投资有限公司已在中国证券投资基金"], "manager": ["国寿股权投资有限公司", "上海复星创富投资管理股份有限公司", "珠海高瓴股权投资管理有限公司", "上海健壹私募基金管理有限公司", "珠海夏尔巴股权投资管理有限公司", "北京宏儒和愉投资管理有限公司", "苏州敦行投资管理有限公司"], "rule": "PE备案", "page": 86, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"date": ["2019-04-03", "2021-06-24", "2023-02-17", "2023-03-06"], "rule": "资本公积转增", "page": 301, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2022-10-20", "rule": "增资_标准发行", "page": 354, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2021-08-25", "rule": "增资_标准发行", "page": 370, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2021-08-25", "rule": "设立", "page": 370, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2022-10-20", "rule": "增资_标准发行", "page": 407, "company": "赛分科技", "stock_code": "688758", "extracted_at": "2026-07-17 14:50:07"}

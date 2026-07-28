@@ -1,0 +1,67 @@
+{
+  "schema_version": "2.0",
+  "generated_at": "2026-06-12",
+  "source": "PDF解析 (三协电机_招股书_正式稿_20250711.pdf → PyMuPDF)",
+  "company": {
+    "company_name": "常州三协电机股份有限公司",
+    "stock_code": "920100",
+    "exchange": "北交所",
+    "board": "北交所",
+    "listing_date": "2025-07-11",
+    "prospectus_title": "常州三协电机股份有限公司向不特定合格投资者公开发行股票并在北京证券交易所上市招股说明书",
+    "prospectus_version": "正式稿",
+    "prospectus_date": "2025-07-11"
+  },
+  "financing_events": [
+    {
+      "event_order": 1, "event_date": "2002-11-07", "date_type": "工商变更日",
+      "event_type": "设立", "disclosed_round": "未披露", "inferred_round": "公司设立",
+      "round_inference_basis": "招股书明确说明成立日期为2002年11月7日",
+      "total_investment_amount": null, "currency": "CNY",
+      "share_price": null, "pre_money_valuation": null, "post_money_valuation": null,
+      "valuation_basis": "初始设立",
+      "investors": [
+        {"investor_original_name": "盛祎", "investor_short_name": "盛祎", "investor_type": "自然人", "is_pevc": "no", "investment_amount": null, "shares_acquired": null, "shareholding_ratio_after_event": null, "exit_status_before_ipo": "未退出"},
+        {"investor_original_name": "朱绶青", "investor_short_name": "朱绶青", "investor_type": "自然人", "is_pevc": "no", "investment_amount": null, "shares_acquired": null, "shareholding_ratio_after_event": null, "exit_status_before_ipo": "未退出"}
+      ],
+      "source_section": "第四节 发行人基本情况 / 一、发行人基本信息",
+      "source_page": "三协电机_招股书_正式稿_20250711.md 第30页",
+      "evidence_text": "公司全称: 常州三协电机股份有限公司。证券代码: 920100。注册资本: 5,310.93万元。法定代表人: 盛祎。成立日期: 2002年11月7日。2002年11月至今，盛祎担任三协电机总经理，股份公司成立后担任董事长。截至本招股说明书签署日，盛祎直接持有62.97%股份，朱绶青直接持有19.49%股份，合计控制82.46%股份。",
+      "notes": "三协电机有限公司设立。盛祎、朱绶青为夫妻，共同实际控制人。具体设立时出资结构待从历沿革章节进一步提取",
+      "confidence": "medium"
+    },
+    {
+      "event_order": 2, "event_date": "2022-08-09", "date_type": "验资日",
+      "event_type": "增资", "disclosed_round": "股票定向发行", "inferred_round": "新三板定增",
+      "round_inference_basis": "招股书披露2022年股票定向发行",
+      "total_investment_amount": 2374.40, "currency": "CNY",
+      "share_price": 4.48, "pre_money_valuation": null, "post_money_valuation": null,
+      "valuation_basis": "发行价4.48元/股",
+      "investors": [
+        {"investor_original_name": "深圳市稳正景明创业投资企业(有限合伙)", "investor_short_name": "稳正景明", "investor_type": "PE", "is_pevc": "yes", "investment_amount": null, "shares_acquired": null, "shareholding_ratio_after_event": "9.16%", "exit_status_before_ipo": "未退出"},
+        {"investor_original_name": "深圳市稳正长泽创业投资企业(有限合伙)", "investor_short_name": "长泽创投", "investor_type": "PE", "is_pevc": "yes", "investment_amount": null, "shares_acquired": null, "shareholding_ratio_after_event": null, "exit_status_before_ipo": "未退出"}
+      ],
+      "source_section": "第四节 发行人基本情况 / 二、（八）/ 1、2022年股票发行",
+      "source_page": "三协电机_招股书_正式稿_20250711.md 第31-32页",
+      "evidence_text": "2022年6月24日，公司召开第二届董事会第四次会议审议通过了《关于<常州三协电机股份有限公司股票定向发行说明书>的议案》。本次股票发行价格为4.48元/股，共发行普通股530.00万股，募集资金总额为2,374.40万元。2022年8月15日，苏亚金诚出具《验资报告》，经审验，截至2022年8月9日，公司已收到稳正景明、长泽创投缴纳的出资款2,374.40万元。本次股票发行新增股份于2022年9月1日在股转系统挂牌并公开转让。",
+      "notes": "新三板挂牌后第一次定增。稳正景明(雷赛智能98%出资)目前持股486.70万股(9.16%)。稳正景明基金管理人为深圳市稳正资产管理有限公司",
+      "confidence": "high"
+    },
+    {
+      "event_order": 3, "event_date": "2023-09-06", "date_type": "验资日",
+      "event_type": "增资", "disclosed_round": "股票定向发行", "inferred_round": "北交所上市前定增",
+      "round_inference_basis": "招股书披露2023年股票定向发行",
+      "total_investment_amount": 1723.09, "currency": "CNY",
+      "share_price": 5.41, "pre_money_valuation": null, "post_money_valuation": null,
+      "valuation_basis": "发行价5.41元/股",
+      "investors": [
+        {"investor_original_name": "盛祎、盛松、薛小丽、倪进宽、余方成、吴春扣、陆宇君、戈翔俊、陈都亮、圣利、董雪强、文涛、付荷庆、陈韵、盛月瑶", "investor_short_name": "盛祎等15人", "investor_type": "自然人", "is_pevc": "no", "investment_amount": 1723.09, "shares_acquired": 321.50, "shareholding_ratio_after_event": null, "exit_status_before_ipo": "未退出"}
+      ],
+      "source_section": "第四节 发行人基本情况 / 二、（八）/ 2、2023年股票发行",
+      "source_page": "三协电机_招股书_正式稿_20250711.md 第32页",
+      "evidence_text": "2023年5月26日，公司召开第二届董事会第十三次会议审议通过了《关于<常州三协电机股份有限公司股票定向发行说明书>的议案》。本次股票拟发行价格为5.41元/股，拟发行普通股321.50万股，拟募集资金总额为1,739.32万元。2023年9月8日，苏亚金诚出具《验资报告》，经审验，截至2023年9月6日，公司已收到盛祎、盛松、薛小丽、倪进宽、余方成、吴春扣、陆宇君、戈翔俊、陈都亮、圣利、董雪强、文涛、付荷庆、陈韵和盛月瑶15名认购人缴纳的出资款1,723.09万元。",
+      "notes": "第二次定增。15名自然人(盛祎及员工/关联方)认购321.50万股。2023年12月权益分派:10转增3.8股+10派3.90元，转增1,462.43万股",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+﻿stock_code,company_short,company_full,board,pdf_path,pdf_pages,md_path,status
+001282,三联锻造,芜湖三联锻造股份有限公司,主板,data/week1PDF/三联锻造_招股书_正式稿_20230517.pdf,,review/三联锻造_招股书_PyMuPDF.md,gold_complete
+603418,友升股份,上海友升铝业股份有限公司,主板,NOT_FOUND,,review/友升股份1.md,pdf_missing
+301581,黄山谷捷,黄山谷捷股份有限公司,创业板,data/week1PDF/黄山谷捷_招股书_正式稿_20241219.pdf,,review/黄山谷捷_招股书_PyMuPDF.md,gold_complete
+301563,云汉芯城,云汉芯城（上海）互联网科技股份有限公司,创业板,data/week1PDF/云汉芯城_招股书_正式稿_20250925.pdf,,review/云汉芯城_招股书_PyMuPDF.md,gold_complete
+688758,赛分科技,苏州赛分科技股份有限公司,科创板,data/week1PDF/赛分科技_招股书_正式稿_20250106.pdf,,review/688758_赛分科技_招股书_正式稿_20250106.md,gold_complete
+688775,影石创新,影石创新科技股份有限公司,科创板,data/week1PDF/影石创新_招股书_正式稿_20250606.pdf,,review/影石创新2.md,gold_complete
+920100,三协电机,常州三协电机股份有限公司,北交所,data/week1PDF/三协电机_招股书_正式稿_20250711.pdf,,review/三协电机1.md,gold_complete
+920116,星图测控,中科星图测控技术股份有限公司,北交所,data/week1PDF/星图测控_招股书_正式稿_20241220.pdf,,review/星图测控_招股书_正式稿_20241220.md,gold_complete

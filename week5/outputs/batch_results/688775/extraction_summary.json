@@ -1,0 +1,31 @@
+{
+  "schema_version": "4.1",
+  "generated_at": "2026-07-17T14:30:43.882554",
+  "company": {
+    "name": "影石创新",
+    "code": "688775",
+    "pdf": "影石创新_招股书_正式稿_20250606.pdf"
+  },
+  "prospectus_date": "20250711",
+  "statistics": {
+    "total_records": 2,
+    "subscription_flow_count": 2,
+    "equity_snapshot_count": 0,
+    "pe_fund_detail_count": 0,
+    "share_transfer_flow_count": 0,
+    "status_breakdown": {
+      "EXTRACTED": 2,
+      "MANUAL_REVIEW": 0,
+      "VERIFIED": 0,
+      "ERROR": 0
+    },
+    "traceability_breakdown": {
+      "pdf_disclosed": 0,
+      "calculated": 0,
+      "inferred": 0,
+      "external_required": 2
+    },
+    "pe_investors": [],
+    "vc_investors": []
+  }
+}

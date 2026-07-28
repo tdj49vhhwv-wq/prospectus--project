@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-06-18T15:19:42.803106",
+  "gold_counts": {
+    "subscription_flow": 124,
+    "share_transfer_flow": 7,
+    "equity_snapshot": 94
+  },
+  "auto_counts": {
+    "subscription_flow": 63,
+    "share_transfer_flow": 0,
+    "equity_snapshot": 434
+  },
+  "total_comparisons": 4332
+}

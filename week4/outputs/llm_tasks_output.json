@@ -1,0 +1,82 @@
+{
+  "generated_at": "2026-07-10T19:47:33.201889",
+  "company": {
+    "name": "三协电机",
+    "code": "920100",
+    "full_name": "常州三协电机股份有限公司",
+    "pdf": "三协电机_招股书_正式稿_20250711.pdf",
+    "md": "三协电机_招股书_正式稿_20250711.md"
+  },
+  "task1_split_names": {
+    "method": "rules",
+    "result": [
+      "盛祎",
+      "盛松",
+      "薛小丽",
+      "倪进宽",
+      "余方成",
+      "吴春扣",
+      "陆宇君",
+      "戈翔俊",
+      "陈都亮",
+      "圣利",
+      "董雪强",
+      "文涛",
+      "付荷庆",
+      "陈韵",
+      "盛月瑶"
+    ],
+    "count": 15,
+    "verified": true
+  },
+  "task2_discrepancy": {
+    "amounts": {
+      "planned_amount": null,
+      "actual_amount": 1723.09,
+      "price_per_share": 5.41,
+      "shares_issued": 321.5,
+      "expected_amount": 1739.32,
+      "difference": 16.23,
+      "difference_pct": 0.93,
+      "verdict": null
+    },
+    "classification": {
+      "verdict": "正常",
+      "reason": "差异0.93% < 1%，拟募集为预计值，实际收到以验资报告为准。拟募集None万 → 实际1723.09万，差额16.23万。建议: 以实际收到金额为准，拟募集金额放入notes。"
+    }
+  },
+  "task3_equity_conversion": {
+    "parsed": {
+      "event_type": "资本公积转增",
+      "ratio": 0.38,
+      "ratio_text": "10转增3.80",
+      "pre_shares": 3848.5,
+      "converted_shares": 1462.43,
+      "post_shares": 5310.93,
+      "verified": true
+    }
+  },
+  "supplement_subscription_flows": [
+    {
+      "record_type": "subscription_flow",
+      "company_name": "常州三协电机股份有限公司",
+      "stock_code": "920100",
+      "source_page": "PDF p32",
+      "subscription_date": "2023-12-01",
+      "subscriber_name": "全体股东",
+      "shares_subscribed": 1462.43,
+      "amount_subscribed": 0,
+      "price_per_share": 0,
+      "event_context": "资本公积转增",
+      "investor_type": "其他",
+      "evidence_text": "",
+      "data_source": "calculated",
+      "notes": "10转增3.80股。转增前总股本3848.5万股，转增1462.43万股，转增后5310.93万股。非外部融资，无现金对价。"
+    }
+  ],
+  "summary": {
+    "tasks_total": 3,
+    "rules_solved": 3,
+    "llm_required": 0
+  }
+}

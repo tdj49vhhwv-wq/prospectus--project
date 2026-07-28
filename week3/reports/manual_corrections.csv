@@ -1,0 +1,10 @@
+﻿company,field,auto_value,gold_value,correction_type,reason,source_evidence,source_page,future_avoidable
+影石创新,event_type,VIE搭建(1个事件合并6轮),4个独立事件(天使轮/A轮/B轮/C轮),split_events,招股书仅提及六次增资扩股但不逐轮披露,影石创新3.md L978 容诚验字[2020]518Z0004号,PDF p42,"no: 招股书不逐轮披露,需外部数据"
+影石创新,subscription_date,2015-01(单日期),2015/2016/2017/2018(4个年份),date_correction,"6轮合并为1事件,拆分后按投资人类型推估各轮年份",同上,PDF p42,"no: 招股书不逐轮披露,需外部数据"
+影石创新,confidence,medium,low,confidence_downgrade,拆分后各轮日期/金额均未在招股书中明确披露,同上,PDF p42,yes-by-prompt: Few-shot示例可指导LLM标记confidence=low
+友升股份,company_name,友声股份,友升股份,naming_fix,"历史笔误,目录和文件名全部修正",全项目统一修正,—,yes-by-rule: 初始数据录入时对照公司全称
+星图测控,company_name,星空测控,星图测控,naming_fix,"历史笔误,目录和文件名全部修正",全项目统一修正,—,yes-by-rule: 初始数据录入时对照公司全称
+赛分科技,event_type,股权转让,排除(M&A收购),event_reclassify,"赛分有限收购美国赛分100%股份是公司收购,非股东间股权转让","赛分有限以170万美元向黄学英等收购美国赛分79,399股股份",PDF p64,yes-by-prompt: 区分收购vs转让的few-shot示例
+友升股份,source_page,友声股份2.md L695-L730,PDF p40-42,page_reference,"MD行号转为PDF页码,MinerU输出无##第N页标记",友升股份2.md (MinerU输出),PDF p40,yes-by-rule: 统一用PyMuPDF替代MinerU
+影石创新,subscription_date,2015,2015-01(YYYY-MM格式),date_format,"年份→YYYY-MM格式,满足Pydantic schema min_length=7要求",影石创新_融资历史_结构化.json,—,yes-by-schema: Pydantic validator自动拒绝不符合格式的日期
+黄山谷捷,record_type,subscription_flow,share_transfer_flow,record_type_split,"昆山谷捷→黄山供销等是转让非认购,需用ShareTransferFlow schema",昆山谷捷将其所持谷捷有限78%股权以零对价转让给黄山供销集团,PDF p33,yes-by-rule: 转让关键词regex → 自动路由到share_transfer_flow

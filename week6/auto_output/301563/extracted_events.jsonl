@@ -1,0 +1,22 @@
+{"date": ["2015-08-31", "2015-10-30"], "rule": "增资_验资报告", "page": 54, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"date": ["2015-10-13", "2015-08-31", "2015-10-14", "2015-08-31", "2015-10-15", "2015-10-30", "2015-10-30", "2015-10-30", "2021-10-28", "2015-12-03"], "rule": "资本公积转增", "page": 54, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"net_assets": 45010412.64, "date": "2015-12-03", "rule": "股改", "page": 54, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2008-05-07", "rule": "股改", "page": 55, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2018-04-28", "rule": "增资_标准发行", "page": 58, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"transferor": "约定丰利财富", "transferee": ["天健创投", "天健创投"], "date": "2018-04-28", "rule": "股权转让", "page": 58, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"registered_capital": [254.4787, 61.8, 54.384, 7.004, 103.0, 34.3333], "rule": "设立", "page": 59, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"transferor": ["曾烨", "曾烨", "刘云锋", "刘云锋"], "transferee": ["富海节能", "临港投资", "临港"], "date": ["2018-06-12", "2018-06-12"], "rule": "股权转让", "page": 59, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"registered_capital": [20.0, 20.0, 20.0], "rule": "设立", "page": 60, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"date": ["2019-08-13", "2019-08-12"], "rule": "股权转让", "page": 61, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2020-09-23", "rule": "股改", "page": 64, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2020-09-23", "rule": "股权转让", "page": 64, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2021-09-30", "rule": "股权转让", "page": 69, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"date": ["2015-08-31", "2024-12-31", "2024-12-31", "2024-12-31", "2023-12-31", "2022-12-31"], "rule": "资本公积转增", "page": 71, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"registered_capital": 10000.0, "rule": "设立", "page": 83, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"date": ["2017-11-23", "2024-12-31"], "rule": "增资_标准发行", "page": 84, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"registered_capital": 100000.0, "rule": "设立", "page": 84, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"date": ["2017-11-23", "2024-12-31", "2017-12-20"], "rule": "增资_标准发行", "page": 85, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"registered_capital": 8200.0, "rule": "设立", "page": 85, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"fund_name": ["宁波谦德坤鼎股权投资合伙企业", "宁波坤富同德股权投资合伙企业"], "rule": "PE备案", "page": 88, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"fund_name": ["根据天健创投的合伙", "天健创投的执行事务合伙", "为天健创投的普通合伙"], "rule": "PE备案", "page": 95, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2025-06-30", "rule": "增资_标准发行", "page": 372, "company": "云汉芯城", "stock_code": "301563", "extracted_at": "2026-07-17 14:50:07"}

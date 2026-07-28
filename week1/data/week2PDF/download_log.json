@@ -1,0 +1,111 @@
+{
+  "run_time": "2026-06-07T17:19:17.794436",
+  "results": [
+    {
+      "sample_id": "STAR001",
+      "company": "赛分科技",
+      "status": "success",
+      "size_mb": 8.09,
+      "file": "688758_赛分科技_招股书_正式稿_20250106.pdf"
+    },
+    {
+      "sample_id": "STAR002",
+      "company": "影石创新",
+      "status": "success",
+      "size_mb": 9.58,
+      "file": "688775_影石创新_招股书_正式稿_20250606.pdf"
+    },
+    {
+      "sample_id": "STAR003",
+      "company": "思看科技",
+      "status": "no_url"
+    },
+    {
+      "sample_id": "STAR004",
+      "company": "兴福电子",
+      "status": "no_url"
+    },
+    {
+      "sample_id": "STAR005",
+      "company": "海博思创",
+      "status": "no_url"
+    },
+    {
+      "sample_id": "STAR006",
+      "company": "胜科纳米",
+      "status": "no_url"
+    },
+    {
+      "sample_id": "STAR007",
+      "company": "汉邦科技",
+      "status": "no_url"
+    },
+    {
+      "sample_id": "STAR008",
+      "company": "屹唐股份",
+      "status": "no_url"
+    },
+    {
+      "sample_id": "STAR009",
+      "company": "必贝特",
+      "status": "no_url"
+    },
+    {
+      "sample_id": "STAR010",
+      "company": "禾元生物",
+      "status": "no_url"
+    },
+    {
+      "sample_id": "STAR011",
+      "company": "西安奕材",
+      "status": "no_url"
+    },
+    {
+      "sample_id": "STAR012",
+      "company": "恒坤新材",
+      "status": "no_url"
+    },
+    {
+      "sample_id": "STAR013",
+      "company": "摩尔线程",
+      "status": "no_url"
+    },
+    {
+      "sample_id": "STAR014",
+      "company": "百奥赛图",
+      "status": "no_url"
+    },
+    {
+      "sample_id": "STAR015",
+      "company": "昂瑞微",
+      "status": "no_url"
+    },
+    {
+      "sample_id": "STAR016",
+      "company": "沐曦股份",
+      "status": "no_url"
+    },
+    {
+      "sample_id": "STAR017",
+      "company": "优迅股份",
+      "status": "no_url"
+    },
+    {
+      "sample_id": "STAR018",
+      "company": "健信超导",
+      "status": "no_url"
+    },
+    {
+      "sample_id": "STAR019",
+      "company": "强一股份",
+      "status": "no_url"
+    }
+  ],
+  "stats": {
+    "total": 19,
+    "success": 2,
+    "skipped": 0,
+    "failed": 0,
+    "no_url": 17
+  }
+}

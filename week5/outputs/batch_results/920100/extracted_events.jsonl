@@ -1,0 +1,22 @@
+{"price": 5.41, "shares": 321.5, "date": "2022-09-01", "rule": "增资_标准发行", "page": 32, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"investors_raw": ["稳正景明", "长泽创投"], "amount": 2374.4, "date": "2022-08-09", "rule": "增资_验资报告", "page": 32, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"ratio": 3.8, "shares": 1462.43, "date": "2023-11-15", "rule": "资本公积转增", "page": 32, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"date": "2013-11-11", "registered_capital": 2000.0, "rule": "设立", "page": 35, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"filing_code": "SNG030", "manager": "深圳市稳正资产管理有限公司", "rule": "PE备案", "page": 35, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"registered_capital": 800.0, "rule": "设立", "page": 39, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"date": "2014-06-04", "rule": "股改", "page": 39, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"filing_code": "SNG030", "fund_name": "稳正景明和长泽创投为私募基金", "rule": "PE备案", "page": 39, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"transferor": "同意股东德智高新", "transferee": "朱南保", "date": "2019-07-18", "rule": "股权转让", "page": 44, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"registered_capital": 100.0, "rule": "设立", "page": 45, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"transferor": "同意股东卢娇娇", "transferee": "王洪波", "date": "2021-05-10", "rule": "股权转让", "page": 45, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"registered_capital": 400.0, "rule": "设立", "page": 46, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"transferor": "同意股东王洪波", "transferee": "发行人全资子公司三合融创", "date": "2022-10-26", "rule": "股权转让", "page": 46, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"date": "2023-08-22", "rule": "股权转让", "page": 47, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"date": "2024-12-31", "rule": "股权转让", "page": 157, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"price": 4.48, "amount": 2374.4, "date": "2022-07-09", "rule": "增资_标准发行", "page": 252, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"ratio": 3.8, "date": "2022-07-09", "rule": "资本公积转增", "page": 252, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"price": 5.41, "shares": 318.5, "date": "2023-05-26", "rule": "增资_标准发行", "page": 327, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"price": 4.48, "amount": 2374.4, "date": "2022-06-24", "rule": "增资_标准发行", "page": 361, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"date": "2023-02-15", "rule": "增资_验资报告", "page": 361, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"price": 5.41, "amount": 1723.09, "date": "2023-05-26", "rule": "增资_标准发行", "page": 362, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}
+{"date": "2024-12-31", "rule": "增资_验资报告", "page": 362, "company": "三协电机", "stock_code": "920100", "extracted_at": "2026-07-17 15:01:33"}

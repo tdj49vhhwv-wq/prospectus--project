@@ -1,0 +1,211 @@
+{
+  "schema_version": "2.0",
+  "generated_at": "2026-06-16T17:28:29.560733",
+  "company": {
+    "company_name": "中科星图测控技术股份有限公司",
+    "stock_code": "920116",
+    "exchange": "北交所",
+    "board": "北交所",
+    "listing_date": "2024-12-20",
+    "prospectus_title": "中科星图测控技术股份有限公司向不特定合格投资者公开发行股票并在北京证券交易所上市招股说明书",
+    "prospectus_version": "正式稿",
+    "prospectus_date": "2024-12-20"
+  },
+  "financing_events": [
+    {
+      "event_order": 1,
+      "event_date": "2016-12-14",
+      "date_type": "工商变更日",
+      "event_type": "设立",
+      "disclosed_round": "未披露",
+      "inferred_round": "公司设立",
+      "round_inference_basis": "招股书明确说明星图测控有限成立于2016年12月14日",
+      "total_investment_amount": 2000.0,
+      "currency": "CNY",
+      "share_price": null,
+      "pre_money_valuation": null,
+      "post_money_valuation": null,
+      "valuation_basis": "注册资本约2,000万元（四方股份1,200万+罗永红400万+王金林400万）",
+      "investors": [
+        {
+          "investor_original_name": "四方股份",
+          "investor_short_name": "四方股份",
+          "investor_type": "产业资本",
+          "is_pevc": "no",
+          "investment_amount": 1200.0,
+          "shares_acquired": null,
+          "shareholding_ratio_after_event": "60.00%",
+          "exit_status_before_ipo": "全部退出"
+        },
+        {
+          "investor_original_name": "牛威(罗永红代持)",
+          "investor_short_name": "牛威",
+          "investor_type": "自然人",
+          "is_pevc": "no",
+          "investment_amount": 400.0,
+          "shares_acquired": null,
+          "shareholding_ratio_after_event": "20.00%",
+          "exit_status_before_ipo": "未退出"
+        },
+        {
+          "investor_original_name": "吴功友(王金林代持)",
+          "investor_short_name": "吴功友",
+          "investor_type": "自然人",
+          "is_pevc": "no",
+          "investment_amount": 400.0,
+          "shares_acquired": null,
+          "shareholding_ratio_after_event": "20.00%",
+          "exit_status_before_ipo": "未退出"
+        }
+      ],
+      "source_section": "第四节 发行人基本情况 / （四）其他披露事项 / 1、代持基本情况",
+      "source_page": "PDF p48",
+      "evidence_text": "2016年12月，四方股份、罗永红、王金林共同出资设立星图测控有限，其中，四方股份出资1,200万元（对应持有星图测控有限60%股权）；罗永红出资400万元（对应持有星图测控有限20%股权）；王金林出资400万元（对应持有星图测控有限20%股权）。罗永红、王金林于测控有限设立时所持有的全部股权分别系为牛威和吴功友代持。",
+      "notes": "有限公司设立。四方股份为中科星图关联方。牛威(总经理)和吴功友通过代持方式持股。代持于2017年10月解除",
+      "confidence": "high",
+      "review_status": "reviewed",
+      "reviewer": "zbq",
+      "review_date": "2026-06-16"
+    },
+    {
+      "event_order": 2,
+      "event_date": "2017-10-25",
+      "date_type": "工商变更日",
+      "event_type": "股权转让",
+      "disclosed_round": "未披露",
+      "inferred_round": "代持还原",
+      "round_inference_basis": "招股书明确说明本次股权转让系还原股权代持",
+      "total_investment_amount": 0,
+      "currency": "CNY",
+      "share_price": 0,
+      "pre_money_valuation": null,
+      "post_money_valuation": null,
+      "valuation_basis": "零对价转让（代持还原）",
+      "investors": [
+        {
+          "investor_original_name": "牛威",
+          "investor_short_name": "牛威",
+          "investor_type": "自然人",
+          "is_pevc": "no",
+          "investment_amount": 0,
+          "shares_acquired": null,
+          "shareholding_ratio_after_event": "20.00%",
+          "exit_status_before_ipo": "未退出"
+        },
+        {
+          "investor_original_name": "吴功友",
+          "investor_short_name": "吴功友",
+          "investor_type": "自然人",
+          "is_pevc": "no",
+          "investment_amount": 0,
+          "shares_acquired": null,
+          "shareholding_ratio_after_event": "20.00%",
+          "exit_status_before_ipo": "未退出"
+        }
+      ],
+      "source_section": "第四节 发行人基本情况 / （四）其他披露事项 / 2、代持解除情况",
+      "source_page": "PDF p48",
+      "evidence_text": "2017年10月9日，星图测控有限的股东会作出决议，同意：罗永红将其持有的星图测控有限20%股权转让予牛威；王金林将其持有的星图测控有限20%股权转让予吴功友。本次股权转让系还原股权代持，故牛威、吴功友未向罗永红和王金林实际支付股权转让对价。星图测控有限于2017年10月25日就上述股权转让办理了工商变更登记手续。",
+      "notes": "代持还原：罗永红→牛威，王金林→吴功友。零对价。解除后无纠纷",
+      "confidence": "high",
+      "review_status": "reviewed",
+      "reviewer": "zbq",
+      "review_date": "2026-06-16"
+    },
+    {
+      "event_order": 3,
+      "event_date": "2024-06-30",
+      "date_type": "未说明",
+      "event_type": "其他",
+      "disclosed_round": "未披露",
+      "inferred_round": "IPO前股权结构（2024年中报时点）",
+      "round_inference_basis": "招股书披露发行前股权结构",
+      "total_investment_amount": null,
+      "currency": "CNY",
+      "share_price": null,
+      "pre_money_valuation": null,
+      "post_money_valuation": null,
+      "valuation_basis": "总股本8,250万股",
+      "investors": [
+        {
+          "investor_original_name": "中科星图股份有限公司",
+          "investor_short_name": "中科星图",
+          "investor_type": "产业资本",
+          "is_pevc": "no",
+          "investment_amount": null,
+          "shares_acquired": 3825.0,
+          "shareholding_ratio_after_event": "46.36%",
+          "exit_status_before_ipo": "未退出"
+        },
+        {
+          "investor_original_name": "策星九天",
+          "investor_short_name": "策星九天",
+          "investor_type": "员工持股平台",
+          "is_pevc": "no",
+          "investment_amount": null,
+          "shares_acquired": 2345.0781,
+          "shareholding_ratio_after_event": "28.43%",
+          "exit_status_before_ipo": "未退出"
+        },
+        {
+          "investor_original_name": "幸福一期",
+          "investor_short_name": "幸福一期",
+          "investor_type": "PE",
+          "is_pevc": "yes",
+          "investment_amount": null,
+          "shares_acquired": 917.4219,
+          "shareholding_ratio_after_event": "11.12%",
+          "exit_status_before_ipo": "未退出"
+        },
+        {
+          "investor_original_name": "策星揽月",
+          "investor_short_name": "策星揽月",
+          "investor_type": "员工持股平台",
+          "is_pevc": "no",
+          "investment_amount": null,
+          "shares_acquired": 412.5,
+          "shareholding_ratio_after_event": "5.00%",
+          "exit_status_before_ipo": "未退出"
+        },
+        {
+          "investor_original_name": "幸福二期",
+          "investor_short_name": "幸福二期",
+          "investor_type": "PE",
+          "is_pevc": "yes",
+          "investment_amount": null,
+          "shares_acquired": 300.0,
+          "shareholding_ratio_after_event": "3.64%",
+          "exit_status_before_ipo": "未退出"
+        },
+        {
+          "investor_original_name": "策星银河",
+          "investor_short_name": "策星银河",
+          "investor_type": "员工持股平台",
+          "is_pevc": "no",
+          "investment_amount": null,
+          "shares_acquired": 279.0,
+          "shareholding_ratio_after_event": "3.38%",
+          "exit_status_before_ipo": "未退出"
+        },
+        {
+          "investor_original_name": "策星逐日",
+          "investor_short_name": "策星逐日",
+          "investor_type": "员工持股平台",
+          "is_pevc": "no",
+          "investment_amount": null,
+          "shares_acquired": 171.0,
+          "shareholding_ratio_after_event": "2.07%",
+          "exit_status_before_ipo": "未退出"
+        }
+      ],
+      "source_section": "第四节 发行人基本情况 / （二）本次发行前公司前十名股东情况",
+      "source_page": "PDF p47",
+      "evidence_text": "截至本招股说明书签署日，公司总股本为82,500,000股。本次发行前股本结构：中科星图38,250,000股(46.36%)，策星九天23,450,781股(28.43%)，幸福一期9,174,219股(11.12%)，策星揽月4,125,000股(5.00%)，幸福二期3,000,000股(3.64%)，策星银河2,790,000股(3.38%)，策星逐日1,710,000股(2.07%)。合计82,500,000股(100.00%)。",
+      "notes": "IPO前股权结构。中科星图为控股股东(46.36%)，中国科学院空天院为实际控制人。策星系为员工持股平台(合计38.88%)。幸福一期/二期为外部PE。2016年设立→2023年新三板挂牌→2024年北交所上市，中间增资轮次细节待从历沿革章节进一步提取",
+      "confidence": "high",
+      "review_status": "reviewed",
+      "reviewer": "zbq",
+      "review_date": "2026-06-16"
+    }
+  ]
+}

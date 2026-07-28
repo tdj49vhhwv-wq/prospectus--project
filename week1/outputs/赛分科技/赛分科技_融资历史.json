@@ -1,0 +1,19 @@
+{
+  "company": "赛分科技",
+  "source_files": [
+    "赛分科技2.md",
+    "赛分科技3.md"
+  ],
+  "extraction_time": "2026-06-07T18:20:20.195890",
+  "statistics": {
+    "total_chapters": 596,
+    "financing_chapters_found": 1,
+    "timeline_entries": 0,
+    "financing_events": 0
+  },
+  "financing_chapters": [
+    "全文定位: 第四节 发行人基本情况"
+  ],
+  "equity_timeline": [],
+  "financing_events": []
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "4.1",
+  "generated_at": "2026-07-16T16:08:34.471266",
+  "company": {
+    "name": "常州三协电机股份有限公司",
+    "code": "920100",
+    "pdf": "三协电机_招股书_正式稿_20250711.pdf"
+  },
+  "prospectus_date": "20250711",
+  "statistics": {
+    "total_records": 19,
+    "subscription_flow_count": 2,
+    "equity_snapshot_count": 12,
+    "pe_fund_detail_count": 1,
+    "share_transfer_flow_count": 4,
+    "status_breakdown": {
+      "EXTRACTED": 19,
+      "MANUAL_REVIEW": 0,
+      "VERIFIED": 0,
+      "ERROR": 0
+    },
+    "traceability_breakdown": {
+      "pdf_disclosed": 15,
+      "calculated": 0,
+      "inferred": 0,
+      "external_required": 4
+    },
+    "pe_investors": [
+      "长泽创投",
+      "稳正景明"
+    ],
+    "vc_investors": []
+  }
+}

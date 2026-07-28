@@ -1,0 +1,31 @@
+{
+  "schema_version": "4.1",
+  "generated_at": "2026-07-17T14:30:18.262222",
+  "company": {
+    "name": "黄山谷捷",
+    "code": "301581",
+    "pdf": "黄山谷捷_招股书_正式稿_20241219.pdf"
+  },
+  "prospectus_date": "20250711",
+  "statistics": {
+    "total_records": 11,
+    "subscription_flow_count": 2,
+    "equity_snapshot_count": 9,
+    "pe_fund_detail_count": 0,
+    "share_transfer_flow_count": 0,
+    "status_breakdown": {
+      "EXTRACTED": 11,
+      "MANUAL_REVIEW": 0,
+      "VERIFIED": 0,
+      "ERROR": 0
+    },
+    "traceability_breakdown": {
+      "pdf_disclosed": 9,
+      "calculated": 0,
+      "inferred": 0,
+      "external_required": 2
+    },
+    "pe_investors": [],
+    "vc_investors": []
+  }
+}

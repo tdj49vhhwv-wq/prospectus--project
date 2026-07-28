@@ -1,0 +1,12 @@
+﻿priority,stock_code,company_short,issue_type,description,status,assigned_to
+P0,688775,影石创新,confidence_low,"VIE架构4个拆分事件confidence=low, 招股书未逐轮披露六次增资日期和金额。需查证监会问询回复补充各轮详情",pending,zbq
+P0,920100,三协电机,missing_t0,"t0出资结构详情缺失, 设立时(2002-11-07)仅披露盛祎62.97%/朱绶青19.49%, 具体出资额未明确。需从工商登记资料补充",pending,zbq
+P1,920116,星图测控,missing_snapshots,"2017-10(代持还原)到2024-06-30(IPO前)之间缺少中间时点快照, cross-check链条不完整。需补充期间增资/转让事件",pending,zbq
+P1,603418,友升股份,cross_check_warning,"cross_check中[出资额变化合计]差额-12540万, 系股权/出资额单位混淆。友升股改将净资产折股, 出资额变化≠认购合计。需标注为正常差异",pending,zbq
+P2,603418,友升股份,pdf_annotation,PDF批注截图待补充 (4 events: 设立/股改/A轮/B轮),pending,zbq
+P2,001282,三联锻造,pdf_annotation,PDF批注截图待补充 (5 events),pending,zbq
+P2,301563,云汉芯城,pdf_annotation,PDF批注截图待补充 (8 events),pending,zbq
+P2,301581,黄山谷捷,pdf_annotation,PDF批注截图待补充 (6 events),pending,zbq
+P2,688758,赛分科技,pdf_annotation,PDF批注截图待补充 (7 events + 1个收购事件标注),pending,zbq
+P2,688775,影石创新,pdf_annotation,"PDF批注截图待补充 (7 events, 其中4个confidence=low)",pending,zbq
+P1,,,cross_check_failure,cross-check待复核: 盛祎、盛松、薛小丽、倪进宽、余方成、吴春扣、陆宇君、戈翔俊、陈都亮、圣利、董雪强、文涛、付荷庆、陈韵、盛月瑶 diff=16.225 price×shares vs amount diff=0.9%,pending,auto_generated

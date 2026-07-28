@@ -1,0 +1,20 @@
+{"date": ["2023-05-10", "2023-05-11", "2023-05-15"], "rule": "增资_标准发行", "page": 20, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"date": ["2018-10-27", "2018-07-31", "2018-07-31"], "rule": "增资_验资报告", "page": 33, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"date": ["2018-10-27", "2018-10-27", "2018-11-26", "2021-05-15", "2018-07-31", "2021-05-15", "2018-07-31", "2021-05-15", "2021-05-31"], "rule": "资本公积转增", "page": 33, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"registered_capital": 8150.0, "rule": "设立", "page": 33, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2018-10-27", "rule": "股改", "page": 33, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2019-12-04", "rule": "资本公积转增", "page": 36, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2019-12-30", "rule": "增资_验资报告", "page": 38, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2019-12-17", "rule": "股改", "page": 38, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"date": ["2015-03-25", "2015-10-15"], "rule": "增资_标准发行", "page": 51, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2015-03-25", "rule": "设立", "page": 51, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"fund_name": "安徽高新同华创业投资基金", "rule": "PE备案", "page": 51, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2015-01-09", "rule": "设立", "page": 52, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2015-09-10", "rule": "股改", "page": 52, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"registered_capital": 200.0, "rule": "设立", "page": 365, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"date": ["2018-10-27", "2019-06-21", "2019-08-24", "2019-12-04", "2019-12-11"], "rule": "增资_标准发行", "page": 431, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"registered_capital": [57.0, 481.0], "rule": "设立", "page": 450, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"date": ["2017-09-16", "2017-08-31"], "rule": "资本公积转增", "page": 451, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"transferor": "此次股权转让系孙国奉", "transferee": ["张松满", "张松满", "孙国敏"], "date": ["2017-09-16", "2017-08-31"], "rule": "股权转让", "page": 451, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2019-12-18", "rule": "股改", "page": 454, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}
+{"date": "2019-12-18", "rule": "股权转让", "page": 454, "company": "三联锻造", "stock_code": "001282", "extracted_at": "2026-07-17 14:50:07"}

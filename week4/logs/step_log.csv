@@ -1,0 +1,15 @@
+timestamp,step,status,detail
+{"timestamp": "2026-07-10T17:52:31.623245", "step": "locate_chapters", "status": "success", "detail": "匹配19处，覆盖5个章节"}
+{"timestamp": "2026-07-10T17:52:31.752558", "step": "extract_snippets", "status": "success", "detail": "截取17个候选片段, 覆盖17页"}
+{"timestamp": "2026-07-10T17:52:31.882019", "step": "extract_subscription_flows", "status": "success", "detail": "2条认缴记录"}
+{"timestamp": "2026-07-10T17:52:33.408812", "step": "extract_equity_snapshots", "status": "success", "detail": "12条快照记录"}
+{"timestamp": "2026-07-10T17:52:33.547512", "step": "extract_pe_fund_details", "status": "success", "detail": "1条PE基金记录"}
+{"timestamp": "2026-07-10T17:52:33.548095", "step": "extract_share_transfers", "status": "success", "detail": "4条转让记录"}
+{"timestamp": "2026-07-10T17:52:35.361918", "step": "table_extract_pymupdf", "status": "success", "detail": "27个表格 (PyMuPDF)"}
+{"timestamp": "2026-07-10T17:52:35.362218", "step": "table_extract_paddleocr", "status": "warning", "detail": "PaddleOCR未安装，跳过。安装: pip install paddlepaddle paddleocr"}
+{"timestamp": "2026-07-10T17:52:35.362505", "step": "merge_cross_pages", "status": "success", "detail": "27→25 (拼接2对)"}
+{"timestamp": "2026-07-10T17:52:35.386087", "step": "extract_images", "status": "success", "detail": "1张图片 → /Users/zhaobingqing/GitHub/prospectus-pevc-project/week4/outputs/extracted_images"}
+{"timestamp": "2026-07-16T16:08:32.911271", "step": "extract_subscription_flows", "status": "success", "detail": "2条认缴记录"}
+{"timestamp": "2026-07-16T16:08:34.346719", "step": "extract_equity_snapshots", "status": "success", "detail": "12条快照记录"}
+{"timestamp": "2026-07-16T16:08:34.467945", "step": "extract_pe_fund_details", "status": "success", "detail": "1条PE基金记录"}
+{"timestamp": "2026-07-16T16:08:34.468552", "step": "extract_share_transfers", "status": "success", "detail": "4条转让记录"}

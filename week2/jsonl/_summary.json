@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-06-16T17:35:17.737234",
+  "record_types": [
+    "subscription_flow",
+    "equity_snapshot"
+  ],
+  "total_companies": 8,
+  "companies": {
+    "三联锻造": {
+      "code": "001282",
+      "subscription_flow": 15,
+      "equity_snapshot": 5,
+      "src": "manual"
+    },
+    "友升股份": {
+      "code": "603418",
+      "subscription_flow": 19,
+      "equity_snapshot": 19,
+      "src": "manual"
+    },
+    "黄山谷捷": {
+      "code": "301581",
+      "subscription_flow": 16,
+      "equity_snapshot": 16,
+      "src": "manual"
+    },
+    "云汉芯城": {
+      "code": "301563",
+      "subscription_flow": 24,
+      "equity_snapshot": 22,
+      "src": "manual"
+    },
+    "赛分科技": {
+      "code": "688758",
+      "subscription_flow": 31,
+      "equity_snapshot": 13,
+      "src": "manual"
+    },
+    "影石创新": {
+      "code": "688775",
+      "subscription_flow": 14,
+      "equity_snapshot": 6,
+      "src": "manual"
+    },
+    "三协电机": {
+      "code": "920100",
+      "subscription_flow": 5,
+      "equity_snapshot": 1,
+      "src": "manual"
+    },
+    "星图测控": {
+      "code": "920116",
+      "subscription_flow": 12,
+      "equity_snapshot": 12,
+      "src": "manual"
+    }
+  }
+}

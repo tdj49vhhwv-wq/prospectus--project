@@ -1,0 +1,325 @@
+{
+  "generated_at": "2026-06-07T17:56:02.712222",
+  "total_2025_listings": 19,
+  "data_sources": {
+    "official_exchange": "https://www.sse.com.cn/star/",
+    "disclosure_platform": "https://www.cninfo.com.cn/",
+    "cross_reference": "同花顺iFinD"
+  },
+  "companies": [
+    {
+      "code": "688809",
+      "name": "强一股份",
+      "ipo_date": "2025-12-30",
+      "raised_b": 27.56,
+      "standard": "标准1"
+    },
+    {
+      "code": "688805",
+      "name": "健信超导",
+      "ipo_date": "2025-12-24",
+      "raised_b": 7.79,
+      "standard": "标准1"
+    },
+    {
+      "code": "688807",
+      "name": "优迅股份",
+      "ipo_date": "2025-12-19",
+      "raised_b": 10.33,
+      "standard": "标准1"
+    },
+    {
+      "code": "688802",
+      "name": "沐曦股份",
+      "ipo_date": "2025-12-17",
+      "raised_b": 41.97,
+      "standard": "标准4"
+    },
+    {
+      "code": "688790",
+      "name": "昂瑞微",
+      "ipo_date": "2025-12-16",
+      "raised_b": 20.67,
+      "standard": "标准6"
+    },
+    {
+      "code": "688796",
+      "name": "百奥赛图",
+      "ipo_date": "2025-12-10",
+      "raised_b": 12.67,
+      "standard": "标准4"
+    },
+    {
+      "code": "688795",
+      "name": "摩尔线程",
+      "ipo_date": "2025-12-05",
+      "raised_b": 80.0,
+      "standard": "标准2"
+    },
+    {
+      "code": "688727",
+      "name": "恒坤新材",
+      "ipo_date": "2025-11-18",
+      "raised_b": 10.1,
+      "standard": "标准1"
+    },
+    {
+      "code": "688783",
+      "name": "西安奕材",
+      "ipo_date": "2025-10-28",
+      "raised_b": 46.36,
+      "standard": "标准4"
+    },
+    {
+      "code": "688765",
+      "name": "禾元生物",
+      "ipo_date": "2025-10-28",
+      "raised_b": 25.99,
+      "standard": "标准5"
+    },
+    {
+      "code": "688759",
+      "name": "必贝特",
+      "ipo_date": "2025-10-28",
+      "raised_b": 16.0,
+      "standard": "标准5"
+    },
+    {
+      "code": "688729",
+      "name": "屹唐股份",
+      "ipo_date": "2025-07-08",
+      "raised_b": 24.97,
+      "standard": "标准4"
+    },
+    {
+      "code": "688775",
+      "name": "影石创新",
+      "ipo_date": "2025-06-11",
+      "raised_b": 19.38,
+      "standard": "标准1"
+    },
+    {
+      "code": "688755",
+      "name": "汉邦科技",
+      "ipo_date": "2025-05-16",
+      "raised_b": 5.01,
+      "standard": "标准1"
+    },
+    {
+      "code": "688757",
+      "name": "胜科纳米",
+      "ipo_date": "2025-03-25",
+      "raised_b": 3.66,
+      "standard": "标准1"
+    },
+    {
+      "code": "688411",
+      "name": "海博思创",
+      "ipo_date": "2025-01-27",
+      "raised_b": 8.61,
+      "standard": "标准1"
+    },
+    {
+      "code": "688545",
+      "name": "兴福电子",
+      "ipo_date": "2025-01-22",
+      "raised_b": 11.68,
+      "standard": "标准1"
+    },
+    {
+      "code": "688583",
+      "name": "思看科技",
+      "ipo_date": "2025-01-15",
+      "raised_b": 5.69,
+      "standard": "标准1"
+    },
+    {
+      "code": "688758",
+      "name": "赛分科技",
+      "ipo_date": "2025-01-10",
+      "raised_b": 2.16,
+      "standard": "标准1"
+    }
+  ],
+  "downloaded_prospectuses": [
+    {
+      "code": "688809",
+      "name": "强一股份",
+      "ipo_date": "2025-12-30",
+      "title": "强一股份首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688809_强一股份_强一股份首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-12-25/1224897120.PDF"
+    },
+    {
+      "code": "688805",
+      "name": "健信超导",
+      "ipo_date": "2025-12-24",
+      "title": "健信超导首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688805_健信超导_健信超导首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-12-19/1224886206.PDF"
+    },
+    {
+      "code": "688807",
+      "name": "优迅股份",
+      "ipo_date": "2025-12-19",
+      "title": "优迅股份首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688807_优迅股份_优迅股份首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-12-12/1224870082.PDF"
+    },
+    {
+      "code": "688802",
+      "name": "沐曦股份",
+      "ipo_date": "2025-12-17",
+      "title": "沐曦股份首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688802_沐曦股份_沐曦股份首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-12-11/1224867078.PDF"
+    },
+    {
+      "code": "688790",
+      "name": "昂瑞微",
+      "ipo_date": "2025-12-16",
+      "title": "昂瑞微首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688790_昂瑞微_昂瑞微首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-12-11/1224867086.PDF"
+    },
+    {
+      "code": "688796",
+      "name": "百奥赛图",
+      "ipo_date": "2025-12-10",
+      "title": "百奥赛图首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688796_百奥赛图_百奥赛图首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-12-04/1224848797.PDF"
+    },
+    {
+      "code": "688795",
+      "name": "摩尔线程",
+      "ipo_date": "2025-12-05",
+      "title": "摩尔线程首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688795_摩尔线程_摩尔线程首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-11-28/1224831699.PDF"
+    },
+    {
+      "code": "688727",
+      "name": "恒坤新材",
+      "ipo_date": "2025-11-18",
+      "title": "恒坤新材首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688727_恒坤新材_恒坤新材首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-11-13/1224802223.PDF"
+    },
+    {
+      "code": "688783",
+      "name": "西安奕材",
+      "ipo_date": "2025-10-28",
+      "title": "西安奕材首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688783_西安奕材_西安奕材首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-10-22/1224723727.PDF"
+    },
+    {
+      "code": "688765",
+      "name": "禾元生物",
+      "ipo_date": "2025-10-28",
+      "title": "禾元生物首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688765_禾元生物_禾元生物首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-10-20/1224719933.PDF"
+    },
+    {
+      "code": "688759",
+      "name": "必贝特",
+      "ipo_date": "2025-10-28",
+      "title": "必贝特首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688759_必贝特_必贝特首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-10-23/1224726268.PDF"
+    },
+    {
+      "code": "688729",
+      "name": "屹唐股份",
+      "ipo_date": "2025-07-08",
+      "title": "屹唐股份首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688729_屹唐股份_屹唐股份首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-07-03/1224068769.PDF"
+    },
+    {
+      "code": "688775",
+      "name": "影石创新",
+      "ipo_date": "2025-06-11",
+      "title": "影石创新首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688775_影石创新_影石创新首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-06-06/1223788474.PDF"
+    },
+    {
+      "code": "688755",
+      "name": "汉邦科技",
+      "ipo_date": "2025-05-16",
+      "title": "汉邦科技首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688755_汉邦科技_汉邦科技首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-05-13/1223528584.PDF"
+    },
+    {
+      "code": "688757",
+      "name": "胜科纳米",
+      "ipo_date": "2025-03-25",
+      "title": "胜科纳米首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688757_胜科纳米_胜科纳米首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-03-20/1222846384.PDF"
+    },
+    {
+      "code": "688411",
+      "name": "海博思创",
+      "ipo_date": "2025-01-27",
+      "title": "海博思创首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688411_海博思创_海博思创首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-01-22/1222389596.PDF"
+    },
+    {
+      "code": "688545",
+      "name": "兴福电子",
+      "ipo_date": "2025-01-22",
+      "title": "兴福电子首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688545_兴福电子_兴福电子首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-01-17/1222355547.PDF"
+    },
+    {
+      "code": "688583",
+      "name": "思看科技",
+      "ipo_date": "2025-01-15",
+      "title": "思看科技首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688583_思看科技_思看科技首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-01-10/1222285798.PDF"
+    },
+    {
+      "code": "688758",
+      "name": "赛分科技",
+      "ipo_date": "2025-01-10",
+      "title": "赛分科技首次公开发行股票并在科创板上市招股说明书",
+      "pdf_path": "star_market_prospectus_2025/688758_赛分科技_赛分科技首次公开发行股票并在科创板上市招股说明书.pdf",
+      "cninfo_url": "http://static.cninfo.com.cn/finalpage/2025-01-06/1222238930.PDF"
+    }
+  ],
+  "exclusion_rules": {
+    "must_contain": "招股说明书",
+    "exclude_keywords": [
+      "提示性公告",
+      "提示性",
+      "上市公告书",
+      "发行公告",
+      "审核问询函",
+      "问询回复",
+      "问询函",
+      "落实函",
+      "审核中心意见",
+      "反馈意见",
+      "发行保荐书",
+      "上市保荐书",
+      "审计报告",
+      "法律意见书",
+      "律师工作报告",
+      "附录",
+      "附件",
+      "摘要",
+      "更正",
+      "补充",
+      "修改",
+      "修订"
+    ]
+  }
+}

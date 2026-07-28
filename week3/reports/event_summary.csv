@@ -1,0 +1,17 @@
+company,field,auto_value,gold_value,correction_type,reason,source_evidence
+影石创新,event_type,VIE搭建(1个事件合并6轮),4个独立事件(天使轮/A轮/B轮/C轮),split_events,招股书仅提及"六次增资扩股"但不逐轮披露详情,影石创新3.md L978 容诚验字[2020]518Z0004号
+影石创新,subscription_date,2015-01,2015/2016/2017/2018(分轮),date_correction,原始数据将6轮全部标为VIE搭建日期,拆分后按投资人类型推估各轮年份(confidence=low)
+影石创新,investors,8家投资人合并,4个事件各1-4家投资人,investor_split,按投资人类型(天使/VC/战略/PE)分入不同轮次,基于行业惯例推断(confidence=low)
+影石创新,confidence,medium,low(拆分后),confidence_downgrade,拆分后的各轮日期和金额均未在招股书中明确披露,需查证监会问询回复补充
+友升股份,source_page,友声股份2.md L695-L730,PDF p40-42,page_reference,MD行号转为PDF页码,友升股份2.md(无##第N页标记,使用minerU输出)
+友升股份,subscriber_name,友声→友升,上海友升铝业股份有限公司,naming_fix,公司名误写,全项目统一修正
+友升股份,source_type,review笔记(Python硬编码),手动结构化JSON,data_migration,从generate_jsonl.py硬编码变量提取为_融资历史_结构化.json,outputs/友升股份/友升股份_融资历史.json
+三协电机,source_page,三协电机_招股书_正式稿_20250711.md 第30页,PDF p30,page_reference,MD页号转为PDF页码,PyMuPDF输出的##第30页标记
+三协电机,source_type,review笔记(Python硬编码),手动结构化JSON,data_migration,同上,outputs/三协电机/三协电机_融资历史.json
+三协电机,shares_subscribed,None(缺失),需查PDF补充,field_missing,原始3个事件中认购数量字段部分未填写,三协电机_招股书_正式稿_20250711.md
+星图测控,source_page,星图测控_招股书_正式稿_20241220.md 第48页,PDF p48,page_reference,MD页号转为PDF页码,PyMuPDF输出的##第48页标记
+星图测控,source_type,review笔记(Python硬编码),手动结构化JSON,data_migration,同上,outputs/星图测控/星图测控_融资历史.json
+星图测控,event_type,其他(IPO前快照),IPO前,snapshot_normalize,将非标准event_type标准化为snapshot_type受控词汇,snapshot_type标准化规则
+赛分科技,source_page,688758_赛分科技_招股书_正式稿_20250106.md 四、公司上市/挂牌情况部分,PDF p64,page_reference,无页码的章节引用通过grep定位到PDF页码,688758_赛分科技_招股书_正式稿_20250106.md L3667
+全8家,snapshot_type,自由文本格式(如"增资后（公司设立）"),受控词汇(如"有限公司设立时"/"A轮增资后"),vocabulary_normalize,91条snapshot_type从自由文本映射到受控词汇,normalize_snapshot_types.py
+全8家,source_page,MD行号/MD页号引用,PDF页码引用,page_reference,200+条记录的source_page从MD引用转为PDF页码,各公司MD文件中的##第N页标记

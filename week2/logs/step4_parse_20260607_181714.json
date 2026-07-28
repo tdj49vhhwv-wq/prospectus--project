@@ -1,0 +1,141 @@
+{
+  "total": 19,
+  "success": 19,
+  "failed": 0,
+  "skipped": 0,
+  "details": [
+    {
+      "file": "688411_海博思创_招股书_正式稿_20250122",
+      "status": "success",
+      "pages": 579,
+      "size_kb": 1369.3,
+      "time_s": 2.3
+    },
+    {
+      "file": "688545_兴福电子_招股书_正式稿_20250117",
+      "status": "success",
+      "pages": 503,
+      "size_kb": 1119.7,
+      "time_s": 1.1
+    },
+    {
+      "file": "688583_思看科技_招股书_正式稿_20250110",
+      "status": "success",
+      "pages": 520,
+      "size_kb": 1165.5,
+      "time_s": 1.7
+    },
+    {
+      "file": "688727_恒坤新材_招股书_正式稿_20251113",
+      "status": "success",
+      "pages": 403,
+      "size_kb": 874.7,
+      "time_s": 1.0
+    },
+    {
+      "file": "688729_屹唐股份_招股书_正式稿_20250703",
+      "status": "success",
+      "pages": 343,
+      "size_kb": 707.0,
+      "time_s": 1.1
+    },
+    {
+      "file": "688755_汉邦科技_招股书_正式稿_20250513",
+      "status": "success",
+      "pages": 411,
+      "size_kb": 876.2,
+      "time_s": 1.0
+    },
+    {
+      "file": "688757_胜科纳米_招股书_正式稿_20250320",
+      "status": "success",
+      "pages": 465,
+      "size_kb": 1099.0,
+      "time_s": 1.1
+    },
+    {
+      "file": "688758_赛分科技_招股书_正式稿_20250106",
+      "status": "success",
+      "pages": 468,
+      "size_kb": 999.4,
+      "time_s": 1.0
+    },
+    {
+      "file": "688759_必贝特_招股书_正式稿_20251023",
+      "status": "success",
+      "pages": 471,
+      "size_kb": 1053.1,
+      "time_s": 1.6
+    },
+    {
+      "file": "688765_禾元生物_招股书_正式稿_20251020",
+      "status": "success",
+      "pages": 451,
+      "size_kb": 1010.1,
+      "time_s": 1.0
+    },
+    {
+      "file": "688775_影石创新_招股书_正式稿_20250606",
+      "status": "success",
+      "pages": 555,
+      "size_kb": 1136.9,
+      "time_s": 1.3
+    },
+    {
+      "file": "688783_西安奕材_招股书_正式稿_20251022",
+      "status": "success",
+      "pages": 459,
+      "size_kb": 959.8,
+      "time_s": 1.0
+    },
+    {
+      "file": "688790_昂瑞微_招股书_正式稿_20251211",
+      "status": "success",
+      "pages": 496,
+      "size_kb": 1063.4,
+      "time_s": 1.0
+    },
+    {
+      "file": "688795_摩尔线程_招股书_正式稿_20251128",
+      "status": "success",
+      "pages": 466,
+      "size_kb": 994.8,
+      "time_s": 1.8
+    },
+    {
+      "file": "688796_百奥赛图_招股书_正式稿_20251204",
+      "status": "success",
+      "pages": 600,
+      "size_kb": 1328.7,
+      "time_s": 1.4
+    },
+    {
+      "file": "688802_沐曦股份_招股书_正式稿_20251211",
+      "status": "success",
+      "pages": 523,
+      "size_kb": 1170.4,
+      "time_s": 1.8
+    },
+    {
+      "file": "688805_健信超导_招股书_正式稿_20251219",
+      "status": "success",
+      "pages": 310,
+      "size_kb": 678.3,
+      "time_s": 0.7
+    },
+    {
+      "file": "688807_优迅股份_招股书_正式稿_20251212",
+      "status": "success",
+      "pages": 383,
+      "size_kb": 824.8,
+      "time_s": 0.8
+    },
+    {
+      "file": "688809_强一股份_招股书_正式稿_20251225",
+      "status": "success",
+      "pages": 385,
+      "size_kb": 853.3,
+      "time_s": 0.9
+    }
+  ]
+}

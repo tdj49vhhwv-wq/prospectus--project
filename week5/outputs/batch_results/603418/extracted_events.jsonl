@@ -1,0 +1,33 @@
+{"date": ["1992-12-04", "1992-12-04"], "registered_capital": 14480.1333, "rule": "设立", "page": 41, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"date": "2020-05-31", "rule": "增资_验资报告", "page": 43, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"date": ["2020-09-09", "2023-11-18", "2020-05-31"], "rule": "资本公积转增", "page": 43, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"net_assets": 40437.44, "date": "2020-09-09", "rule": "股改", "page": 43, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"price": 8.3333, "date": ["2020-09-27", "2020-09-30"], "rule": "增资_标准发行", "page": 44, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"registered_capital": 840.0, "rule": "设立", "page": 44, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"date": "2020-09-30", "rule": "股改", "page": 44, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"price": 33.6323, "date": ["2022-12-04", "2022-12-19", "2022-12-19"], "rule": "增资_标准发行", "page": 45, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"date": "2022-12-19", "rule": "股改", "page": 45, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"date": "2003-07-21", "rule": "设立", "page": 48, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"date": "2003-07-21", "rule": "股改", "page": 48, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"transferor": "美亚", "transferee": "美国日升", "date": ["2003-07-03", "2003-07-03", "2003-07-30", "2003-07-30", "2003-07-21", "2003-07-21"], "rule": "股权转让", "page": 48, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"transferee": ["罗世兵", "罗世兵不存在任何异议"], "date": ["2021-08-21", "2018-12-28"], "rule": "股权转让", "page": 49, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"date": "2017-09-28", "rule": "设立", "page": 60, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"fund_name": ["深圳市达晨创联私募股权投资基金合伙企业", "管理人深圳市达晨财智创业投资管理有限公司已在中国证券投资基金", "武汉联投呈祥股权投资合伙企业", "苏州上实盛世园丰股权投资合伙", "苏州博瑔昕曜创业投资合伙企业"], "rule": "PE备案", "page": 62, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"fund_name": "人深圳市达晨财智创业投资管理有限公司已在中国证券投资基金", "rule": "PE备案", "page": 64, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"fund_name": ["深圳市达晨创程私募股权投资基金企业", "管理人深圳市达晨财智创业投资管理有限公司已在中国证券投资基金", "太保长航股权投资基金"], "rule": "PE备案", "page": 65, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"fund_name": ["东营前程创业投资合伙企业", "云南金产股权投资基金合伙", "无锡惠开正源创业投资合伙", "杭州达晨创程股权投资基金合伙企业", "管理人深圳市达晨财智创业投资管理有限公司已在中国证券投资基金"], "rule": "PE备案", "page": 66, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"registered_capital": 18668.5714, "rule": "设立", "page": 68, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"fund_name": ["宁波恩广创业投资合伙企业", "上海金浦科技创业股权投资基金合伙企业"], "rule": "PE备案", "page": 72, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"fund_name": ["嘉兴贵全双瀛股权投资合伙企业", "广州一诺侨骏股权投资基金合伙"], "rule": "PE备案", "page": 73, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"registered_capital": [14500.0, 10000.0], "rule": "设立", "page": 76, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"fund_name": "海南三亚达晨财汇私募股权投资基金合伙企业", "manager": "深圳市达晨创业投资有限公司", "rule": "PE备案", "page": 76, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"registered_capital": [10510.0, 1250.0, 32000.0], "rule": "设立", "page": 77, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"fund_name": ["深圳市杉晖创业投资合伙企业", "南通杉富股权投资合伙企业", "上海杉创智至创业投资合伙企业"], "manager": "上海杉杉创晖创业投资管理有限公司", "rule": "PE备案", "page": 77, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"registered_capital": 10010.0, "rule": "设立", "page": 78, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"fund_name": ["湖州南浔浔合股权投资合伙企业", "上海兴嘉股权投资合伙企业", "上海融合产业股权投资基金合伙企业"], "manager": "上海杉杉创晖创业投资管理有限公司", "rule": "PE备案", "page": 78, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"manager": "深圳市达晨创业投资有限公司", "rule": "PE备案", "page": 79, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"date": "2022-12-19", "rule": "增资_标准发行", "page": 80, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"manager": "深圳市达晨创业投资有限公司", "rule": "PE备案", "page": 81, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"transferee": "执行事务合伙人金丽燕或其指定的第三方", "rule": "股权转让", "page": 97, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"transferee": "执行事务", "date": "2024-12-31", "rule": "股权转让", "page": 98, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
+{"manager": "同为上海金浦智能科技投资管理有限公司", "rule": "PE备案", "page": 335, "company": "友升股份", "stock_code": "603418", "extracted_at": "2026-07-17 14:50:08"}
