@@ -198,6 +198,17 @@ def extract_subscription_flows(doc, located_data: dict) -> list:
         (r'(\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日).*?整体变更.*?'
          r'折[成为合]\s*([\d,]+\.?\d*)\s*万股?',
          '整体变更'),
+
+        # Week7补: "共同增资" / "增至" (云汉芯城简短格式)
+        (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?'
+         r'(?:共同)?增资\s*([\d,]+\.?\d*)\s*万元.*?'
+         r'注册资本[增至为]*\s*([\d,]+\.?\d*)\s*万元',
+         '增资'),
+
+        # Week7补: "新增注册资本" / "增加注册资本"
+        (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?'
+         r'(?:新增|增加)注册资本\s*([\d,]+\.?\d*)\s*万(?:元|美元)',
+         '增资'),
     ]
 
     for snippet in located_data["pevc_snippets"]:
@@ -261,6 +272,43 @@ def extract_subscription_flows(doc, located_data: dict) -> list:
                         investors.extend(re.split(r'[、，]', raw_names))
                     else:
                         investors.append(raw_names)
+
+                # Week7: "分别"多投资人拆分 ("A、B和C分别以X、Y和Z万元认购")
+                if not investors or len(investors) <= 1:
+                    match_text = text[m.start():min(m.end()+500, len(text))]
+                    fenbie = re.search(
+                        r'([一-龥A-Za-z]{2,40}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|中心|管理|FUND)?)\s*'
+                        r'(?:和|与|、|，)\s*'
+                        r'([一-龥A-Za-z]{2,40}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|中心|管理|FUND)?)\s*'
+                        r'(?:和|与|、|，)?\s*'
+                        r'([一-龥A-Za-z]{2,40}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|中心|管理|FUND)?)?\s*'
+                        r'分别以',
+                        match_text
+                    )
+                    if fenbie:
+                        for g in fenbie.groups():
+                            if g and len(g) >= 2 and g not in ('公司','有限','注册资本'):
+                                investors.append(g.strip())
+                    # "XX以现金XX万元认缴" 单投资人格式
+                    single_inv = re.findall(
+                        r'([一-龥A-Za-z]{2,40}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|FUND)?)\s*以(?:现金|货币)',
+                        match_text
+                    )
+                    for s in single_inv:
+                        if s not in investors and len(s) >= 2:
+                            investors.append(s.strip())
+
+                # Week7: 整体变更 — 从后续股东名单中拆分
+                if ev_type == "整体变更":
+                    post_text = text[m.start():min(m.end()+1500, len(text))]
+                    shareholders = re.findall(
+                        r'([一-龥A-Za-z]{2,30}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|中心|管理)?)\s*'
+                        r'([\d,]+\.?\d*)\s*万股?\s*[（(]\s*([\d.]+)%\s*[)）]',
+                        post_text
+                    )
+                    for sh_name, sh_shares, sh_ratio in shareholders[:20]:
+                        if sh_name not in investors and len(sh_name) >= 2:
+                            investors.append(sh_name.strip())
 
                 if not investors and ev_type == "设立":
                     # 通用中文姓名提取（2-3字），不再硬编码特定姓氏
