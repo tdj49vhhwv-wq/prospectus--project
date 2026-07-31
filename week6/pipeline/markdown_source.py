@@ -13,14 +13,14 @@ MD_DIR = Path('/Users/zhaobingqing/GitHub/prospectus-pevc-project/week1/review')
 
 # 8家公司 → markdown 文件映射
 MD_FILES = {
-    "001282": ["三联锻造1.md", "三联锻造2.md", "三联锻造3.md"],
-    "301563": ["云汉芯城1.md", "云汉芯城2.md", "云汉芯城3.md"],
-    "301581": ["黄山谷捷1.md", "黄山谷捷2.md"],
-    "603418": ["友升股份1.md", "友升股份2.md"],
-    "688758": ["赛分科技1md.md", "赛分科技2.md", "赛分科技3.md"],
-    "688775": ["影石创新1.md", "影石创新2.md", "影石创新3.md"],
+    "001282": ["三联锻造_招股书_PyMuPDF.md"],  # PyMuPDF版
+    "301563": ["云汉芯城_招股书_PyMuPDF.md"],  # PyMuPDF版
+    "301581": ["黄山谷捷_招股书_PyMuPDF.md"],  # PyMuPDF版
+    "603418": ["友升股份1.md", "友升股份2.md"],  # 分段合并
+    "688758": ["688758_赛分科技_招股书_正式稿_20250106.md"],
+    "688775": ["688775_影石创新_招股书_正式稿_20250606.md"],
     "920100": ["三协电机_招股书_正式稿_20250711.md"],
-    "920116": ["星图测控1.md", "星图测控2.md"],
+    "920116": ["星图测控_招股书_正式稿_20241220.md"],
 }
 
 # PE/VC 相关章节定位关键词（同 config.py SECTION_KEYWORDS）
@@ -39,35 +39,55 @@ def load_company_text(code: str) -> list[dict]:
         return []
 
     all_snippets = []
+
+    # 合并所有分段文件
+    full_text = ""
     for md_name in md_names:
         path = MD_DIR / md_name
         if not path.exists():
             continue
+        full_text += path.read_text(encoding='utf-8') + "\n"
 
-        text = path.read_text(encoding='utf-8')
+    if not full_text:
+        return []
 
-        # 按 ## 第N页 分页
-        pages = re.split(r'\n## 第(\d+)页\n', text)
+    # 按 ## 第N页 分页
+    pages = re.split(r'\n## 第(\d+)页\n', full_text)
 
-        # pages[0] = 文件头, pages[1] = 第1个页码, pages[2] = 第1页内容...
-        for i in range(1, len(pages), 2):
-            if i + 1 >= len(pages):
-                break
-            try:
-                page_num = int(pages[i])
-                page_text = pages[i + 1]
-            except ValueError:
-                continue
+    # 如果没找到分页标记，分块处理（每3000字一块）
+    if len(pages) < 3:
+        chunk_size = 3000
+        for i in range(0, len(full_text), chunk_size):
+            chunk = full_text[i:i+chunk_size]
+            for kw in SECTION_KEYWORDS:
+                if kw in chunk:
+                    all_snippets.append({
+                        "text": chunk,
+                        "pdf_page": i // chunk_size + 1,
+                        "keyword": kw,
+                    })
+                    break
+        return all_snippets
 
-            # 只看含PE/VC关键词的页
-            if not any(kw in page_text for kw in SECTION_KEYWORDS):
-                continue
+    # pages[0] = 文件头, pages[1]=页码, pages[2]=内容...
+    for i in range(1, len(pages), 2):
+        if i + 1 >= len(pages):
+            break
+        try:
+            page_num = int(pages[i])
+            page_text = pages[i + 1]
+        except ValueError:
+            continue
 
-            all_snippets.append({
-                "text": page_text[:5000],  # 每页最多5000字
-                "pdf_page": page_num,
-                "keyword": _find_keyword(page_text),
-            })
+        # 只看含PE/VC关键词的页
+        if not any(kw in page_text for kw in SECTION_KEYWORDS):
+            continue
+
+        all_snippets.append({
+            "text": page_text[:5000],
+            "pdf_page": page_num,
+            "keyword": _find_keyword(page_text),
+        })
 
     return all_snippets
 
