@@ -86,6 +86,8 @@
 
 > 修订前，同一代码在不同 Python 哈希种子下会得到 641—660 条候选，提交说明也曾记录 656 条。根因是投资人集合无序后直接截取前 8 个。本次改为确定性排序后，4 个不同哈希种子均得到 645 条；后续仍须保存 manifest、commit、参数和结果哈希。
 
+逐公司数据见 [`candidate_quality_audit.csv`](candidate_quality_audit.csv)，24 条可核验错误案例见 [`error_examples.md`](error_examples.md)，环境、命令和输入哈希见 [`reproducibility_report.md`](reproducibility_report.md)。其中“明显非投资人”120 条是保守规则识别出的误报下界，不能代替严格 FP 或 Precision。
+
 ---
 
 ## 四、根因分析

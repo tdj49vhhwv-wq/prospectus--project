@@ -71,6 +71,14 @@
 
 本周最重要的进展，是从“有没有输出”转为追问“输出是不是对的、错在哪里、能否复跑”。
 
+### 补充证据材料
+
+- [`candidate_quality_audit.csv`](candidate_quality_audit.csv) / [`candidate_quality_audit.xlsx`](candidate_quality_audit.xlsx)：8 家公司逐公司字段缺失、事件类型和明显非投资人数量；
+- [`error_examples.md`](error_examples.md)：24 条真实错误候选、原文证据、错误原因和拟修复办法；
+- [`reproducibility_report.md`](reproducibility_report.md)：运行环境、复现命令、四个哈希种子结果和输入文件 SHA-256。
+
+这三份材料分别对应“结果有多差”“具体错在哪里”“别人能否复跑”，使 Week 7 的结论可以被检查，而不只是文字总结。
+
 ---
 
 ## 四、需要老师确认的问题
