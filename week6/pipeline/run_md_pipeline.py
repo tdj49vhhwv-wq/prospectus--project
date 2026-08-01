@@ -85,6 +85,12 @@ def classify(name):
     return '其他'
 
 
+def stable_unique_names(names, limit=None):
+    """Return cleaned unique names in deterministic Unicode sort order."""
+    unique_names = sorted({name.strip() for name in names if len(name.strip()) >= 2})
+    return unique_names if limit is None else unique_names[:limit]
+
+
 def extract_from_snippets(snippets, company_code, company_name):
     """从文本片段提取订阅事件"""
     records = []
@@ -124,17 +130,19 @@ def extract_from_snippets(snippets, company_code, company_name):
                     r'([一-龥A-Za-z]{2,30}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|集团|中心|管理|FUND)?)',
                     text[m.start():min(m.end()+300, len(text))]
                 )
-                investors = list(set(i.strip() for i in investors if len(i.strip()) >= 2))
                 # 过滤非投资人
                 skip_words = ('公司','有限','注册资本','发行人','合计','总计','万元','万股','本次','上述')
-                investors = [i for i in investors if i not in skip_words]
+                investors = stable_unique_names(
+                    [i for i in investors if i.strip() not in skip_words],
+                    limit=8,
+                )
 
                 if not investors:
                     investors = ['（待识别）']
 
                 ctx = text[max(0,m.start()-20):min(len(text),m.end()+100)].replace('\n',' ')[:300]
 
-                for inv in investors[:8]:
+                for inv in investors:
                     key = (date_str, inv, ev_type)
                     if key in seen: continue
                     seen.add(key)

@@ -43,6 +43,19 @@ COMPANIES = [
 ]
 
 
+def resolve_located_path(week6_root: Path, code: str) -> Path:
+    """Resolve located-sections input from Week 6, then the Week 5 fallback."""
+    primary = week6_root / "validation" / f"located_sections_{code}.json"
+    if primary.exists():
+        return primary
+    return week6_root.parent / "week5" / "outputs" / f"located_sections_{code}.json"
+
+
+def resolve_pdf_path(week6_root: Path, pdf_name: str) -> Path:
+    """Resolve prospectus PDFs stored under the repository-level Week 1 data."""
+    return week6_root.parent / "week1" / "data" / "week1PDF" / pdf_name
+
+
 def run_single_company(company: dict, project_root: Path) -> dict:
     """对单家公司执行完整提取流程"""
     code = company["code"]
@@ -52,10 +65,7 @@ def run_single_company(company: dict, project_root: Path) -> dict:
     print(f"{'='*60}")
 
     # 检查 located_sections 是否存在
-    located_path = project_root / "validation" / f"located_sections_{code}.json"
-    if not located_path.exists():
-        # fallback: week5 outputs
-        located_path = project_root / "week5" / "outputs" / f"located_sections_{code}.json"
+    located_path = resolve_located_path(project_root, code)
     if not located_path.exists():
         print(f"  SKIP: 找不到 {located_path}")
         return {"code": code, "name": name, "status": "skipped", "reason": "no located_sections"}
@@ -64,7 +74,7 @@ def run_single_company(company: dict, project_root: Path) -> dict:
         located_data = json.load(f)
 
     # 检查 PDF 是否存在
-    pdf_path = project_root / "week1" / "data" / "week1PDF" / company["pdf"]
+    pdf_path = resolve_pdf_path(project_root, company["pdf"])
     if not pdf_path.exists():
         print(f"  SKIP: PDF不存在 {pdf_path}")
         return {"code": code, "name": name, "status": "skipped", "reason": "no pdf"}

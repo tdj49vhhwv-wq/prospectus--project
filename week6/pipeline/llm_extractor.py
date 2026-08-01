@@ -5,14 +5,23 @@ LLM 提取器 — DeepSeek 驱动，处理正则无法覆盖的多投资人/复�
   extractor = LLMExtractor()
   records = extractor.extract_subscriptions(text, company, page)
 """
-import json, re, time
+import json, os, re, time
 from pathlib import Path
 from datetime import datetime
 import requests
 
-API_KEY = "sk-13cd26fa3bbb4d48ba5fa24e5632d549"
 MODEL = "deepseek-chat"
 BASE_URL = "https://api.deepseek.com"
+
+
+def get_api_key() -> str:
+    """Return the DeepSeek API key from the environment."""
+    api_key = os.environ.get("DEEPSEEK_API_KEY", "").strip()
+    if not api_key:
+        raise RuntimeError(
+            "缺少 DEEPSEEK_API_KEY。请先设置环境变量，再运行 LLM 提取。"
+        )
+    return api_key
 
 SUBSCRIPTION_PROMPT = """你是招股书融资信息提取专家。从文本中提取所有增资/出资/股权转让事件。
 
@@ -73,7 +82,7 @@ class LLMExtractor:
     def _call_api(self, prompt: str) -> str:
         """调用 DeepSeek API"""
         headers = {
-            "Authorization": f"Bearer {API_KEY}",
+            "Authorization": f"Bearer {get_api_key()}",
             "Content-Type": "application/json"
         }
         payload = {

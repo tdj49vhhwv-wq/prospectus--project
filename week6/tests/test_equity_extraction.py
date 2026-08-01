@@ -10,6 +10,7 @@
 import re, os, sys
 from pathlib import Path
 import pg8000
+import pytest
 
 # DB_CONFIG → from pipeline.db_config import DB_CONFIG
 import sys; sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'pipeline'))
@@ -22,6 +23,11 @@ except ImportError:
 }
 
 EXPECTED_COMPANIES = ['001282','301563','301581','603418','688758','688775','920100','920116']
+
+pytestmark = pytest.mark.skipif(
+    not DB_CONFIG.get('host') or not DB_CONFIG.get('user'),
+    reason="需要通过 DB_HOST 和 DB_USER 配置远程 PostgreSQL 集成测试",
+)
 
 
 def test_all_8_companies_present():
