@@ -5,11 +5,17 @@ Markdown 文本源 — 当 PDF 不可用时，从 MinerU markdown 提取文本�
   from markdown_source import load_company_text
   snippets = load_company_text(code)  # → [{"text": "...", "pdf_page": 50}, ...]
 """
+import os
 import re
 from pathlib import Path
 
-# MinerU markdown 文件路径
-MD_DIR = Path('/Users/zhaobingqing/GitHub/prospectus-pevc-project/week1/review')
+
+def get_md_dir() -> Path:
+    """Return the Markdown source directory, with an optional local override."""
+    configured = os.environ.get("PROSPECTUS_MD_DIR", "").strip()
+    if configured:
+        return Path(configured).expanduser().resolve()
+    return Path(__file__).resolve().parents[2] / "week1" / "review"
 
 # 8家公司 → markdown 文件映射
 MD_FILES = {
@@ -42,8 +48,9 @@ def load_company_text(code: str) -> list[dict]:
 
     # 合并所有分段文件
     full_text = ""
+    md_dir = get_md_dir()
     for md_name in md_names:
-        path = MD_DIR / md_name
+        path = md_dir / md_name
         if not path.exists():
             continue
         full_text += path.read_text(encoding='utf-8') + "\n"

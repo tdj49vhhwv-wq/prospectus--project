@@ -5,6 +5,8 @@ Week 6 Pipeline 统一配置
 - 支持 PyMuPDF 表格提取 + PaddleOCR 备选
 - 适配 8 家公司（非仅三协电机）
 """
+from __future__ import annotations
+
 from pathlib import Path
 
 # week6/pipeline/ → week6/
