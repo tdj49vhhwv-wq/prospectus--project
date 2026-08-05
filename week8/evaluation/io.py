@@ -38,7 +38,13 @@ def write_json(path: Path, value: object) -> None:
 
 def write_csv(path: Path, rows: Iterable[dict], fieldnames: List[str]) -> None:
     with path.open("w", encoding="utf-8-sig", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=fieldnames, extrasaction="ignore")
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=fieldnames,
+            extrasaction="ignore",
+            lineterminator="\n",
+            quoting=csv.QUOTE_ALL,
+        )
         writer.writeheader()
         for row in rows:
             writer.writerow(

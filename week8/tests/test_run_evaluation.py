@@ -69,7 +69,7 @@ def test_cli_writes_traceable_metrics_and_error_files(tmp_path):
             "shares_subscribed": None,
             "price_per_share": None,
             "source_page": "MD p3",
-            "evidence_text": "自动误报证据",
+            "evidence_text": "自动误报证据   ",
         },
     ]
     write_jsonl(gold_path, gold_rows)
@@ -118,6 +118,10 @@ def test_cli_writes_traceable_metrics_and_error_files(tmp_path):
     ):
         assert (output_dir / filename).exists(), filename
     assert "自动误报证据" in (output_dir / "event_errors.csv").read_text()
+    for csv_path in output_dir.glob("*.csv"):
+        content = csv_path.read_bytes()
+        assert b"\r\n" not in content, csv_path.name
+        assert all(line.rstrip(b" \t") == line for line in content.splitlines()), csv_path.name
 
 
 def test_cli_outputs_are_byte_stable_for_the_same_inputs(tmp_path):

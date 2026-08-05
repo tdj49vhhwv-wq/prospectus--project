@@ -1,5 +1,5 @@
-﻿field,total,normalized,missing,invalid,normalized_rate
-subscription_date,122,112,10,0,0.918033
-amount_subscribed,122,90,32,0,0.737705
-shares_subscribed,122,1,121,0,0.008197
-price_per_share,122,0,122,0,0.0
+﻿"field","total","normalized","missing","invalid","normalized_rate"
+"subscription_date","122","112","10","0","0.918033"
+"amount_subscribed","122","90","32","0","0.737705"
+"shares_subscribed","122","1","121","0","0.008197"
+"price_per_share","122","0","122","0","0.0"

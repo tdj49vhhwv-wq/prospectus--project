@@ -87,7 +87,12 @@ def main() -> int:
     rows = [json.loads(line) for line in DEFAULT_GOLD.read_text(encoding="utf-8").splitlines() if line.strip()]
     audited = audit_rows(rows, load_default_sources())
     with DEFAULT_CSV.open("w", encoding="utf-8-sig", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(audited[0]))
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=list(audited[0]),
+            lineterminator="\n",
+            quoting=csv.QUOTE_ALL,
+        )
         writer.writeheader()
         writer.writerows(audited)
 
