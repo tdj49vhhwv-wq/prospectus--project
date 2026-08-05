@@ -30,6 +30,8 @@ python3 week8/run_week8_evaluation.py --output-dir week8/results/baseline_after_
 | 修复后 | 事件 | 6 | 70 | 32 | 7.89% | 15.79% | 10.53% |
 | 修复前 | 投资人 | 0 | 645 | 124 | 0 | 0 | 0 |
 | 修复后 | 投资人 | 2 | 120 | 122 | 1.64% | 1.61% | 1.63% |
+| Gold裁决后 | 事件 | 5 | 71 | 28 | 6.58% | 15.15% | 9.17% |
+| Gold裁决后 | 投资人 | 2 | 120 | 97 | 1.64% | 2.02% | 1.81% |
 
 本轮没有追求漂亮数字，而是修复两类有明确证据的问题：
 
@@ -49,7 +51,7 @@ Gold v1.1 保留既有124条人工记录并增加稳定ID和复核状态，但�
 | name_only | 15 | 名称存在，但相应年份未在附近找到 |
 | name_absent | 25 | 当前Markdown中找不到投资人名称，必须裁决或补充数据源 |
 
-因此，现有P/R/F1是“按继承Gold计算的严格基线”，但在Gold来源重新对齐前仍应标记为暂定，不能作为最终论文准确率。
+经人工裁决，25条 `name_absent` 记录不删除，单独进入 `gold_disputes_v1.1.jsonl`，并暂时排除出主评价集。当前主评价分母为99条；裁决后的完整结果保存在 `results/baseline_after_gold_adjudication/`。其余99条仍有逐字证据对齐工作，因此现有P/R/F1仍是暂定基线，不能作为最终论文准确率。
 
 ## 四、当前质量结论
 
@@ -62,8 +64,11 @@ Gold v1.1 保留既有124条人工记录并增加稳定ID和复核状态，但�
 
 - `gold/subscription_flow_gold_v1.1.jsonl`：冻结Gold；
 - `gold/gold_source_audit.csv`：124条来源审计；
+- `gold/gold_disputes_v1.1.jsonl`：25条暂时排除的争议记录；
+- `gold/subscription_flow_gold_v1.1_evaluable.jsonl`：99条当前主评价集快照；
 - `evaluation/`：标准化、事件评价和投资人评价程序；
 - `results/baseline_before_fix/`：修复前完整结果；
 - `results/baseline_after_date_fix/`：当前修复后结果；
+- `results/baseline_after_gold_adjudication/`：按99条主评价集重跑的结果；
 - `results/before_after_metrics.csv`：三阶段指标对比；
 - `tests/`：Gold、标准化、匹配器、提取修复和端到端测试。

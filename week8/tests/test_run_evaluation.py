@@ -156,3 +156,67 @@ def test_cli_outputs_are_byte_stable_for_the_same_inputs(tmp_path):
             {path.name: path.read_bytes() for path in sorted(output_dir.iterdir())}
         )
     assert output_hashes[0] == output_hashes[1]
+
+
+def test_cli_excludes_disputed_gold_ids_and_records_the_evaluation_denominator(tmp_path):
+    gold_path = tmp_path / "gold.jsonl"
+    disputes_path = tmp_path / "disputes.jsonl"
+    auto_path = tmp_path / "auto.jsonl"
+    output_dir = tmp_path / "results"
+    common = {
+        "stock_code": "001282",
+        "subscription_date": "2020-05-01",
+        "event_context": "增资",
+        "amount_subscribed": None,
+        "shares_subscribed": None,
+        "price_per_share": None,
+        "source_page": "PDF p1",
+        "evidence_text": "人工证据",
+    }
+    gold_rows = [
+        dict(common, gold_id="G1", subscriber_name="可评价投资人"),
+        dict(common, gold_id="G2", subscriber_name="争议投资人"),
+    ]
+    write_jsonl(gold_path, gold_rows)
+    write_jsonl(
+        disputes_path,
+        [dict(gold_rows[1], adjudication_status="temporarily_excluded_pending_source")],
+    )
+    write_jsonl(
+        auto_path,
+        [dict(gold_rows[0], auto_id="A1", source_page="MD p1", evidence_text="自动证据")],
+    )
+
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT),
+            "--gold",
+            str(gold_path),
+            "--disputes",
+            str(disputes_path),
+            "--auto",
+            str(auto_path),
+            "--output-dir",
+            str(output_dir),
+        ],
+        cwd=PROJECT_ROOT,
+        env=dict(os.environ, PYTHONPATH=str(PROJECT_ROOT)),
+        text=True,
+        capture_output=True,
+    )
+
+    assert completed.returncode == 0, completed.stderr
+    investor_metrics = json.loads((output_dir / "investor_metrics.json").read_text())
+    manifest = json.loads((output_dir / "run_manifest.json").read_text())
+    assert investor_metrics["overall"] == {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+    }
+    assert manifest["source_gold_rows"] == 2
+    assert manifest["temporarily_excluded_gold_rows"] == 1
+    assert manifest["gold_rows"] == 1

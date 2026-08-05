@@ -1,0 +1,13 @@
+{
+  "aliases_sha256": "7cb6b0dec830e72c764e3cc8aeefb2fad55a648abd44f59b524b35e48b8e6230",
+  "auto_events": 76,
+  "auto_rows": 122,
+  "auto_sha256": null,
+  "auto_source": "week6_markdown_pipeline_in_memory",
+  "disputes_sha256": "3565a0cb9d9e430815e378c9836c69db1efdaec98987ec3339b59b9e4d2e18b6",
+  "gold_events": 33,
+  "gold_rows": 99,
+  "gold_sha256": "6c55f75633a3825ddd54e309ae1aa96734654ef33e1fc3dcc7b26af07e09a929",
+  "source_gold_rows": 124,
+  "temporarily_excluded_gold_rows": 25
+}

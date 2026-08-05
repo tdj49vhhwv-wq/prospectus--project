@@ -31,6 +31,7 @@ from week8.evaluation.normalize import normalize_date, normalize_number  # noqa:
 
 
 DEFAULT_GOLD = PROJECT_ROOT / "week8/gold/subscription_flow_gold_v1.1.jsonl"
+DEFAULT_DISPUTES = PROJECT_ROOT / "week8/gold/gold_disputes_v1.1.jsonl"
 DEFAULT_ALIASES = PROJECT_ROOT / "week8/evaluation/investor_aliases.csv"
 DEFAULT_OUTPUT = PROJECT_ROOT / "week8/results"
 
@@ -131,7 +132,17 @@ def _analysis_markdown(event_errors: List[dict], investor_errors: List[dict]) ->
     return "\n".join(lines) + "\n"
 
 
-def _summary_markdown(gold_rows, auto_rows, gold_events, auto_events, event_result, investor_result, completeness) -> str:
+def _summary_markdown(
+    gold_rows,
+    auto_rows,
+    gold_events,
+    auto_events,
+    event_result,
+    investor_result,
+    completeness,
+    source_gold_count,
+    excluded_gold_count,
+) -> str:
     event = event_result.metrics["overall"]
     investor = investor_result.metrics["overall"]
     return f"""# Week 8 严格基线总结
@@ -139,6 +150,8 @@ def _summary_markdown(gold_rows, auto_rows, gold_events, auto_events, event_resu
 ## 样本
 
 - 开发集公司：{len({row.get('stock_code') for row in gold_rows})} 家；
+- 原始Gold：{source_gold_count} 条；
+- 暂时排除争议Gold：{excluded_gold_count} 条；
 - Gold投资人明细：{len(gold_rows)} 条；
 - Gold事件：{len(gold_events)} 个；
 - Auto原始候选：{len(auto_rows)} 条；
@@ -159,8 +172,17 @@ def _summary_markdown(gold_rows, auto_rows, gold_events, auto_events, event_resu
     ) + "\n\n以上数字是严格Auto-vs-Gold结果，不以候选数量或规则覆盖率替代准确率。\n"
 
 
-def run(gold_path: Path, auto_path: Path, output_dir: Path, aliases_path: Path) -> dict:
-    gold_rows = load_jsonl(gold_path)
+def run(
+    gold_path: Path,
+    auto_path: Path,
+    output_dir: Path,
+    aliases_path: Path,
+    disputes_path: Path | None = None,
+) -> dict:
+    source_gold_rows = load_jsonl(gold_path)
+    disputed_rows = load_jsonl(disputes_path) if disputes_path and disputes_path.exists() else []
+    disputed_ids = {row.get("gold_id") for row in disputed_rows}
+    gold_rows = [row for row in source_gold_rows if row.get("gold_id") not in disputed_ids]
     auto_rows = load_jsonl(auto_path) if auto_path else _load_markdown_candidates()
     aliases = load_aliases(aliases_path)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -212,13 +234,18 @@ def run(gold_path: Path, auto_path: Path, output_dir: Path, aliases_path: Path) 
             event_result,
             investor_result,
             completeness,
+            len(source_gold_rows),
+            len(source_gold_rows) - len(gold_rows),
         ),
         encoding="utf-8",
     )
     manifest = {
         "gold_sha256": sha256_file(gold_path),
+        "disputes_sha256": sha256_file(disputes_path) if disputes_path and disputes_path.exists() else None,
         "auto_sha256": sha256_file(auto_path) if auto_path else None,
         "auto_source": "jsonl" if auto_path else "week6_markdown_pipeline_in_memory",
+        "source_gold_rows": len(source_gold_rows),
+        "temporarily_excluded_gold_rows": len(source_gold_rows) - len(gold_rows),
         "gold_rows": len(gold_rows),
         "gold_events": len(gold_events),
         "auto_rows": len(auto_rows),
@@ -232,6 +259,7 @@ def run(gold_path: Path, auto_path: Path, output_dir: Path, aliases_path: Path) 
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--gold", type=Path, default=DEFAULT_GOLD)
+    parser.add_argument("--disputes", type=Path, default=DEFAULT_DISPUTES)
     parser.add_argument("--auto", type=Path)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--aliases", type=Path, default=DEFAULT_ALIASES)
@@ -240,7 +268,7 @@ def parse_args(argv=None):
 
 def main(argv=None) -> int:
     args = parse_args(argv)
-    manifest = run(args.gold, args.auto, args.output_dir, args.aliases)
+    manifest = run(args.gold, args.auto, args.output_dir, args.aliases, args.disputes)
     print(
         f"Week 8 evaluation complete: Gold {manifest['gold_rows']} rows / "
         f"Auto {manifest['auto_rows']} rows -> {args.output_dir}"

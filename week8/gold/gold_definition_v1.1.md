@@ -20,3 +20,11 @@ Gold v1.1 继承 `week3/manual_gold/subscription_flow_gold.jsonl` 的 124 条投
 - `needs_review`：备注或证据明确包含推断、低置信度、未逐轮披露或待进一步提取。此类记录仍被保留，但评价报告必须单独披露敏感性结果。
 
 “冻结”表示输入和版本可追溯，不等于所有记录已经最终确认。任何后续改动必须进入 `gold_change_log.csv`，不得直接覆盖来源文件。
+
+## 2026-08-05 评价口径裁决
+
+- `subscription_flow_gold_v1.1.jsonl` 继续保留全部 124 条原始 Gold，不删除记录；
+- 当前 Markdown 中找不到投资人名称的 25 条 `name_absent` 记录进入 `gold_disputes_v1.1.jsonl`；
+- 这 25 条暂时排除出主评价分母，待找到补充来源后逐条恢复或删除；
+- `subscription_flow_gold_v1.1_evaluable.jsonl` 是当前 99 条主评价集的物化快照；
+- 评价器同时读取原始 Gold 和争议集，按稳定 `gold_id` 排除争议项，并在 `run_manifest.json` 中记录数量与文件哈希。
