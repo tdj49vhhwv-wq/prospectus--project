@@ -91,6 +91,80 @@ def stable_unique_names(names, limit=None):
     return unique_names if limit is None else unique_names[:limit]
 
 
+def nearest_preceding_date(text, position, window=500):
+    """Return the closest date disclosed before a match, without looking ahead."""
+    prefix = text[max(0, position - window):position]
+    patterns = (
+        r'\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日',
+        r'\d{4}\s*年\s*\d{1,2}\s*月',
+        r'\d{4}-\d{1,2}-\d{1,2}',
+    )
+    found = []
+    for pattern in patterns:
+        found.extend((match.start(), match.group(0)) for match in re.finditer(pattern, prefix))
+    if not found:
+        return ''
+    _start, value = max(found, key=lambda item: item[0])
+    return normalize_date(value)
+
+
+NON_INVESTOR_EVENT_TYPES = {'设立', '整体变更', '资本公积转增', '吸收合并'}
+PROCEDURAL_WORDS = (
+    '召开', '审议', '通过', '出具', '募集', '发行事项', '注册资本',
+    '董事会', '股东大会', '验资报告', '截至', '新增股份', '挂牌',
+    '缴纳', '收到', '本次', '上述', '关于', '合计', '总计',
+)
+LEGAL_ENTITY_ENDING = re.compile(
+    r'(?:有限(?:责任)?公司|股份有限公司|合伙企业(?:\(有限合伙\))?|'
+    r'基金|创投|投资|资本|集团|中心|管理|FUND|LIMITED)$',
+    re.IGNORECASE,
+)
+
+
+def extract_investor_names(captured_groups, event_type):
+    """Extract investors only from semantic regex captures, never arbitrary context.
+
+    The old implementation scanned the whole evidence window with an optional legal
+    suffix and therefore returned procedural phrases such as ``公司召开``.  This
+    helper accepts only captured name slots, splits joint subscribers, and applies
+    conservative entity/person validation.
+    """
+    if event_type in NON_INVESTOR_EVENT_TYPES:
+        return []
+
+    candidates = []
+    for raw in captured_groups:
+        if raw is None:
+            continue
+        text = str(raw).strip()
+        if not text or re.search(r'\d{4}\s*年', text):
+            continue
+        numeric = text.replace(',', '').strip()
+        if re.fullmatch(r'[\d.]+', numeric):
+            continue
+
+        for part in re.split(r'[、，,]|(?:和|及|与)', text):
+            name = part.strip(' ：:；;。,.，、()（）')
+            name = re.sub(r'^(?:公司)?(?:已)?(?:向|由|收到)', '', name).strip()
+            name = re.sub(r'^(?:(?:其中)?(?:原|新)?股东|其中)', '', name).strip()
+            name = re.sub(r'(?:以)?(?:货币资金|货币|现金|实物|机器设备|债权)$', '', name).strip()
+            if len(name) < 2 or len(name) > 80:
+                continue
+            normalized_brackets = name.replace('（', '(').replace('）', ')')
+            if LEGAL_ENTITY_ENDING.search(normalized_brackets):
+                candidates.append(name)
+                continue
+            if any(word in name for word in PROCEDURAL_WORDS):
+                continue
+            if re.fullmatch(r'[一-龥]{2,6}', name):
+                candidates.append(name)
+                continue
+            if re.fullmatch(r'[A-Za-z][A-Za-z0-9 &().-]{1,79}', name):
+                candidates.append(name)
+
+    return stable_unique_names(candidates)
+
+
 def extract_from_snippets(snippets, company_code, company_name):
     """从文本片段提取订阅事件"""
     records = []
@@ -110,6 +184,8 @@ def extract_from_snippets(snippets, company_code, company_name):
                     if g and re.search(r'\d{4}\s*年', str(g)):
                         date_str = normalize_date(g)
                         break
+                if not date_str:
+                    date_str = nearest_preceding_date(text, m.start())
 
                 # 提取数字
                 nums = []
@@ -125,17 +201,8 @@ def extract_from_snippets(snippets, company_code, company_name):
                 shares = nums[1] if len(nums) > 1 else None
                 price = nums[2] if len(nums) > 2 else None
 
-                # 提取投资人
-                investors = re.findall(
-                    r'([一-龥A-Za-z]{2,30}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|集团|中心|管理|FUND)?)',
-                    text[m.start():min(m.end()+300, len(text))]
-                )
-                # 过滤非投资人
-                skip_words = ('公司','有限','注册资本','发行人','合计','总计','万元','万股','本次','上述')
-                investors = stable_unique_names(
-                    [i for i in investors if i.strip() not in skip_words],
-                    limit=8,
-                )
+                # 仅从正则语义捕获组提取投资人，禁止扫描整段上下文。
+                investors = extract_investor_names(groups, ev_type)
 
                 if not investors:
                     investors = ['（待识别）']

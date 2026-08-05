@@ -1,0 +1,7 @@
+stage,level,auto_rows,auto_events,tp,fp,fn,precision,recall,f1,date_normalized_rate,amount_normalized_rate
+before_fix,event,645,96,5,91,33,0.052083,0.131579,0.074627,0.668217,0.517829
+before_fix,investor,645,96,0,645,124,0.0,0.0,0.0,0.668217,0.517829
+after_entity_fix,event,115,97,5,92,33,0.051546,0.131579,0.074074,0.530435,0.721739
+after_entity_fix,investor,115,97,2,113,122,0.017391,0.016129,0.016736,0.530435,0.721739
+after_date_fix,event,122,76,6,70,32,0.078947,0.157895,0.105263,0.918033,0.737705
+after_date_fix,investor,122,76,2,120,122,0.016393,0.016129,0.01626,0.918033,0.737705
