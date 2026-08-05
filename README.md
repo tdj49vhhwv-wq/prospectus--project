@@ -4,7 +4,7 @@
 
 **姓名**：赵秉清<br>
 **仓库**：tdj49vhhwv-wq/prospectus--project<br>
-**当前**：Week 7 修订完成，Week 8 将建立统一 Auto-vs-Gold 评价器
+**当前**：Week 8 已建立统一 Auto-vs-Gold 评价闭环，并完成第一轮实体与日期修复
 
 ---
 
@@ -83,6 +83,11 @@ week7/
   august_2026_plan.md           # 八月完整计划
 week8/
   week8_plan.md                 # Week 8 日级任务书
+  week8_summary.md              # Week 8 严格基线与修复总结
+  gold/                         # Gold v1.1、变更日志和来源审计
+  evaluation/                   # 标准化、事件/投资人评价器
+  results/                      # 修复前后指标、完整FP/FN与运行清单
+  tests/                        # Week 8 离线测试
 ```
 
 ---
@@ -108,12 +113,12 @@ week8/
 |------|------|------|
 | PDF/Markdown 文本源 | 已建立，待统一输入版本 | PDF 未跟踪；Markdown 可覆盖 8 家 |
 | 章节定位 | 已建立 | 8 家均有 located sections 或 Markdown 片段 |
-| Gold Standard | 待版本化 | `subscription_flow` 原口径 124 条，7 条员工平台记录待迁移确认 |
+| Gold Standard | v1.1 已冻结、待来源裁决 | 124 条已加稳定ID；仅3条证据能在当前Markdown逐字定位，25条名称缺失 |
 | PDF 自动提取 | 有历史基线 | 旧 Pipeline 输出 18/124 条，尚无严格 P/R/F1 |
-| Markdown 候选提取 | 可运行、不可直接使用 | 当前稳定复跑 645 条候选，误报严重 |
+| Markdown 候选提取 | 完成第一轮修复、不可直接使用 | 原始候选645→122；日期标准化率66.82%→91.80% |
 | LLM 辅助提取 | 完成小样本试验 | 尚未完成全量盲测和成本评估 |
 | Schema/Cross-Check | 已有材料 | 需与统一 Gold 版本和评价器对齐 |
-| Auto-vs-Gold 评价 | 未完成 | Week 8 最高优先级 |
+| Auto-vs-Gold 评价 | 已完成严格基线 | 事件级F1 10.53%；投资人级F1 1.63%；因Gold来源问题暂定 |
 | 融资分析报告 | 有初稿 | 需在数据质量达标后更新结论 |
 
 ---
@@ -138,6 +143,7 @@ week8/
 4. 三联锻造 t0 设立事件依赖申报文件 4-3。
 5. 英文投资人、复合事件、重复披露和表格字段映射仍是主要错误来源。
 6. 现有数据库测试依赖远程 PostgreSQL，尚无完整离线测试基线。
+7. Gold 的多数 `evidence_text` 是概括文字而非当前Markdown逐字证据；25条 `name_absent` 记录已裁决为“保留但暂时排除主评价”，其余99条仍需继续完成逐字来源对齐。
 
 完整审计见 `week7/project_gap_audit.md`。
 

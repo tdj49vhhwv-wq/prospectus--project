@@ -1,0 +1,10 @@
+{
+  "aliases_sha256": "7cb6b0dec830e72c764e3cc8aeefb2fad55a648abd44f59b524b35e48b8e6230",
+  "auto_events": 96,
+  "auto_rows": 645,
+  "auto_sha256": null,
+  "auto_source": "week6_markdown_pipeline_in_memory",
+  "gold_events": 38,
+  "gold_rows": 124,
+  "gold_sha256": "6c55f75633a3825ddd54e309ae1aa96734654ef33e1fc3dcc7b26af07e09a929"
+}

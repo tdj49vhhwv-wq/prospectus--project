@@ -1,0 +1,2 @@
+change_id,gold_id,old_value,new_value,field,reason,evidence,decision_status,confirmed_by,confirmed_at
+CHG-20260805-001,BATCH-name_absent-25,inherited_manual_gold,evaluation_excluded_pending_source,evaluation_eligibility,当前Markdown中未找到投资人名称,week8/gold/gold_source_audit.csv,confirmed,赵秉清,2026-08-05
