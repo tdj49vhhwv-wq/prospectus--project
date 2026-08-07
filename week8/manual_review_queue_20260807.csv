@@ -5,4 +5,4 @@ company,stock_code,event_date,type_code,context,queue_type,note
 影石创新,688775,2018-01,A,增资,LLM_manual,VIE轮次4，原文无日期
 赛分科技,688758,2015-08,A,增资,gold_review,业绩补偿0元转让，疑应归D或删除
 星图测控,920116,2024-06-30,J,员工持股平台出资,gold_review,期末持股快照，拟迁移equity_snapshot
-云汉芯城,301563,2008-05-07,A,增资,flowchart_boundary,设立出资；C 同月导致 A 去重丢弃
+云汉芯城,301563,2015-08,A,增资,flowchart_boundary,第五次增资；A类过滤误伤
