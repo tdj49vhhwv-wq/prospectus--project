@@ -109,6 +109,25 @@ PATTERNS = [
     (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,150}?(?:出资)?设立[^。；]{0,60}?(?:有限|公司|股份)[^。；]{0,220}?注册资本[为：:]?\s*([\d,]+\.?\d*)\s*万元', '增资'),
 ]
 
+EVENT_TYPE_CODES = {
+    "增资": "A", "整体变更": "B", "增资及股权转让": "C", "股权转让": "D",
+    "设立": "E", "资本公积转增": "F", "吸收合并": "G", "员工持股平台出资": "J",
+}
+
+
+def build_pattern_registry():
+    """给每条规则生成稳定的 rule_id（类型码 + 组内序号）。"""
+    counts = {}
+    registry = []
+    for pattern, ev_type in PATTERNS:
+        code = EVENT_TYPE_CODES.get(ev_type, "X")
+        counts[ev_type] = counts.get(ev_type, 0) + 1
+        registry.append((pattern, ev_type, f"{code}{counts[ev_type]:02d}"))
+    return registry
+
+
+PATTERN_REGISTRY = build_pattern_registry()
+
 
 def normalize_date(date_str):
     m = re.match(r'(\d{4})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日', date_str)
@@ -223,16 +242,35 @@ def is_blocked_record(event_context: str, evidence_text: str) -> bool:
     return False
 
 
+_MERMAID_BOUNDARY = re.compile(r'"\]\s*-->\s*[A-Za-z0-9_]+\["')
+
+
+def _event_context_window(text: str, m: re.Match, before: int = 20, after: int = 100) -> str:
+    """取匹配所在节点/段落的证据窗口。
+
+    若窗口跨过 mermaid 节点边界，截断到本节点内，避免下一节点的“整体变更”
+    等表述误伤当前事件的过滤判定。
+    """
+    start = max(0, m.start() - before)
+    end = min(len(text), m.end() + after)
+    ctx = text[start:end]
+    boundary = _MERMAID_BOUNDARY.search(ctx)
+    if boundary:
+        ctx = ctx[:boundary.start() + 2]
+    return ctx.replace("\n", " ")[:300]
+
+
 def extract_from_snippets(snippets, company_code, company_name):
     """从文本片段提取订阅事件"""
     records = []
     seen = set()
 
-    for snippet in snippets:
+    for idx, snippet in enumerate(snippets):
         text = snippet['text']
         page = snippet['pdf_page']
+        next_text = snippets[idx + 1]['text'][:1500] if idx + 1 < len(snippets) else ''
 
-        for pattern, ev_type in PATTERNS:
+        for pattern, ev_type, rule_id in PATTERN_REGISTRY:
             for m in re.finditer(pattern, text, re.DOTALL):
                 groups = m.groups()
 
@@ -253,6 +291,8 @@ def extract_from_snippets(snippets, company_code, company_name):
                         apply_pref = not has_leading_date or is_proposal_date(m.group(0))
                     if apply_pref:
                         window = text[max(0, m.start() - 150):min(len(text), m.end() + 800)]
+                        if ev_type == "整体变更" and next_text:
+                            window = window + "\n" + next_text
                         date_str = prefer_registration_date(window, date_str)
 
                 # 提取数字
@@ -300,7 +340,7 @@ def extract_from_snippets(snippets, company_code, company_name):
                 if not investors:
                     investors = ['（待识别）']
 
-                ctx = text[max(0,m.start()-20):min(len(text),m.end()+100)].replace('\n',' ')[:300]
+                ctx = _event_context_window(text, m)
 
                 for inv in investors:
                     if is_blocked_record(ev_type, ctx):
@@ -326,6 +366,7 @@ def extract_from_snippets(snippets, company_code, company_name):
                         "evidence_text": ctx[:500],
                         "data_source": "markdown_extracted",
                         "extraction_method": "regex_from_md",
+                        "rule_id": rule_id,
                         "processing_status": "extracted",
                         "validation_status": "validated" if validated else "candidate",
                         "confidence": "high" if validated else "low",
@@ -404,8 +445,10 @@ def main():
     output_dir.mkdir(exist_ok=True)
     candidate_dir = output_dir / "candidate"
     validated_dir = output_dir / "validated"
+    final_dir = output_dir / "final"
     candidate_dir.mkdir(exist_ok=True)
     validated_dir.mkdir(exist_ok=True)
+    final_dir.mkdir(exist_ok=True)
 
     grand_total = 0
     validated_total = 0
@@ -416,6 +459,11 @@ def main():
                 f.write(json.dumps(r, ensure_ascii=False) + '\n')
         validated_path = validated_dir / f"{code}_subscription_flow.jsonl"
         with open(validated_path, 'w', encoding='utf-8') as f:
+            for r in all_validated[code]:
+                f.write(json.dumps(r, ensure_ascii=False) + '\n')
+        # final 层：当前与 validated 内容一致，作为稳定快照层
+        final_path = final_dir / f"{code}_subscription_flow.jsonl"
+        with open(final_path, 'w', encoding='utf-8') as f:
             for r in all_validated[code]:
                 f.write(json.dumps(r, ensure_ascii=False) + '\n')
         grand_total += len(records)
@@ -458,7 +506,7 @@ def main():
 
     print(f"\n{'='*50}")
     print(f"总计: 候选 {grand_total} 条 / validated {validated_total} 条")
-    print(f"输出: {output_dir}/candidate/ 与 {output_dir}/validated/")
+    print(f"输出: {output_dir}/candidate/、{output_dir}/validated/ 与 {output_dir}/final/")
     return grand_total
 
 

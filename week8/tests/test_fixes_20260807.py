@@ -112,3 +112,36 @@ def test_setup_investment_uses_registration_date():
     as_ = [r for r in rows if r["event_context"] == "增资"]
     assert as_ and as_[0]["subscription_date"] == "2008-05-07"
     assert as_[0]["validation_status"] == "validated"
+
+
+def test_a_filter_window_ignores_next_flowchart_node():
+    text = ('graph TD\n'
+            '    A["2015年8月，有限公司第五次增资，注册资本增至2,158.2733万元"] --> '
+            'B["2015年12月，整体变更设立股份公司，股本总额4,000万股，注册资本4,000万元。"]')
+    rows = extract_from_snippets([{"text": text, "pdf_page": 1}], "301563", "云汉芯城")
+    as_ = [r for r in rows if r["event_context"] == "增资" and r["subscription_date"] == "2015-08"]
+    assert as_, rows
+    assert as_[0]["validation_status"] == "validated"
+
+
+def test_overall_change_registration_date_cross_snippet():
+    snippets = [
+        {"text": ("2022 年8 月5 日，中审众环会计师出具《审计报告》，确认截至2022 年5 月31 日，"
+                  "谷捷有限经审计后的净资产为20,152.51 万元。"
+                  "2022 年8 月24 日，黄山市供销社出具《关于黄山谷捷散热科技有限公司整体改制变更设立"
+                  "股份有限公司的批复》，同意谷捷有限整体变更为股份有限公司。"
+                  "2022 年8 月24 日，谷捷有限召开股东会，同意将谷捷有限变更为股份有限公司，"
+                  "以截至2022 年5 月31 日经审计的净资产20,152.51 万元按1:0.29773 比例折成6,000 万股。"
+                  "整体变更后各股东持股比例保持不变。"), "pdf_page": 39},
+        {"text": "2022 年9 月13 日，黄山谷捷取得了黄山市市场监督管理局为其换发的营业执照。",
+         "pdf_page": 40},
+    ]
+    rows = extract_from_snippets(snippets, "301581", "黄山谷捷")
+    bs = [r for r in rows if r["event_context"] == "整体变更"]
+    assert bs and bs[0]["subscription_date"] == "2022-09-13"
+
+
+def test_records_carry_rule_id():
+    text = "2021 年11 月，赛分科技增发股份4,243,901 股，新增股份由新增股东源峰磐赛认购。"
+    rows = extract_from_snippets([{"text": text, "pdf_page": 1}], "688758", "赛分科技")
+    assert rows and all(r.get("rule_id") for r in rows)
