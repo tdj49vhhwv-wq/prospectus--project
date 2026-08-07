@@ -45,56 +45,48 @@ def load_company_text(code: str) -> list[dict]:
         return []
 
     all_snippets = []
-
-    # 合并所有分段文件
-    full_text = ""
     md_dir = get_md_dir()
+    page_offset = 0
+
     for md_name in md_names:
         path = md_dir / md_name
         if not path.exists():
             continue
-        full_text += path.read_text(encoding='utf-8') + "\n"
+        full_text = path.read_text(encoding='utf-8')
+        pages = re.split(r'\n## 第(\d+)页\n', full_text)
 
-    if not full_text:
-        return []
-
-    # 按 ## 第N页 分页
-    pages = re.split(r'\n## 第(\d+)页\n', full_text)
-
-    # 如果没找到分页标记，分块处理（每3000字一块）
-    if len(pages) < 3:
-        chunk_size = 3000
-        for i in range(0, len(full_text), chunk_size):
-            chunk = full_text[i:i+chunk_size]
-            for kw in SECTION_KEYWORDS:
-                if kw in chunk:
-                    all_snippets.append({
-                        "text": chunk,
-                        "pdf_page": i // chunk_size + 1,
-                        "keyword": kw,
-                    })
-                    break
-        return all_snippets
-
-    # pages[0] = 文件头, pages[1]=页码, pages[2]=内容...
-    for i in range(1, len(pages), 2):
-        if i + 1 >= len(pages):
-            break
-        try:
-            page_num = int(pages[i])
-            page_text = pages[i + 1]
-        except ValueError:
+        # 没找到分页标记 → 分块处理（每3000字一块）
+        if len(pages) < 3:
+            chunk_size = 3000
+            for i in range(0, len(full_text), chunk_size):
+                chunk = full_text[i:i+chunk_size]
+                if not any(kw in chunk for kw in SECTION_KEYWORDS):
+                    continue
+                all_snippets.append({
+                    "text": chunk,
+                    "pdf_page": page_offset + i // chunk_size + 1,
+                    "keyword": _find_keyword(chunk),
+                })
+            page_offset += len(full_text) // chunk_size + 1
             continue
 
-        # 只看含PE/VC关键词的页
-        if not any(kw in page_text for kw in SECTION_KEYWORDS):
-            continue
-
-        all_snippets.append({
-            "text": page_text[:5000],
-            "pdf_page": page_num,
-            "keyword": _find_keyword(page_text),
-        })
+        for i in range(1, len(pages), 2):
+            if i + 1 >= len(pages):
+                break
+            try:
+                page_num = int(pages[i]) + page_offset
+                page_text = pages[i + 1]
+            except ValueError:
+                continue
+            if not any(kw in page_text for kw in SECTION_KEYWORDS):
+                continue
+            all_snippets.append({
+                "text": page_text[:5000],
+                "pdf_page": page_num,
+                "keyword": _find_keyword(page_text),
+            })
+        if pages[1::2]:
+            page_offset += max(int(x) for x in pages[1::2])
 
     return all_snippets
 

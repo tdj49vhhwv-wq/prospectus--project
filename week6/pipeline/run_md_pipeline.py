@@ -46,7 +46,7 @@ PATTERNS = [
      r'以(?:现金|货币)\s*([\d,]+\.?\d*)\s*万(?:元|美元)\s*认缴', '增资'),
     # 共同增资/增至
     (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?(?:共同)?增资\s*([\d,]+\.?\d*)\s*万元.*?'
-     r'注册资本[增至为]*\s*([\d,]+\.?\d*)\s*万元', '增资'),
+     r'注册资本[增至为:：]*\s*([\d,]+\.?\d*)\s*万元', '增资'),
     # 新增注册资本
     (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?(?:新增|增加)注册资本\s*([\d,]+\.?\d*)\s*万(?:元|美元)', '增资'),
     # 整体变更折股
@@ -68,9 +68,9 @@ PATTERNS = [
     # 增资：注册资本由X万元增至Y万元
     (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?注册资本由\s*[\d,]+\.?\d*\s*万元增至\s*([\d,]+\.?\d*)\s*万元', '增资'),
     # 增资：第N次增资X万元，注册资本增至Y
-    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?第[一二三四五六七八九十]+次增资\s*([\d,]+\.?\d*)\s*万元.*?注册资本[增至为]*\s*([\d,]+\.?\d*)\s*万元', '增资'),
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,150}?第[一二三四五六七八九十]+次增资[^。；]{0,80}?([\d,]+\.?\d*)\s*万元[^。；]{0,200}?注册资本[增至为:：]*\s*([\d,]+\.?\d*)\s*万元', '增资'),
     # 增资：增资至X万元
-    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?增资至\s*([\d,]+\.?\d*)\s*万元', '增资'),
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,80}?增资至\s*([\d,]+\.?\d*)\s*万元', '增资'),
     # 增资：股本总额增至X万股
     (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?股本总额增至\s*([\d,]+\.?\d*)\s*万股', '增资'),
     # 增资：增加注册资本X万元（允许注/册/资/本间换行）
@@ -86,11 +86,11 @@ PATTERNS = [
     # 增资：认缴出资X万元
     (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?认缴出资\s*([\d,]+\.?\d*)\s*万元', '增资'),
     # 复合事件：增资及股权转让
-    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?(?:第[一二三四五六七八九十]+次增资.*?转让(?:予|给)|第[一二三四五六七八九十]+次股权转让及增资|增加注册资本暨.*?股权转让|增资和.*?股权转让|股权转让及增资|增资及股权转让)', '增资及股权转让'),
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,80}?(?:第[一二三四五六七八九十]+次增资[^。；]{0,400}?转\s*让(?:予|给)|第[一二三四五六七八九十]+次股权转让及增资|增加注册资本暨[^。；]{0,200}?股权转让|增资和[^。；]{0,200}?股权转让|股权转让及增资|增资及股权转让)', '增资及股权转让'),
     # 整体变更：折合股本/股本总额（日期在前）
-    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?整体变更.*?(?:股本总额|折合股本)\s*([\d,]+\.?\d*)\s*万股?', '整体变更'),
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,200}?整体变更[^。；]{0,300}?(?:股本总额|折合股本)\s*([\d,]+\.?\d*)\s*万股?', '整体变更'),
     # 整体变更：折股X股
-    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?折股\s*([\d,]+\.?\d*)\s*股', '整体变更'),
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,200}?折股[^。；]{0,120}?([\d,]+\.?\d*)\s*股', '整体变更'),
     # 整体变更：办理完毕工商变更登记
     (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?整体变更.*?办理完毕.*?工商变更登记', '整体变更'),
     # 整体变更：折合股本X万元 + 核准/备案登记日（日期在后）
@@ -143,7 +143,7 @@ def is_proposal_date(text):
     ctx = text[m0.end():m0.end() + 40]
     return any(kw in ctx for kw in ("批复", "股东会", "决议", "签署", "协议",
                                     "审计报告", "评估报告", "会计师", "董事会",
-                                    "缴纳", "申请", "股东决定"))
+                                    "缴纳", "申请", "股东决定", "审计"))
 
 
 def classify(name):
@@ -171,12 +171,23 @@ NON_INVESTOR_TOKENS = (
     "万元", "万股", "元/股", "元/注册资本", "出资", "认缴", "成立", "日期",
     "有限公司成立日期", "股份公司成立日期", "股份公司设立日期", "整体变更设立日期",
     "企业名称", "公司名称", "发行人名称", "住所", "邮政编码",
+    "股权结构如下", "并取得了由", "新增股份的认购价格为", "认购价格", "换发",
 )
+
+HTML_TAG_TOKENS = {
+    "table", "td", "tr", "th", "thead", "tbody", "tfoot", "col", "colgroup",
+    "rowspan", "colspan", "style", "width", "height", "border", "align",
+    "valign", "caption", "summary", "abbr", "axis", "headers", "scope",
+    "cellpadding", "cellspacing", "bgcolor", "background", "class", "id",
+    "href", "src", "alt", "title", "img", "svg", "div", "span", "html",
+}
 
 
 def is_valid_investor_name(name: str) -> bool:
     """过滤明显非投资人实体名。"""
     if not name or len(name.strip()) < 2:
+        return False
+    if name.strip().lower() in HTML_TAG_TOKENS:
         return False
     if re.fullmatch(r"[\d\s,.\-%/]+", name):
         return False
@@ -192,7 +203,7 @@ BLOCKED_PHRASES_GLOBAL = (
     "员工股权激励方案", "个人所得税", "完税证明", "整体变更设立日期",
     "设立北京岚锋",
 )
-BLOCKED_PHRASES_A = ("净资产折股", "评估", "股份总数", "长期股权投资", "追溯评估", "整体变更")
+BLOCKED_PHRASES_A = ("净资产折股", "评估", "股份总数", "长期股权投资", "追溯评估", "整体变更", "股权转让")
 BLOCKED_PHRASES_F = ("验资报告",)
 
 
@@ -233,7 +244,12 @@ def extract_from_snippets(snippets, company_code, company_name):
                 # 工商/换发/核准日期优先（股权转让、整体变更、吸收合并、复合事件）
                 if ev_type in ("股权转让", "整体变更", "吸收合并", "增资及股权转让", "增资"):
                     has_leading_date = re.search(r'\d{4}\s*年\s*\d{1,2}\s*月', m.group(0)) is not None
-                    if not has_leading_date or is_proposal_date(m.group(0)):
+                    # 增资类只在“提议型日期 + 有工商登记日”时升级；无日期的出资行保持候选
+                    if ev_type == "增资":
+                        apply_pref = has_leading_date and is_proposal_date(m.group(0))
+                    else:
+                        apply_pref = not has_leading_date or is_proposal_date(m.group(0))
+                    if apply_pref:
                         window = text[max(0, m.start() - 150):min(len(text), m.end() + 800)]
                         date_str = prefer_registration_date(window, date_str)
 
@@ -345,6 +361,25 @@ def main():
             deduped.append(r)
         records = sorted(deduped, key=lambda r: (r["subscription_date"], r["event_context"],
                                                  r["subscriber_name"]))
+
+        # 同事件去重：
+        # 1) 同月已有复合事件 C 时，丢弃同月 A（同一披露拆出的重复）
+        # 2) 同月同时存在月粒度与日粒度 A 时，保留月粒度（经 relax 匹配 Gold）
+        c_months = {r["subscription_date"][:7] for r in records if r["event_context"] == "增资及股权转让"}
+        a_day_months = {r["subscription_date"][:7] for r in records
+                        if r["event_context"] == "增资" and len(r["subscription_date"]) > 7}
+        a_month_exists = {r["subscription_date"][:7] for r in records
+                          if r["event_context"] == "增资" and len(r["subscription_date"]) <= 7}
+        kept = []
+        for r in records:
+            if r["event_context"] == "增资":
+                ym = r["subscription_date"][:7]
+                if ym in c_months:
+                    continue
+                if len(r["subscription_date"]) > 7 and ym in a_month_exists:
+                    continue
+            kept.append(r)
+        records = kept
 
         candidates = [r for r in records if r["validation_status"] == "candidate"]
         validated = [r for r in records if r["validation_status"] == "validated"]

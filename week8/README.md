@@ -14,6 +14,7 @@
 | `gold_change_log.csv` | Gold 变更日志（7 条拟迁移） |
 | `baseline_report_20260807.md` | 首版 P/R/F1 基线报告 |
 | `decision_log_20260807.md` | 8/7 决策与执行记录 |
+| `manual_review_queue_20260807.md` / `.csv` | VIE 轮次、Gold 口径、流程图跨块的人工/LLM 复核队列 |
 | `tests/test_evaluate_events.py` | 评价器单测（本机无 pytest 时用内联 runner） |
 | `tests/test_fixes_20260807.py` | 第一批修复回归测试 |
 
