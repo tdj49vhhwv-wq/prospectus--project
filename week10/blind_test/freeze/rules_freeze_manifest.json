@@ -1,0 +1,27 @@
+{
+  "name": "blind_test_rules_freeze",
+  "frozen_at": "2026-08-07",
+  "base_commit": "9ff43a5d3c92150865a3a89ce951b13db3e55bb0",
+  "base_commit_message": "Week 7：补充质量审计与可复现证据包",
+  "rules": {
+    "week6/pipeline/run_md_pipeline.py": "bd541586b84f0064b2677ff86f3bc861b662392a018bad1faa533db2eb712f51",
+    "week6/pipeline/config.py": "84110548bd5927cad91a916741e1f7055695cfacf54112b752e84537b0d3746c",
+    "week6/pipeline/event_category_definitions.json": "f6898cd9f53bcff238633a8caf78bc3ab723b1e5e8f8c0bb07378cb56d5888d9",
+    "week6/pipeline/event_type_mapping.md": "7c2b2b9b99bccca1a6af92afc20d6ecd3a4fe0a490f81721846f821636854666",
+    "week6/pipeline/extract_pevc.py": "b91250b82799ed45090362c157c06b1ea7fa5c2877d3aef3519b91b32c195c29",
+    "week6/pipeline/markdown_source.py": "20b7c16826ff6a54cf73206ad6003e021b0725b8cadb8cc5eff94a9ff1c4298d"
+  },
+  "inputs": {
+    "week1/review/688795_摩尔线程_招股书_正式稿_20251128.md": "b62a5142add7400cebdb9f437419911016e843af9619c0e1d6665c064ad86dc7",
+    "week1/review/688802_沐曦股份_招股书_正式稿_20251211.md": "28f6e41150d308b08ab82cdf05da7ea5b1842cbe2d6db5b50f048eed429ed873"
+  },
+  "allowed_changes": [
+    "add 688795/688802 entries to COMPANIES and MD_FILES in a separate commit",
+    "record gold annotation files and decision log"
+  ],
+  "forbidden_changes": [
+    "modify any regex in PATTERNS",
+    "modify event type mapping or extraction logic",
+    "silently relabel Gold after freeze"
+  ]
+}
