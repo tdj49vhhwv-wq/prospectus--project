@@ -7,6 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / "week6" /
 from run_md_pipeline import (
     PATTERN_FIELD_ROLES,
     PATTERNS,
+    dedupe_records_by_entity,
     extract_from_snippets,
     is_valid_investor_name,
 )
@@ -177,3 +178,33 @@ def test_post_capital_not_mapped_to_shares():
     as_ = [r for r in rows if r["event_context"] == "增资"]
     assert as_ and as_[0]["amount_subscribed"] == 28.205
     assert as_[0]["shares_subscribed"] is None
+
+
+def test_overall_change_pattern_does_not_cross_flowchart_nodes():
+    text = ('graph TD\n'
+            '    A["2015年8月，有限公司第五次增资，注册资本增至2,158.2733万元"] --> '
+            'B["2015年12月，整体变更设立股份公司，股本总额4,000万股，注册资本4,000万元。"]')
+    rows = extract_from_snippets([{"text": text, "pdf_page": 1}], "301563", "云汉芯城")
+    assert all(r["subscription_date"] != "2015-08" or r["event_context"] != "整体变更"
+               for r in rows)
+
+
+def test_price_postfill_from_subscription_price():
+    text = ("2021年11月，金浦临港基金认购840万股（7,000万元）。"
+            "新增股份的认购价格为8.3333元/股。")
+    rows = extract_from_snippets([{"text": text, "pdf_page": 1}], "603418", "友升股份")
+    assert rows and rows[0]["price_per_share"] == 8.3333
+
+
+def test_entity_dedupe_merges_normalized_duplicates():
+    rows = [
+        {"subscription_date": "2014-05", "event_context": "增资",
+         "subscriber_name": "东方富海（上海）创业投资企业（有限合伙）",
+         "amount_subscribed": 500, "shares_subscribed": None, "price_per_share": None},
+        {"subscription_date": "2014-05", "event_context": "增资",
+         "subscriber_name": "东方富海(上海)创业投资企业(有限合伙)",
+         "amount_subscribed": 500, "shares_subscribed": None, "price_per_share": None},
+    ]
+    out = dedupe_records_by_entity(rows)
+    assert len(out) == 1
+    assert out[0]["amount_subscribed"] == 500

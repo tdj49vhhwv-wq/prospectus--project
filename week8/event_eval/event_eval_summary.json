@@ -1,11 +1,11 @@
 {
   "overall": {
     "tp": 39,
-    "fp": 12,
+    "fp": 11,
     "fn": 6,
-    "precision": 0.7647058823529411,
+    "precision": 0.78,
     "recall": 0.8666666666666667,
-    "f1": 0.8125
+    "f1": 0.8210526315789474
   },
   "by_company": {
     "001282": {
@@ -18,11 +18,11 @@
     },
     "301563": {
       "tp": 8,
-      "fp": 4,
+      "fp": 3,
       "fn": 0,
-      "precision": 0.6666666666666666,
+      "precision": 0.7272727272727273,
       "recall": 1.0,
-      "f1": 0.8
+      "f1": 0.8421052631578948
     },
     "301581": {
       "tp": 8,
@@ -84,11 +84,11 @@
     },
     "B": {
       "tp": 6,
-      "fp": 3,
+      "fp": 2,
       "fn": 0,
-      "precision": 0.6666666666666666,
+      "precision": 0.75,
       "recall": 1.0,
-      "f1": 0.8
+      "f1": 0.8571428571428571
     },
     "C": {
       "tp": 5,
@@ -132,7 +132,7 @@
     }
   },
   "gold_event_count": 45,
-  "auto_event_count": 51,
+  "auto_event_count": 50,
   "auto_missing_date_events": 0,
   "match_options": {
     "relax_gold_day_to_month": true

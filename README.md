@@ -118,7 +118,7 @@ week10/
 | Markdown 候选提取 | 可运行、不可直接使用 | 当前稳定复跑 645 条候选，误报严重 |
 | LLM 辅助提取 | 完成小样本试验 | 尚未完成全量盲测和成本评估 |
 | Schema/Cross-Check | 已有材料 | 需与统一 Gold 版本和评价器对齐 |
-| Auto-vs-Gold 评价 | 事件级七批修复 + 字段映射 | validated P=76.47% / R=86.67% / F1=81.25%；`rule_id`、final 层、字段角色表已落地；消融框架见 `week8/ablation/`，新公司候选层 A 见 `week8/batch_a_new/` |
+| Auto-vs-Gold 评价 | Week 9 任务提前补齐 | 纯正则 P=78.00% / R=86.67% / F1=82.11%；含 VIE 人工补充 P=79.63% / R=95.56% / F1=86.87%；消融与新公司候选层见 `week8/ablation/`、`week8/batch_a_new/` |
 | 融资分析报告 | 有初稿 | 需在数据质量达标后更新结论 |
 | 盲测范围 | 已定 | 688795 摩尔线程 + 688802 沐曦股份，事件级 Gold；方案见 `week10/blind_test/` |
 

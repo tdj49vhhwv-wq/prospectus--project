@@ -32,3 +32,4 @@ data/prospectus_pdfs/*.pdf
 auto_output_md/
 auto_output_md_new/
 auto_output_md_llm/
+auto_output_md_all/

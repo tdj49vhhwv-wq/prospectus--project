@@ -333,6 +333,22 @@ stock_code,event_date,event_type,role,subscriber_name,amount,shares,price,status
 688775,2015-07-09,A,auto,并按照,1000.0,,,unmatched,
 688775,2015-07-09,A,auto,德朴投资以,1000.0,,,unmatched,
 688775,2015-07-09,A,auto,德朴投资向汇智,1000.0,,,unmatched,
+688775,2015-01,A,gold,EARN ACE LIMITED,,,,matched,EARN ACE LIMITED
+688775,2015-01,A,auto,EARN ACE LIMITED,,,,matched,EARN ACE LIMITED
+688775,2016-01,A,gold,QM101 Limited,,,,matched,QM101 Limited
+688775,2016-01,A,auto,QM101 Limited,,,,matched,QM101 Limited
+688775,2017-01,A,gold,香港迅雷有限公司,,,,matched,香港迅雷有限公司
+688775,2017-01,A,gold,厦门富凯海创投资管理有限责任公司,,,,matched,厦门富凯海创投资管理有限责任公司
+688775,2017-01,A,auto,香港迅雷有限公司,,,,matched,香港迅雷有限公司
+688775,2017-01,A,auto,厦门富凯海创投资管理有限责任公司,,,,matched,厦门富凯海创投资管理有限责任公司
+688775,2018-01,A,gold,深圳市伊敦传媒投资基金合伙企业（有限合伙）,,,,matched,深圳市伊敦传媒投资基金合伙企业（有限合伙）
+688775,2018-01,A,gold,华金同达（深圳）投资合伙企业（有限合伙）,,,,matched,华金同达（深圳）投资合伙企业（有限合伙）
+688775,2018-01,A,gold,深圳中证投资有限责任公司,,,,matched,深圳中证投资有限责任公司
+688775,2018-01,A,gold,金石智娱股权投资（深圳）合伙企业（有限合伙）,,,,matched,金石智娱股权投资（深圳）合伙企业（有限合伙）
+688775,2018-01,A,auto,深圳市伊敦传媒投资基金合伙企业（有限合伙）,,,,matched,深圳市伊敦传媒投资基金合伙企业（有限合伙）
+688775,2018-01,A,auto,华金同达（深圳）投资合伙企业（有限合伙）,,,,matched,华金同达（深圳）投资合伙企业（有限合伙）
+688775,2018-01,A,auto,深圳中证投资有限责任公司,,,,matched,深圳中证投资有限责任公司
+688775,2018-01,A,auto,金石智娱股权投资（深圳）合伙企业（有限合伙）,,,,matched,金石智娱股权投资（深圳）合伙企业（有限合伙）
 688775,2020-02-26,B,gold,北京岚锋创视网络科技有限公司,,,,matched,北京岚锋
 688775,2020-02-26,B,gold,EARN ACE LIMITED,,,,matched,ACE
 688775,2020-02-26,B,gold,QM101 Limited,,,,matched,QM

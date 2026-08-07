@@ -98,7 +98,7 @@ PATTERNS = [
     # 复合事件：增资及股权转让
     (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,15}?(?:第[一二三四五六七八九十]+次增资[^。；]{0,400}?转\s*让(?:予|给)|第[一二三四五六七八九十]+次股权转让及增资|增加注册资本暨[^。；]{0,200}?股权转让|增资和[^。；]{0,200}?股权转让|股权转让及增资|增资及股权转让)', '增资及股权转让'),
     # 整体变更：折合股本/股本总额（日期在前）
-    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,200}?整体变更[^。；]{0,300}?(?:股本总额|折合股本)\s*([\d,]+\.?\d*)\s*万股?', '整体变更'),
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；\]]{0,200}?整体变更[^。；\]]{0,300}?(?:股本总额|折合股本)\s*([\d,]+\.?\d*)\s*万股?', '整体变更'),
     # 整体变更：折股X股
     (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,200}?折股[^。；]{0,120}?([\d,]+\.?\d*)\s*股', '整体变更'),
     # 整体变更：办理完毕工商变更登记
@@ -233,6 +233,28 @@ def stable_unique_names(names, limit=None):
     """Return cleaned unique names in deterministic Unicode sort order."""
     unique_names = sorted({name.strip() for name in names if len(name.strip()) >= 2})
     return unique_names if limit is None else unique_names[:limit]
+
+
+def _norm_investor_name(name):
+    """投资人名规范化：去空白、全角括号转半角、去尾部标点。"""
+    s = str(name or "").strip().upper()
+    s = re.sub(r"[\s\u3000]+", "", s)
+    return s.replace("（", "(").replace("）", ")").strip("，。；、,;")
+
+
+def dedupe_records_by_entity(records):
+    """实体规范化去重：归一化投资人名后合并同字段重复行。"""
+    seen = set()
+    out = []
+    for r in records:
+        key = (r["subscription_date"], r["event_context"],
+               _norm_investor_name(r["subscriber_name"]),
+               r["amount_subscribed"], r["shares_subscribed"], r["price_per_share"])
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(r)
+    return out
 
 
 NON_INVESTOR_TOKENS = (
@@ -370,6 +392,16 @@ def extract_from_snippets(snippets, company_code, company_name):
                     elif role == "price":
                         price = num
 
+                # 补充价格：窗口内显式的“认购价格/发行价格 X 元/股”
+                if price is None:
+                    win = text[max(0, m.start() - 120):min(len(text), m.end() + 240)]
+                    pm = re.search(r'(?:认购价格|发行价格|每股价格|股份价格)[为：:]\s*([\d,]+\.?\d*)\s*元/股', win)
+                    if pm:
+                        try:
+                            price = float(pm.group(1).replace(',', ''))
+                        except ValueError:
+                            pass
+
                 # 提取投资人
                 if ev_type == "股权转让":
                     # 股权转让只取“转让给/转让予/向…转让”后的受让方，避免把转出方和背景文本混入
@@ -479,11 +511,16 @@ def main():
             deduped.append(r)
         records = sorted(deduped, key=lambda r: (r["subscription_date"], r["event_context"],
                                                  r["subscriber_name"]))
+        records = dedupe_records_by_entity(records)
+        records = sorted(records, key=lambda r: (r["subscription_date"], r["event_context"],
+                                                 r["subscriber_name"]))
 
         # 同事件去重：
         # 1) 同月已有复合事件 C 时，丢弃同月 A（同一披露拆出的重复）
         # 2) 同月同时存在月粒度与日粒度 A 时，保留月粒度（经 relax 匹配 Gold）
         c_months = {r["subscription_date"][:7] for r in records if r["event_context"] == "增资及股权转让"}
+        b_day_months = {r["subscription_date"][:7] for r in records
+                        if r["event_context"] == "整体变更" and len(r["subscription_date"]) > 7}
         a_day_months = {r["subscription_date"][:7] for r in records
                         if r["event_context"] == "增资" and len(r["subscription_date"]) > 7}
         a_month_exists = {r["subscription_date"][:7] for r in records
@@ -496,6 +533,9 @@ def main():
                     continue
                 if len(r["subscription_date"]) > 7 and ym in a_month_exists:
                     continue
+            if r["event_context"] == "整体变更" and len(r["subscription_date"]) <= 7 \
+                    and r["subscription_date"][:7] in b_day_months:
+                continue
             kept.append(r)
         records = kept
 
