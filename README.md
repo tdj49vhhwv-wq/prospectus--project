@@ -83,6 +83,10 @@ week7/
   august_2026_plan.md           # 八月完整计划
 week8/
   week8_plan.md                 # Week 8 日级任务书
+  baseline_report_20260807.md   # 首版事件级 P/R/F1 基线（2026-08-07）
+  evaluate_events.py            # 事件级评价器
+week10/
+  blind_test/                   # 2 家事件级 Gold 盲测方案（范围已定）
 ```
 
 ---
@@ -113,8 +117,9 @@ week8/
 | Markdown 候选提取 | 可运行、不可直接使用 | 当前稳定复跑 645 条候选，误报严重 |
 | LLM 辅助提取 | 完成小样本试验 | 尚未完成全量盲测和成本评估 |
 | Schema/Cross-Check | 已有材料 | 需与统一 Gold 版本和评价器对齐 |
-| Auto-vs-Gold 评价 | 未完成 | Week 8 最高优先级 |
+| Auto-vs-Gold 评价 | 事件级首版已出 | P=6.90% / R=8.89% / F1=7.77%，见 `week8/baseline_report_20260807.md` |
 | 融资分析报告 | 有初稿 | 需在数据质量达标后更新结论 |
+| 盲测范围 | 已定 | 688795 摩尔线程 + 688802 沐曦股份，事件级 Gold；方案见 `week10/blind_test/` |
 
 ---
 

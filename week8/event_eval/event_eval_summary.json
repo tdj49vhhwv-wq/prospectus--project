@@ -1,0 +1,145 @@
+{
+  "overall": {
+    "tp": 4,
+    "fp": 54,
+    "fn": 41,
+    "precision": 0.06896551724137931,
+    "recall": 0.08888888888888889,
+    "f1": 0.07766990291262137
+  },
+  "by_company": {
+    "001282": {
+      "tp": 0,
+      "fp": 7,
+      "fn": 5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": null
+    },
+    "301563": {
+      "tp": 0,
+      "fp": 4,
+      "fn": 8,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": null
+    },
+    "301581": {
+      "tp": 0,
+      "fp": 8,
+      "fn": 8,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": null
+    },
+    "603418": {
+      "tp": 1,
+      "fp": 5,
+      "fn": 3,
+      "precision": 0.16666666666666666,
+      "recall": 0.25,
+      "f1": 0.2
+    },
+    "688758": {
+      "tp": 0,
+      "fp": 9,
+      "fn": 6,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": null
+    },
+    "688775": {
+      "tp": 0,
+      "fp": 3,
+      "fn": 7,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": null
+    },
+    "920100": {
+      "tp": 3,
+      "fp": 11,
+      "fn": 0,
+      "precision": 0.21428571428571427,
+      "recall": 1.0,
+      "f1": 0.35294117647058826
+    },
+    "920116": {
+      "tp": 0,
+      "fp": 7,
+      "fn": 4,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": null
+    }
+  },
+  "by_type": {
+    "A": {
+      "tp": 2,
+      "fp": 17,
+      "fn": 20,
+      "precision": 0.10526315789473684,
+      "recall": 0.09090909090909091,
+      "f1": 0.0975609756097561
+    },
+    "B": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 6,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": null
+    },
+    "C": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 5,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null
+    },
+    "D": {
+      "tp": 0,
+      "fp": 3,
+      "fn": 7,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": null
+    },
+    "E": {
+      "tp": 2,
+      "fp": 30,
+      "fn": 1,
+      "precision": 0.0625,
+      "recall": 0.6666666666666666,
+      "f1": 0.11428571428571428
+    },
+    "F": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": null
+    },
+    "G": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": null
+    },
+    "J": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null
+    }
+  },
+  "gold_event_count": 45,
+  "auto_event_count": 58,
+  "auto_missing_date_events": 11
+}
