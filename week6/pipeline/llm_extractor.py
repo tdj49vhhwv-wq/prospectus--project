@@ -28,6 +28,7 @@ SUBSCRIPTION_PROMPT = """你是招股书融资信息提取专家。从文本中�
 ## 输出（纯JSON数组，不要markdown包裹）
 [
   {
+    "subscription_date": "事件日期(YYYY-MM-DD或YYYY-MM，原文没有则null)",
     "subscriber_name": "投资方全称",
     "amount_subscribed": 金额数字(万元, float),
     "shares_subscribed": 股数(万股, float),
@@ -38,6 +39,7 @@ SUBSCRIPTION_PROMPT = """你是招股书融资信息提取专家。从文本中�
 ]
 
 ## 金额提取规则（重要！）
+- 日期从原文事件句中提取，不要编造；只有年份或月份就输出到该粒度
 - "XX万元" → amount_subscribed=XX (数字，不是null)
 - "注册资本XX万元" → 如果是设立事件，amount_subscribed=XX
 - "转让价格XX万元" → 这是股权转让，amount_subscribed填转让金额，event_context="股权转让"

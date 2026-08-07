@@ -10,6 +10,7 @@ import argparse
 import csv
 import json
 import os
+import re
 import subprocess
 from datetime import datetime
 from pathlib import Path
@@ -58,6 +59,25 @@ def low_confidence_candidates(limit_per_company: int = 5) -> list[dict]:
     return rows
 
 
+def normalize_llm_date(value) -> str:
+    if not value:
+        return ""
+    m = re.search(r"(\d{4})\s*年\s*(\d{1,2})\s*月(?:\s*(\d{1,2})\s*日)?", str(value))
+    if m:
+        month = int(m.group(2))
+        day = int(m.group(3)) if m.group(3) else None
+        base = f"{m.group(1)}-{month:02d}"
+        return f"{base}-{day:02d}" if day else base
+    m = re.search(r"(\d{4})-(\d{1,2})(?:-(\d{1,2}))?", str(value))
+    if m:
+        month = int(m.group(2))
+        base = f"{m.group(1)}-{month:02d}"
+        if m.group(3):
+            return f"{base}-{int(m.group(3)):02d}"
+        return base
+    return str(value).strip()
+
+
 def arm_llm() -> None:
     if not os.environ.get("DEEPSEEK_API_KEY", "").strip():
         result = {"status": "skipped", "reason": "DEEPSEEK_API_KEY not set", "run_at": datetime.now().isoformat()}
@@ -74,6 +94,7 @@ def arm_llm() -> None:
     raw_dir.mkdir(exist_ok=True)
     cost_path = ABLATION_DIR / "llm_cost_log.csv"
     cost_initial = extractor.call_count
+    normalized_rows = []
     with open(cost_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f, lineterminator="\n")
         writer.writerow(["run_at", "company", "page", "calls", "tokens_estimate", "cost_usd"])
@@ -91,7 +112,24 @@ def arm_llm() -> None:
             )
             writer.writerow([datetime.now().isoformat(timespec="seconds"), safe_code,
                              r.get("source_page", ""), calls, "", ""])
+            for rec in records:
+                rec = dict(rec)
+                rec["stock_code"] = r.get("stock_code", "")
+                rec["company_name"] = r.get("company_name", "")
+                rec["subscription_date"] = normalize_llm_date(rec.get("subscription_date"))
+                rec["source_page"] = r.get("source_page", "")
+                rec["evidence_text"] = rec.get("evidence_text", r.get("evidence_text", ""))[:500]
+                rec["validation_status"] = "validated" if rec["subscription_date"] else "candidate"
+                rec["extraction_method"] = "llm_deepseek"
+                rec["rule_id"] = "LLM01"
+                normalized_rows.append(rec)
+    (ABLATION_DIR / "llm_output.jsonl").write_text(
+        "\n".join(json.dumps(r, ensure_ascii=False) for r in normalized_rows) + "\n",
+        encoding="utf-8",
+    )
     result = {"status": "done", "call_count": extractor.call_count - cost_initial}
+    result["normalized_rows"] = len(normalized_rows)
+    result["dated_rows"] = sum(1 for r in normalized_rows if r["subscription_date"])
     (ABLATION_DIR / "metrics_llm.json").write_text(json.dumps(result, ensure_ascii=False, indent=2))
     print("LLM arm done:", result)
 
@@ -103,7 +141,44 @@ def arm_regex_plus_llm() -> None:
         (ABLATION_DIR / "metrics_regex_plus_llm.json").write_text(json.dumps(result, ensure_ascii=False, indent=2))
         print("regex+llm arm skipped: LLM arm not run")
         return
-    metrics = collect_metrics()
+    llm_rows = [json.loads(line) for line in (ABLATION_DIR / "llm_output.jsonl").read_text().splitlines() if line.strip()]
+    dated_rows = [r for r in llm_rows if r.get("subscription_date")]
+    merged_dir = PROJECT_ROOT / "week6" / "auto_output_md_llm"
+    merged_dir.mkdir(exist_ok=True)
+    auto_dir = PROJECT_ROOT / "week6" / "auto_output_md" / "validated"
+    for path in sorted(auto_dir.glob("*_subscription_flow.jsonl")):
+        rows = [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+        code = path.stem.split("_")[0]
+        keys = {(r.get("subscription_date"), r.get("event_context"), r.get("subscriber_name")) for r in rows}
+        month_keys = {(r.get("subscription_date", "")[:7], r.get("event_context")) for r in rows}
+        for r in dated_rows:
+            if r.get("stock_code") != code:
+                continue
+            # LLM 行若与 validated 同月同类（如工商变更日重复披露），跳过
+            if (r.get("subscription_date", "")[:7], r.get("event_context")) in month_keys:
+                continue
+            key = (r.get("subscription_date"), r.get("event_context"), r.get("subscriber_name"))
+            if key in keys:
+                continue
+            rows.append(r)
+            keys.add(key)
+        (merged_dir / path.name).write_text(
+            "\n".join(json.dumps(r, ensure_ascii=False) for r in rows) + "\n", encoding="utf-8")
+
+    merged_eval = ABLATION_DIR / "merged_eval"
+    run_cmd(["python3", "week8/evaluate_events.py", "--auto", str(merged_dir),
+             "--relax-gold-day-to-month", "--out", str(merged_eval / "event")])
+    run_cmd(["python3", "week8/evaluate_investors.py", "--auto", str(merged_dir),
+             "--relax-gold-day-to-month", "--out", str(merged_eval / "investor")])
+    event_sum = json.loads((merged_eval / "event" / "event_eval_summary.json").read_text())
+    investor_sum = json.loads((merged_eval / "investor" / "investor_eval_summary.json").read_text())
+    metrics = {
+        "event": event_sum["overall"],
+        "investor": investor_sum["overall"],
+        "match_options": event_sum["match_options"],
+        "merged_rows": len(dated_rows),
+        "run_at": datetime.now().isoformat(timespec="seconds"),
+    }
     (ABLATION_DIR / "metrics_regex_plus_llm.json").write_text(
         json.dumps(metrics, ensure_ascii=False, indent=2))
     print("regex+llm arm:", metrics["event"], metrics["investor"])
