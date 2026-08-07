@@ -57,17 +57,31 @@ def load_company_text(code: str) -> list[dict]:
 
         # 没找到分页标记 → 分块处理（每3000字一块）
         if len(pages) < 3:
-            chunk_size = 3000
-            for i in range(0, len(full_text), chunk_size):
-                chunk = full_text[i:i+chunk_size]
+            # 按行分块：目标 3000 字，优先在空行（段落/代码块边界）截断，
+            # 超过 6000 字才硬切，避免把 mermaid 流程图拦腰截断
+            chunks = []
+            buf = []
+            buf_len = 0
+            for line in full_text.splitlines(keepends=True):
+                buf.append(line)
+                buf_len += len(line)
+                if buf_len >= 3000 and line.strip() == "":
+                    chunks.append("".join(buf))
+                    buf, buf_len = [], 0
+                elif buf_len >= 6000:
+                    chunks.append("".join(buf))
+                    buf, buf_len = [], 0
+            if buf:
+                chunks.append("".join(buf))
+            for i, chunk in enumerate(chunks):
                 if not any(kw in chunk for kw in SECTION_KEYWORDS):
                     continue
                 all_snippets.append({
                     "text": chunk,
-                    "pdf_page": page_offset + i // chunk_size + 1,
+                    "pdf_page": page_offset + i + 1,
                     "keyword": _find_keyword(chunk),
                 })
-            page_offset += len(full_text) // chunk_size + 1
+            page_offset += len(chunks)
             continue
 
         for i in range(1, len(pages), 2):
