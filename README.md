@@ -84,6 +84,7 @@ week7/
 week8/
   week8_plan.md                 # Week 8 日级任务书
   baseline_report_20260807.md   # 首版事件级 P/R/F1 基线（2026-08-07）
+  week8_baseline_report.md      # Week 8 终版基线报告（8/9 任务提前完成）
   evaluate_events.py            # 事件级评价器
 week10/
   blind_test/                   # 2 家事件级 Gold 盲测方案（范围已定）
