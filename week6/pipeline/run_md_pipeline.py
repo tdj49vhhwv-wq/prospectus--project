@@ -65,6 +65,44 @@ PATTERNS = [
     (r'(\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日).*?(?:资本公积|股票发行溢价).*?每\s*10\s*股\s*转增\s*(\d+\.?\d*)\s*股.*?转增\s*(\d+[\d,]*\.?\d*)\s*万股', '资本公积转增'),
     # 员工持股平台
     (r'([一-龥]+(?:合伙企业|管理中心|投资中心)[（(]有限合伙[)）])\s*(?:以货币方式)?(?:认缴)?出资\s*([\d,]+\.?\d*)\s*万元', '员工持股平台出资'),
+    # 增资：注册资本由X万元增至Y万元
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?注册资本由\s*[\d,]+\.?\d*\s*万元增至\s*([\d,]+\.?\d*)\s*万元', '增资'),
+    # 增资：第N次增资X万元，注册资本增至Y
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?第[一二三四五六七八九十]+次增资\s*([\d,]+\.?\d*)\s*万元.*?注册资本[增至为]*\s*([\d,]+\.?\d*)\s*万元', '增资'),
+    # 增资：增资至X万元
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?增资至\s*([\d,]+\.?\d*)\s*万元', '增资'),
+    # 增资：股本总额增至X万股
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?股本总额增至\s*([\d,]+\.?\d*)\s*万股', '增资'),
+    # 增资：增加注册资本X万元（允许注/册/资/本间换行）
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?增加注\s*册\s*资\s*本\s*([\d,]+\.?\d*)\s*万元', '增资'),
+    # 增资：认购（上述）新增股份X万股
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?认购(?:上述)?新增股份\s*([\d,]+\.?\d*)\s*万股', '增资'),
+    # 增资：增发股份X股
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?增发股份\s*([\d,]+\.?\d*)\s*股', '增资'),
+    # 增资：有限（公司）设立 + 注册资本（设立出资口径）
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?(?:有限(?:公司)?|有限公司)设立.*?注册资本[为：:]?\s*([\d,]+\.?\d*)\s*万元', '增资'),
+    # 增资：名称预先登记核准
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?名称预先登记核准', '增资'),
+    # 增资：认缴出资X万元
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?认缴出资\s*([\d,]+\.?\d*)\s*万元', '增资'),
+    # 复合事件：增资及股权转让
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?(?:第[一二三四五六七八九十]+次增资.*?转让(?:予|给)|第[一二三四五六七八九十]+次股权转让及增资|增加注册资本暨.*?股权转让|增资和.*?股权转让|股权转让及增资|增资及股权转让)', '增资及股权转让'),
+    # 整体变更：折合股本/股本总额（日期在前）
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?整体变更.*?(?:股本总额|折合股本)\s*([\d,]+\.?\d*)\s*万股?', '整体变更'),
+    # 整体变更：折股X股
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?折股\s*([\d,]+\.?\d*)\s*股', '整体变更'),
+    # 整体变更：办理完毕工商变更登记
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?整体变更.*?办理完毕.*?工商变更登记', '整体变更'),
+    # 整体变更：折合股本X万元 + 核准/备案登记日（日期在后）
+    (r'折合股本\s*([\d,]+\.?\d*)\s*万元.*?(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?).*?(?:核准|备案登记|登记注册|领取)', '整体变更'),
+    # 股权转让：零对价转让给
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,150}?将其所\s*持.*?股权以零对价.*?转\s*让\s*给\s*([\s一-龥A-Za-z]{2,40})', '股权转让'),
+    # 股权转让：以人民币0元的价格转让给
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,150}?将其持\s*有\s*的.*?以人民币0\s*元的价格转\s*让\s*给\s*([\s一-龥A-Za-z]{2,40})', '股权转让'),
+    # 股权转让：以X万元的对价向Y转让股本
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,90}?([\s一-龥A-Za-z]{2,40}?)\s*以([\d,]+\.?\d*)\s*万元(?:的对价)?向\s*([\s一-龥A-Za-z]{2,40}?)\s*转\s*让(?:股本|股权|股份)', '股权转让'),
+    # 股权转让：X%股权转让予
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,150}?将其持\s*有\s*的.*?(\d+(?:\.\d+)?)%\s*股权.*?转\s*让\s*予\s*([\s一-龥]{2,20})', '股权转让'),
 ]
 
 
@@ -76,6 +114,33 @@ def normalize_date(date_str):
     m = re.match(r'(\d{4})-(\d{1,2})-(\d{1,2})', date_str)
     if m: return f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
     return date_str.strip() if date_str else ''
+
+
+REGISTRATION_KEYWORDS = (
+    "工商变更登记", "变更登记", "换发", "核准", "登记手续", "工商登记",
+    "备案", "取得", "营业执照",
+)
+
+
+def prefer_registration_date(text, fallback):
+    """在给定窗口内优先取其后紧跟工商/换发/核准等登记动作的日期。"""
+    best = None
+    for m in re.finditer(r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)', text):
+        ctx = text[m.end():m.end() + 40]
+        if any(kw in ctx for kw in REGISTRATION_KEYWORDS):
+            best = m.group(1)
+            break
+    return normalize_date(best) if best else fallback
+
+
+def is_proposal_date(text):
+    """首段日期是否为批复/股东会/决议/协议等“提议型”日期。"""
+    m0 = re.search(r'\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?', text)
+    if not m0:
+        return False
+    ctx = text[m0.end():m0.end() + 40]
+    return any(kw in ctx for kw in ("批复", "股东会", "决议", "签署", "协议",
+                                    "审计报告", "评估报告", "会计师", "董事会"))
 
 
 def classify(name):
@@ -139,6 +204,13 @@ def extract_from_snippets(snippets, company_code, company_name):
                         date_str = normalize_date(g)
                         break
 
+                # 工商/换发/核准日期优先（股权转让、整体变更、吸收合并、复合事件）
+                if ev_type in ("股权转让", "整体变更", "吸收合并", "增资及股权转让"):
+                    has_leading_date = re.search(r'\d{4}\s*年\s*\d{1,2}\s*月', m.group(0)) is not None
+                    if not has_leading_date or is_proposal_date(m.group(0)):
+                        window = text[max(0, m.start() - 150):min(len(text), m.end() + 800)]
+                        date_str = prefer_registration_date(window, date_str)
+
                 # 提取数字
                 nums = []
                 for g in groups:
@@ -154,10 +226,25 @@ def extract_from_snippets(snippets, company_code, company_name):
                 price = nums[2] if len(nums) > 2 else None
 
                 # 提取投资人
-                investors = re.findall(
-                    r'([一-龥A-Za-z]{2,30}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|集团|中心|管理|FUND)?)',
-                    text[m.start():min(m.end()+300, len(text))]
-                )
+                if ev_type == "股权转让":
+                    # 股权转让只取“转让给/转让予/向…转让”后的受让方，避免把转出方和背景文本混入
+                    tail = text[m.start():min(len(text), m.end() + 160)]
+                    m_tr = re.search(r'转\s*让\s*(?:给|予)\s*([^。；]{2,200})', tail)
+                    chunk = m_tr.group(1) if m_tr else ""
+                    if not chunk:
+                        m_xiang = re.search(r'向\s*([\s一-龥A-Za-z]{2,40}?)\s*转\s*让', tail)
+                        chunk = m_xiang.group(1) if m_xiang else ""
+                    chunk = chunk.replace('\n', '')
+                    investors = stable_unique_names(
+                        [n for n in re.findall(r'[一-龥A-Za-z]{2,40}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|集团|中心|管理)?', chunk)
+                         if is_valid_investor_name(n)],
+                        limit=10,
+                    )
+                else:
+                    investors = re.findall(
+                        r'([一-龥A-Za-z]{2,30}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|集团|中心|管理|FUND)?)',
+                        text[m.start():min(m.end()+300, len(text))]
+                    )
                 # 过滤非投资人（明显非实体 + 非发行人主体）
                 investors = stable_unique_names(
                     [i for i in investors if is_valid_investor_name(i)],

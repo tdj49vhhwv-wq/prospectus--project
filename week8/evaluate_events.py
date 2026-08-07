@@ -64,13 +64,18 @@ def date_type_of(date_str: str) -> str:
     return "none"
 
 
-def dates_compatible(gold_date: str, auto_date: str) -> bool:
+def dates_compatible(gold_date: str, auto_date: str, relax_gold_day_to_month: bool = False) -> bool:
     """按 Gold 的粒度比较：day 同日、month 同年同月、year 同年。"""
     g = parse_date(gold_date)
     a = parse_date(auto_date)
     g_type = date_type_of(gold_date)
     if g_type == "day":
-        return a == g
+        if a == g:
+            return True
+        # Week 8 开发口径 v1.1：Gold 为 day 而 Auto 只有 month 时，同年同月算匹配
+        if relax_gold_day_to_month and a[2] == 0 and a[:2] == g[:2]:
+            return True
+        return False
     if g_type == "month":
         return a[0] == g[0] and a[1] == g[1]
     if g_type == "year":
@@ -127,13 +132,17 @@ def build_auto_events(auto_dir: Path) -> list[dict]:
     for path in sorted(auto_dir.glob("*_subscription_flow.jsonl")):
         for r in load_jsonl(path):
             key = (r.get("stock_code", ""), r.get("subscription_date", ""), r.get("event_context", ""))
+            # 股权转让按明细行成事件（与 Gold 每条转让明细一条事件一致）
+            if r.get("event_context") == "股权转让":
+                key = key + (r.get("subscriber_name", ""),)
             grouped[key].append(r)
     for rows in grouped.values():
         events.append(_event_from_rows(rows, "auto"))
     return events
 
 
-def match_events(gold_events: list[dict], auto_events: list[dict]) -> tuple[dict, dict]:
+def match_events(gold_events: list[dict], auto_events: list[dict],
+                 relax_gold_day_to_month: bool = False) -> tuple[dict, dict]:
     """一对一贪心匹配，返回 (gold 结果, auto 结果)。"""
     gold_result: dict[int, dict] = {}
     auto_result: dict[int, dict] = {i: {"event": ae, "status": "FP", "matched_gold_id": None}
@@ -155,7 +164,7 @@ def match_events(gold_events: list[dict], auto_events: list[dict]) -> tuple[dict
                 continue
             if ae["type_code"] != ge["type_code"]:
                 continue
-            if not dates_compatible(ge["date"], ae["date"]):
+            if not dates_compatible(ge["date"], ae["date"], relax_gold_day_to_month):
                 continue
             matched = ai
             break
@@ -231,16 +240,20 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="事件级 Auto-vs-Gold 评价器")
     parser.add_argument("--gold", type=Path, default=PROJECT_ROOT / "data" / "gold_standard")
     parser.add_argument("--auto", type=Path, default=PROJECT_ROOT / "week6" / "auto_output_md" / "validated")
+    parser.add_argument("--relax-gold-day-to-month", action="store_true",
+                        help="Gold 为 day 而 Auto 只有 month 时，同年同月算匹配（Week 8 开发口径）")
     parser.add_argument("--out", type=Path, default=PROJECT_ROOT / "week8" / "event_eval")
     args = parser.parse_args()
 
     gold_events = build_gold_events(args.gold)
     auto_events = build_auto_events(args.auto)
-    gold_result, auto_result = match_events(gold_events, auto_events)
+    gold_result, auto_result = match_events(gold_events, auto_events,
+                                            relax_gold_day_to_month=args.relax_gold_day_to_month)
     summary = summarize(gold_result, auto_result)
     summary["gold_event_count"] = len(gold_events)
     summary["auto_event_count"] = len(auto_events)
     summary["auto_missing_date_events"] = sum(1 for e in auto_events if e["date_type"] == "none")
+    summary["match_options"] = {"relax_gold_day_to_month": args.relax_gold_day_to_month}
 
     args.out.mkdir(parents=True, exist_ok=True)
     write_details(gold_result, auto_result, args.out / "event_eval_details.csv")
