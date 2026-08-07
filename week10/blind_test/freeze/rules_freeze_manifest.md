@@ -47,3 +47,13 @@ git diff 9ff43a5d3c92150865a3a89ce951b13db3e55bb0 -- week6/pipeline/run_md_pipel
 ## 5. 冻结记录
 
 详细 hash 见 `rules_freeze_manifest.json`。运行后把结果目录 hash、Gold 版本和 commit 写入 Week 10 盲测报告。
+
+## 6. 2026-08-07 修订：开发集规则迭代
+
+Week 8/9 允许对 8 家开发集修复规则（本次第一批：设立规则收紧、非投资人过滤、缺日期分层），
+但必须满足：
+
+1. 每次修改附回归测试与 before/after P/R/F1；
+2. 修改只基于 8 家开发集与 Gold，不基于 688795/688802；
+3. 本清单 hash 记录的是 `9ff43a5` 基线快照，不再要求与开发集工作区一致；
+4. Week 10 盲测运行前，以当次 commit 重新生成本清单与 sha256 并提交，再执行 `shasum -a 256 -c`。

@@ -23,5 +23,11 @@
     "modify any regex in PATTERNS",
     "modify event type mapping or extraction logic",
     "silently relabel Gold after freeze"
+  ],
+  "amendments": [
+    {
+      "date": "2026-08-07",
+      "note": "Week 8/9 允许对 8 家开发集修复规则（附回归测试与 before/after）；本清单 hash 为 9ff43a5 基线快照；Week 10 盲测运行前用当次 commit 重新生成冻结清单与 sha256"
+    }
   ]
 }

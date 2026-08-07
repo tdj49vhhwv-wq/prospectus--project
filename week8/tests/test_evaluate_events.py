@@ -101,3 +101,24 @@ def test_one_to_one_greedy_no_double_match():
     gold_result, auto_result = match_events(gold, auto)
     assert sum(1 for r in gold_result.values() if r["status"] == "TP") == 2
     assert sum(1 for r in auto_result.values() if r["status"] == "TP") == 2
+
+
+def test_global_auto_indexes_do_not_collide_across_companies():
+    """两个公司各自匹配一条，结果索引必须落在各自的全局位置。"""
+    gold = [
+        {"stock_code": "001282", "date": "2004-06-18", "date_type": "day",
+         "type_code": "E", "context": "设立", "company_name": "x", "row_count": 1},
+        {"stock_code": "301563", "date": "2008-05-07", "date_type": "day",
+         "type_code": "E", "context": "设立", "company_name": "y", "row_count": 1},
+    ]
+    auto = [
+        {"stock_code": "001282", "date": "2004-06-18", "date_type": "day",
+         "type_code": "E", "context": "设立", "company_name": "x", "row_count": 1},
+        {"stock_code": "301563", "date": "2008-05-07", "date_type": "day",
+         "type_code": "E", "context": "设立", "company_name": "y", "row_count": 1},
+    ]
+    gold_result, auto_result = match_events(gold, auto)
+    assert sum(1 for r in gold_result.values() if r["status"] == "TP") == 2
+    assert sum(1 for r in auto_result.values() if r["status"] == "TP") == 2
+    assert auto_result[1]["status"] == "TP"
+    assert auto_result[1]["matched_gold_id"] == 1

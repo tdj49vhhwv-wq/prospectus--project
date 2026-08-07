@@ -51,8 +51,10 @@ PATTERNS = [
     (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?(?:新增|增加)注册资本\s*([\d,]+\.?\d*)\s*万(?:元|美元)', '增资'),
     # 整体变更折股
     (r'(\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日).*?整体变更.*?折[成为合]\s*([\d,]+\.?\d*)\s*万股?', '整体变更'),
-    # 设立（仅在含"发行人基本情况"或"公司设立"上下文中匹配）
-    (r'(?:成立日期|成立于)\s*[:：]?\s*(\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日)', '设立'),
+    # 设立：发行人基本信息表中的“有限公司成立日期”（限定发行人自身）
+    (r'(?:有限公司)\s*成立日期\s*[:：]?\s*(\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日)', '设立'),
+    # 设立：正文表述“公司/有限成立于”
+    (r'(?:发行人|本公司|公司|有限|有限公司)成立于\s*[:：]?\s*(\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日)', '设立'),
     # 吸收合并
     (r'吸收合并\s*([一-龥]{2,30}(?:有限|公司)).*?注册资本.*?(?:变更为|增至)\s*([\d,]+\.?\d*)\s*万元', '吸收合并'),
     # 股权转让
@@ -89,6 +91,32 @@ def stable_unique_names(names, limit=None):
     """Return cleaned unique names in deterministic Unicode sort order."""
     unique_names = sorted({name.strip() for name in names if len(name.strip()) >= 2})
     return unique_names if limit is None else unique_names[:limit]
+
+
+NON_INVESTOR_TOKENS = (
+    "法定代表人", "注册地址", "经营范围", "执行事务合伙人", "注册资本", "实收资本",
+    "出资额", "出资比例", "成立日期", "注销日期", "统一社会信用代码", "企业类型",
+    "主要生产经营地", "办公地址", "负责人", "营业执照", "证券代码", "股份总数",
+    "招股说明书", "审计报告", "验资报告", "董事会", "股东会", "本次", "上述", "合计",
+    "总计", "截至", "序号", "股东名称", "股权比例", "募集资金", "发行价格", "每股",
+    "单位", "小计", "发行新股", "送股", "转增", "发行", "以及", "备注", "新增股东",
+    "万元", "万股", "元/股", "元/注册资本", "出资", "认缴", "成立", "日期",
+    "有限公司成立日期", "股份公司成立日期", "股份公司设立日期", "整体变更设立日期",
+    "企业名称", "公司名称", "发行人名称", "住所", "邮政编码",
+)
+
+
+def is_valid_investor_name(name: str) -> bool:
+    """过滤明显非投资人实体名。"""
+    if not name or len(name.strip()) < 2:
+        return False
+    if re.fullmatch(r"[\d\s,.\-%/]+", name):
+        return False
+    if any(tok in name for tok in NON_INVESTOR_TOKENS):
+        return False
+    if name in ("公司", "有限", "发行人", "本公司", "（待识别）"):
+        return False
+    return True
 
 
 def extract_from_snippets(snippets, company_code, company_name):
@@ -130,10 +158,9 @@ def extract_from_snippets(snippets, company_code, company_name):
                     r'([一-龥A-Za-z]{2,30}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|集团|中心|管理|FUND)?)',
                     text[m.start():min(m.end()+300, len(text))]
                 )
-                # 过滤非投资人
-                skip_words = ('公司','有限','注册资本','发行人','合计','总计','万元','万股','本次','上述')
+                # 过滤非投资人（明显非实体 + 非发行人主体）
                 investors = stable_unique_names(
-                    [i for i in investors if i.strip() not in skip_words],
+                    [i for i in investors if is_valid_investor_name(i)],
                     limit=8,
                 )
 
@@ -146,6 +173,8 @@ def extract_from_snippets(snippets, company_code, company_name):
                     key = (date_str, inv, ev_type)
                     if key in seen: continue
                     seen.add(key)
+
+                    validated = bool(date_str) and inv != "（待识别）"
 
                     records.append({
                         "event_id": f"{company_code}_{date_str.replace('-','')}_{ev_type}_{len(records):03d}",
@@ -163,6 +192,8 @@ def extract_from_snippets(snippets, company_code, company_name):
                         "data_source": "markdown_extracted",
                         "extraction_method": "regex_from_md",
                         "processing_status": "extracted",
+                        "validation_status": "validated" if validated else "candidate",
+                        "confidence": "high" if validated else "low",
                         "extracted_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                     })
 
@@ -171,6 +202,8 @@ def extract_from_snippets(snippets, company_code, company_name):
 
 def main():
     all_results = {}
+    all_candidates = {}
+    all_validated = {}
 
     for code, name in COMPANIES:
         print(f"\n{'='*50}")
@@ -184,7 +217,23 @@ def main():
         print(f"  {len(snippets)} 个文本段落")
 
         records = extract_from_snippets(snippets, code, name)
-        print(f"  ✅ {len(records)} 条记录")
+
+        # 确定性去重：同 (日期, 类型, 投资人, 金额, 股数) 只保留首条
+        dedup_seen = set()
+        deduped = []
+        for r in records:
+            dk = (r["subscription_date"], r["event_context"], r["subscriber_name"],
+                  r["amount_subscribed"], r["shares_subscribed"])
+            if dk in dedup_seen:
+                continue
+            dedup_seen.add(dk)
+            deduped.append(r)
+        records = sorted(deduped, key=lambda r: (r["subscription_date"], r["event_context"],
+                                                 r["subscriber_name"]))
+
+        candidates = [r for r in records if r["validation_status"] == "candidate"]
+        validated = [r for r in records if r["validation_status"] == "validated"]
+        print(f"  ✅ 候选 {len(records)} 条 / validated {len(validated)} 条")
 
         # 按类型统计
         from collections import Counter
@@ -193,18 +242,30 @@ def main():
             print(f"    {t}: {c}")
 
         all_results[code] = records
+        all_candidates[code] = records
+        all_validated[code] = validated
 
-    # 写 JSONL + 入库
+    # 写 JSONL（candidate 与 validated 分目录）+ 入库（仅 validated）
     output_dir = Path('auto_output_md')
     output_dir.mkdir(exist_ok=True)
+    candidate_dir = output_dir / "candidate"
+    validated_dir = output_dir / "validated"
+    candidate_dir.mkdir(exist_ok=True)
+    validated_dir.mkdir(exist_ok=True)
 
     grand_total = 0
+    validated_total = 0
     for code, records in all_results.items():
-        path = output_dir / f"{code}_subscription_flow.jsonl"
-        with open(path, 'w', encoding='utf-8') as f:
+        candidate_path = candidate_dir / f"{code}_subscription_flow.jsonl"
+        with open(candidate_path, 'w', encoding='utf-8') as f:
             for r in records:
                 f.write(json.dumps(r, ensure_ascii=False) + '\n')
+        validated_path = validated_dir / f"{code}_subscription_flow.jsonl"
+        with open(validated_path, 'w', encoding='utf-8') as f:
+            for r in all_validated[code]:
+                f.write(json.dumps(r, ensure_ascii=False) + '\n')
         grand_total += len(records)
+        validated_total += len(all_validated[code])
 
     # 尝试入库
     try:
@@ -212,7 +273,7 @@ def main():
         cur = conn.cursor()
         cur.execute("DELETE FROM zbq_subscription_flow WHERE extraction_method = 'regex_from_md'")
         inserted = 0
-        for records in all_results.values():
+        for records in all_validated.values():
             for r in records:
                 try:
                     cur.execute("""
@@ -242,8 +303,8 @@ def main():
         print(f"\n入库跳过(数据库不可用): {e}")
 
     print(f"\n{'='*50}")
-    print(f"总计: {grand_total} 条 subscription_flow")
-    print(f"输出: {output_dir}/")
+    print(f"总计: 候选 {grand_total} 条 / validated {validated_total} 条")
+    print(f"输出: {output_dir}/candidate/ 与 {output_dir}/validated/")
     return grand_total
 
 

@@ -135,21 +135,23 @@ def build_auto_events(auto_dir: Path) -> list[dict]:
 
 def match_events(gold_events: list[dict], auto_events: list[dict]) -> tuple[dict, dict]:
     """一对一贪心匹配，返回 (gold 结果, auto 结果)。"""
-    auto_by_code: dict[str, list[dict]] = defaultdict(list)
-    for ae in auto_events:
-        auto_by_code[ae["stock_code"]].append(ae)
-    for lst in auto_by_code.values():
-        lst.sort(key=lambda e: (e["date"], e["type_code"], e["context"]))
-
     gold_result: dict[int, dict] = {}
     auto_result: dict[int, dict] = {i: {"event": ae, "status": "FP", "matched_gold_id": None}
                                     for i, ae in enumerate(auto_events)}
     used_auto: set[int] = set()
 
+    # 全局排序，保证跨公司索引不撞车
+    auto_order = sorted(range(len(auto_events)),
+                        key=lambda i: (auto_events[i]["stock_code"], auto_events[i]["date"],
+                                       auto_events[i]["type_code"], auto_events[i]["context"]))
+
     for gi, ge in sorted(enumerate(gold_events), key=lambda x: (x[1]["stock_code"], x[1]["date"], x[1]["type_code"])):
         matched = None
-        for ai, ae in enumerate(auto_by_code.get(ge["stock_code"], [])):
+        for ai in auto_order:
             if ai in used_auto:
+                continue
+            ae = auto_events[ai]
+            if ae["stock_code"] != ge["stock_code"]:
                 continue
             if ae["type_code"] != ge["type_code"]:
                 continue
@@ -210,25 +212,25 @@ def summarize(gold_result: dict, auto_result: dict) -> dict:
 
 def write_details(gold_result: dict, auto_result: dict, out_csv: Path) -> None:
     with open(out_csv, "w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
+        writer = csv.writer(f, lineterminator="\n")
         writer.writerow(["role", "stock_code", "date", "date_type", "type_code", "context",
                          "row_count", "status", "matched_id", "source_page", "evidence"])
         for gi, r in sorted(gold_result.items()):
             e = r["event"]
             writer.writerow(["gold", e["stock_code"], e["date"], e["date_type"], e["type_code"],
                              e["context"], e["row_count"], r["status"], r["matched_auto_id"],
-                             e["source_page"], e["evidence"]])
+                             e["source_page"], e["evidence"].strip()])
         for ai, r in sorted(auto_result.items()):
             e = r["event"]
             writer.writerow(["auto", e["stock_code"], e["date"], e["date_type"], e["type_code"],
                              e["context"], e["row_count"], r["status"], r["matched_gold_id"],
-                             e["source_page"], e["evidence"]])
+                             e["source_page"], e["evidence"].strip()])
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="事件级 Auto-vs-Gold 评价器")
     parser.add_argument("--gold", type=Path, default=PROJECT_ROOT / "data" / "gold_standard")
-    parser.add_argument("--auto", type=Path, default=PROJECT_ROOT / "week6" / "auto_output_md")
+    parser.add_argument("--auto", type=Path, default=PROJECT_ROOT / "week6" / "auto_output_md" / "validated")
     parser.add_argument("--out", type=Path, default=PROJECT_ROOT / "week8" / "event_eval")
     args = parser.parse_args()
 
