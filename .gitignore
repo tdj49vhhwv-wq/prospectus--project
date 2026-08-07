@@ -30,3 +30,4 @@ data/prospectus_pdfs/*.pdf
 
 # Generated Markdown candidate output
 auto_output_md/
+auto_output_md_new/

@@ -24,6 +24,16 @@ COMPANIES = [
     ("920100", "三协电机"), ("920116", "星图测控"),
 ]
 
+COMPANY_NAMES = {
+    **dict(COMPANIES),
+    # Week 9 新公司候选层 A（只读支线，不含盲测两家 688795/688802）
+    "688411": "海博思创", "688545": "兴福电子", "688583": "思看科技",
+    "688727": "恒坤新材", "688729": "屹唐股份", "688755": "汉邦科技",
+    "688757": "胜科纳米", "688759": "必贝特", "688765": "禾元生物",
+    "688783": "西安奕材", "688790": "昂瑞微", "688796": "百奥赛图",
+    "688805": "健信超导", "688807": "优迅股份", "688809": "强一股份",
+}
+
 # 完整正则模式（Week7 成果）
 PATTERNS = [
     # 定向发行
@@ -109,6 +119,48 @@ PATTERNS = [
     (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,150}?(?:出资)?设立[^。；]{0,60}?(?:有限|公司|股份)[^。；]{0,220}?注册资本[为：:]?\s*([\d,]+\.?\d*)\s*万元', '增资'),
 ]
 
+# 每条规则的捕获组字段角色（与 PATTERNS 一一对应）：
+# None=忽略；"amount"=认缴/出资/转让金额（万元）；"shares"=股数（万股）；
+# "price"=每股价格（元/股）；("shares","股")=股数单位是“股”，需换算为万股。
+PATTERN_FIELD_ROLES = [
+    (None, None, "price", "shares", "amount"),   # 0 定向发行
+    (None, None, "amount"),                      # 1 验收报告
+    (None, "amount"),                            # 2 出资XX万
+    (None, "shares", "amount"),                  # 3 认购XX万股（X万元）
+    (None, "amount"),                            # 4 认缴新增资本
+    (None, "amount", None),                      # 5 共同增资/增至
+    (None, "amount"),                            # 6 新增注册资本
+    (None, "shares"),                            # 7 整体变更折股
+    (None,),                                     # 8 有限公司成立日期
+    (None,),                                     # 9 公司成立于
+    (None, None),                                # 10 吸收合并
+    (None, "amount", None),                      # 11 股权转让
+    (None, None, "amount"),                      # 12 转让予/转让给
+    (None, None, "shares"),                      # 13 资本公积转增
+    (None, "amount"),                            # 14 员工持股平台出资
+    (None, None),                                # 15 注册资本由X增至Y
+    (None, "amount", None),                      # 16 第N次增资
+    (None, None),                                # 17 增资至X万元
+    (None, None),                                # 18 股本总额增至X万股
+    (None, "amount"),                            # 19 增加注册资本X万元
+    (None, "shares"),                            # 20 认购新增股份X万股
+    (None, ("shares", "股")),                    # 21 增发股份X股
+    (None, "amount"),                            # 22 有限设立+注册资本
+    (None,),                                     # 23 名称预先登记核准
+    (None, "amount"),                            # 24 认缴出资X万元
+    (None,),                                     # 25 复合事件
+    (None, None),                                # 26 整体变更折合股本/股本总额
+    (None, ("shares", "股")),                    # 27 整体变更折股X股
+    (None,),                                     # 28 办理完毕工商变更登记
+    (None, None),                                # 29 折合股本X万元+登记日
+    (None, None),                                # 30 零对价转让给
+    (None, None),                                # 31 以0元价格转让给
+    (None, None, "amount", None),                # 32 以X万元对价向Y转让
+    (None, None, None),                          # 33 X%股权转让予
+    (None, None, None),                          # 34 X%股权分别转让予
+    (None, "amount"),                            # 35 设立出资
+]
+
 EVENT_TYPE_CODES = {
     "增资": "A", "整体变更": "B", "增资及股权转让": "C", "股权转让": "D",
     "设立": "E", "资本公积转增": "F", "吸收合并": "G", "员工持股平台出资": "J",
@@ -119,10 +171,11 @@ def build_pattern_registry():
     """给每条规则生成稳定的 rule_id（类型码 + 组内序号）。"""
     counts = {}
     registry = []
-    for pattern, ev_type in PATTERNS:
+    for i, (pattern, ev_type) in enumerate(PATTERNS):
         code = EVENT_TYPE_CODES.get(ev_type, "X")
         counts[ev_type] = counts.get(ev_type, 0) + 1
-        registry.append((pattern, ev_type, f"{code}{counts[ev_type]:02d}"))
+        roles = PATTERN_FIELD_ROLES[i]
+        registry.append((pattern, ev_type, f"{code}{counts[ev_type]:02d}", roles))
     return registry
 
 
@@ -270,7 +323,7 @@ def extract_from_snippets(snippets, company_code, company_name):
         page = snippet['pdf_page']
         next_text = snippets[idx + 1]['text'][:1500] if idx + 1 < len(snippets) else ''
 
-        for pattern, ev_type, rule_id in PATTERN_REGISTRY:
+        for pattern, ev_type, rule_id, field_roles in PATTERN_REGISTRY:
             for m in re.finditer(pattern, text, re.DOTALL):
                 groups = m.groups()
 
@@ -295,19 +348,27 @@ def extract_from_snippets(snippets, company_code, company_name):
                             window = window + "\n" + next_text
                         date_str = prefer_registration_date(window, date_str)
 
-                # 提取数字
-                nums = []
-                for g in groups:
+                # 字段映射：按规则声明的捕获组角色取金额/股数/价格
+                amount = shares = price = None
+                for g, role in zip(groups, field_roles):
                     if not g: continue
                     if re.search(r'[年月日]', str(g)): continue
                     val = str(g).replace(',', '').strip()
-                    if re.match(r'^[\d.]+$', val):
-                        try: nums.append(float(val))
-                        except: pass
-
-                amount = nums[0] if nums else None
-                shares = nums[1] if len(nums) > 1 else None
-                price = nums[2] if len(nums) > 2 else None
+                    if not re.match(r'^[\d.]+$', val): continue
+                    try:
+                        num = float(val)
+                    except ValueError:
+                        continue
+                    if isinstance(role, tuple):
+                        role, unit = role
+                    else:
+                        unit = None
+                    if role == "amount":
+                        amount = num
+                    elif role == "shares":
+                        shares = num / 10000 if unit == "股" else num
+                    elif role == "price":
+                        price = num
 
                 # 提取投资人
                 if ev_type == "股权转让":
@@ -377,11 +438,23 @@ def extract_from_snippets(snippets, company_code, company_name):
 
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Markdown 候选管线")
+    parser.add_argument("--companies", nargs="*", default=None,
+                        help="公司代码列表（默认 8 家开发集）")
+    parser.add_argument("--out", default="auto_output_md", help="输出目录")
+    parser.add_argument("--no-db", action="store_true", help="跳过数据库写入")
+    args = parser.parse_args()
+
+    companies = COMPANIES
+    if args.companies:
+        companies = [(c, COMPANY_NAMES.get(c, c)) for c in args.companies]
+
     all_results = {}
     all_candidates = {}
     all_validated = {}
 
-    for code, name in COMPANIES:
+    for code, name in companies:
         print(f"\n{'='*50}")
         print(f"📄 {name} ({code})")
         located = make_located_data(code, name)
@@ -441,7 +514,7 @@ def main():
         all_validated[code] = validated
 
     # 写 JSONL（candidate 与 validated 分目录）+ 入库（仅 validated）
-    output_dir = Path('auto_output_md')
+    output_dir = Path(args.out)
     output_dir.mkdir(exist_ok=True)
     candidate_dir = output_dir / "candidate"
     validated_dir = output_dir / "validated"
@@ -469,40 +542,41 @@ def main():
         grand_total += len(records)
         validated_total += len(all_validated[code])
 
-    # 尝试入库
-    try:
-        conn = pg8000.connect(**DB_CONFIG)
-        cur = conn.cursor()
-        cur.execute("DELETE FROM zbq_subscription_flow WHERE extraction_method = 'regex_from_md'")
-        inserted = 0
-        for records in all_validated.values():
-            for r in records:
-                try:
-                    cur.execute("""
-                        INSERT INTO zbq_subscription_flow
-                            (event_id, company_name, stock_code, event_type, event_date,
-                             investor_name, investor_type,
-                             subscription_qty_wan, subscription_amount_wan, subscription_price,
-                             pdf_page, evidence_text, extraction_method, review_status)
-                        VALUES (%s,%s,%s,%s,%s, %s,%s, %s,%s,%s, %s,%s,%s,%s)
-                    """, (
-                        r['event_id'], r['company_name'], r['stock_code'],
-                        r['event_context'], r['subscription_date'],
-                        r['subscriber_name'], r['investor_type'],
-                        r['shares_subscribed'], r['amount_subscribed'], r['price_per_share'],
-                        _parse_page(r['source_page']), r['evidence_text'],
-                        'regex_from_md', 'extracted',
-                    ))
-                    inserted += 1
-                except Exception as e:
-                    pass
-        conn.commit()
-        cur.execute("SELECT COUNT(*) FROM zbq_subscription_flow WHERE extraction_method='regex_from_md'")
-        db_count = cur.fetchone()[0]
-        conn.close()
-        print(f"\n入库: {db_count} 条")
-    except Exception as e:
-        print(f"\n入库跳过(数据库不可用): {e}")
+    # 尝试入库（新公司候选层默认 --no-db）
+    if not args.no_db:
+        try:
+            conn = pg8000.connect(**DB_CONFIG)
+            cur = conn.cursor()
+            cur.execute("DELETE FROM zbq_subscription_flow WHERE extraction_method = 'regex_from_md'")
+            inserted = 0
+            for records in all_validated.values():
+                for r in records:
+                    try:
+                        cur.execute("""
+                            INSERT INTO zbq_subscription_flow
+                                (event_id, company_name, stock_code, event_type, event_date,
+                                 investor_name, investor_type,
+                                 subscription_qty_wan, subscription_amount_wan, subscription_price,
+                                 pdf_page, evidence_text, extraction_method, review_status)
+                            VALUES (%s,%s,%s,%s,%s, %s,%s, %s,%s,%s, %s,%s,%s,%s)
+                        """, (
+                            r['event_id'], r['company_name'], r['stock_code'],
+                            r['event_context'], r['subscription_date'],
+                            r['subscriber_name'], r['investor_type'],
+                            r['shares_subscribed'], r['amount_subscribed'], r['price_per_share'],
+                            _parse_page(r['source_page']), r['evidence_text'],
+                            'regex_from_md', 'extracted',
+                        ))
+                        inserted += 1
+                    except Exception as e:
+                        pass
+            conn.commit()
+            cur.execute("SELECT COUNT(*) FROM zbq_subscription_flow WHERE extraction_method='regex_from_md'")
+            db_count = cur.fetchone()[0]
+            conn.close()
+            print(f"\n入库: {db_count} 条")
+        except Exception as e:
+            print(f"\n入库跳过(数据库不可用): {e}")
 
     print(f"\n{'='*50}")
     print(f"总计: 候选 {grand_total} 条 / validated {validated_total} 条")

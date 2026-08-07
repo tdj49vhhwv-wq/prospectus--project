@@ -4,7 +4,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / "week6" / "pipeline"))
 
-from run_md_pipeline import extract_from_snippets, is_valid_investor_name
+from run_md_pipeline import (
+    PATTERN_FIELD_ROLES,
+    PATTERNS,
+    extract_from_snippets,
+    is_valid_investor_name,
+)
 from evaluate_events import build_auto_events, dates_compatible
 
 
@@ -145,3 +150,30 @@ def test_records_carry_rule_id():
     text = "2021 年11 月，赛分科技增发股份4,243,901 股，新增股份由新增股东源峰磐赛认购。"
     rows = extract_from_snippets([{"text": text, "pdf_page": 1}], "688758", "赛分科技")
     assert rows and all(r.get("rule_id") for r in rows)
+
+
+def test_field_roles_aligned_with_patterns():
+    assert len(PATTERN_FIELD_ROLES) == len(PATTERNS)
+
+
+def test_subscription_pattern_maps_amount_and_shares():
+    text = "2021年11月，金浦临港基金认购840万股（7,000万元）。"
+    rows = extract_from_snippets([{"text": text, "pdf_page": 1}], "603418", "友升股份")
+    assert rows
+    r = rows[0]
+    assert r["amount_subscribed"] == 7000
+    assert r["shares_subscribed"] == 840
+
+
+def test_issued_shares_converted_to_wan():
+    text = "2021 年11 月，赛分科技增发股份4,243,901 股，新增股份由新增股东源峰磐赛认购。"
+    rows = extract_from_snippets([{"text": text, "pdf_page": 1}], "688758", "赛分科技")
+    assert rows and rows[0]["shares_subscribed"] == 424.3901
+
+
+def test_post_capital_not_mapped_to_shares():
+    text = "2014年8月，力源信息、东方富海及芜湖富海共同增资28.205万元，注册资本增至128.205万元。"
+    rows = extract_from_snippets([{"text": text, "pdf_page": 1}], "301563", "云汉芯城")
+    as_ = [r for r in rows if r["event_context"] == "增资"]
+    assert as_ and as_[0]["amount_subscribed"] == 28.205
+    assert as_[0]["shares_subscribed"] is None

@@ -8,8 +8,8 @@
     "amount_accuracy": 0.10526315789473684,
     "shares_accuracy": 0.0,
     "price_accuracy": 0.0,
-    "auto_missing_amount_rate": 0.36054421768707484,
-    "auto_missing_shares_rate": 0.891156462585034,
+    "auto_missing_amount_rate": 0.6972789115646258,
+    "auto_missing_shares_rate": 0.8537414965986394,
     "auto_missing_price_rate": 1.0
   },
   "by_company": {
@@ -22,8 +22,8 @@
       "amount_accuracy": 0.0,
       "shares_accuracy": null,
       "price_accuracy": null,
-      "auto_missing_amount_rate": 0.14285714285714285,
-      "auto_missing_shares_rate": 0.6190476190476191,
+      "auto_missing_amount_rate": 0.40476190476190477,
+      "auto_missing_shares_rate": 0.7380952380952381,
       "auto_missing_price_rate": 1.0
     },
     "301563": {
@@ -35,8 +35,8 @@
       "amount_accuracy": 0.0,
       "shares_accuracy": null,
       "price_accuracy": 0.0,
-      "auto_missing_amount_rate": 0.5238095238095238,
-      "auto_missing_shares_rate": 0.8095238095238095,
+      "auto_missing_amount_rate": 0.7142857142857143,
+      "auto_missing_shares_rate": 0.9047619047619048,
       "auto_missing_price_rate": 1.0
     },
     "301581": {
@@ -48,8 +48,8 @@
       "amount_accuracy": null,
       "shares_accuracy": null,
       "price_accuracy": null,
-      "auto_missing_amount_rate": 0.0,
-      "auto_missing_shares_rate": 1.0,
+      "auto_missing_amount_rate": 0.6,
+      "auto_missing_shares_rate": 0.8,
       "auto_missing_price_rate": 1.0
     },
     "603418": {
@@ -61,7 +61,7 @@
       "amount_accuracy": 0.0,
       "shares_accuracy": 0.0,
       "price_accuracy": 0.0,
-      "auto_missing_amount_rate": 0.25,
+      "auto_missing_amount_rate": 1.0,
       "auto_missing_shares_rate": 1.0,
       "auto_missing_price_rate": 1.0
     },
@@ -74,8 +74,8 @@
       "amount_accuracy": 0.0,
       "shares_accuracy": null,
       "price_accuracy": 0.0,
-      "auto_missing_amount_rate": 0.5,
-      "auto_missing_shares_rate": 1.0,
+      "auto_missing_amount_rate": 1.0,
+      "auto_missing_shares_rate": 0.5,
       "auto_missing_price_rate": 1.0
     },
     "688775": {
@@ -87,7 +87,7 @@
       "amount_accuracy": 1.0,
       "shares_accuracy": null,
       "price_accuracy": null,
-      "auto_missing_amount_rate": 0.0,
+      "auto_missing_amount_rate": 0.5,
       "auto_missing_shares_rate": 1.0,
       "auto_missing_price_rate": 1.0
     },
