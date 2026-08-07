@@ -90,3 +90,25 @@ def test_relax_gold_day_to_month():
     assert dates_compatible("2020-09-27", "2020-09", relax_gold_day_to_month=True) is True
     assert dates_compatible("2020-09-27", "2020-10", relax_gold_day_to_month=True) is False
     assert dates_compatible("2020-09-27", "2020-09", relax_gold_day_to_month=False) is False
+
+
+def test_blocked_predecessor_rows():
+    text = "1995 年12 月，瑞安市三联锻压厂注册资本由31 万元增至88 万元。"
+    rows = extract_from_snippets([{"text": text, "pdf_page": 1}], "001282", "三联锻造")
+    assert all(r["event_context"] != "增资" for r in rows)
+
+
+def test_blocked_kunshangujie_without_issuer():
+    text = ("2009 年6 月30 日，昆山谷捷召开股东会，审议通过《昆山谷捷金属制品有限公司章程》。"
+            "根据该公司章程，昆山谷捷设立时注册资本为100 万元。")
+    rows = extract_from_snippets([{"text": text, "pdf_page": 1}], "301581", "黄山谷捷")
+    assert all(r["event_context"] != "增资" for r in rows)
+
+
+def test_setup_investment_uses_registration_date():
+    text = ("2008 年4 月17 日，深圳市云汉电子有限公司和刘云锋共同申请设立公司前身上海云汉电子有限公司，注册资本为50 万元。"
+            "2008 年5 月7 日，上海云汉电子有限公司办理完毕工商登记手续。")
+    rows = extract_from_snippets([{"text": text, "pdf_page": 1}], "301563", "云汉芯城")
+    as_ = [r for r in rows if r["event_context"] == "增资"]
+    assert as_ and as_[0]["subscription_date"] == "2008-05-07"
+    assert as_[0]["validation_status"] == "validated"

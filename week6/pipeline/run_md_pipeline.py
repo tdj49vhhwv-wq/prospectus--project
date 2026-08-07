@@ -100,9 +100,11 @@ PATTERNS = [
     # 股权转让：以人民币0元的价格转让给
     (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,150}?将其持\s*有\s*的.*?以人民币0\s*元的价格转\s*让\s*给\s*([\s一-龥A-Za-z]{2,40})', '股权转让'),
     # 股权转让：以X万元的对价向Y转让股本
-    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,90}?([\s一-龥A-Za-z]{2,40}?)\s*以([\d,]+\.?\d*)\s*万元(?:的对价)?向\s*([\s一-龥A-Za-z]{2,40}?)\s*转\s*让(?:股本|股权|股份)', '股权转让'),
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,70}?([\s一-龥A-Za-z]{2,40}?)\s*以([\d,]+\.?\d*)\s*万元(?:的对价)?向\s*([\s一-龥A-Za-z]{2,40}?)\s*转\s*让(?:股本|股权|股份)', '股权转让'),
     # 股权转让：X%股权转让予
     (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,150}?将其持\s*有\s*的.*?(\d+(?:\.\d+)?)%\s*股权.*?转\s*让\s*予\s*([\s一-龥]{2,20})', '股权转让'),
+    # 增资：设立出资（有限/公司设立 + 注册资本）
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,150}?(?:出资)?设立[^。；]{0,60}?(?:有限|公司|股份)[^。；]{0,220}?注册资本[为：:]?\s*([\d,]+\.?\d*)\s*万元', '增资'),
 ]
 
 
@@ -140,7 +142,8 @@ def is_proposal_date(text):
         return False
     ctx = text[m0.end():m0.end() + 40]
     return any(kw in ctx for kw in ("批复", "股东会", "决议", "签署", "协议",
-                                    "审计报告", "评估报告", "会计师", "董事会"))
+                                    "审计报告", "评估报告", "会计师", "董事会",
+                                    "缴纳", "申请", "股东决定"))
 
 
 def classify(name):
@@ -184,6 +187,29 @@ def is_valid_investor_name(name: str) -> bool:
     return True
 
 
+BLOCKED_PHRASES_GLOBAL = (
+    "瑞安市", "三连零部件", "深圳三协", "第一美亚", "补充协议",
+    "员工股权激励方案", "个人所得税", "完税证明", "整体变更设立日期",
+    "设立北京岚锋",
+)
+BLOCKED_PHRASES_A = ("净资产折股", "评估", "股份总数", "长期股权投资", "追溯评估", "整体变更")
+BLOCKED_PHRASES_F = ("验资报告",)
+
+
+def is_blocked_record(event_context: str, evidence_text: str) -> bool:
+    """过滤明显非发行人主体/非目标事件（范围外历史、子公司、境外代持等）。"""
+    text = evidence_text or ""
+    if any(p in text for p in BLOCKED_PHRASES_GLOBAL):
+        return True
+    if "昆山谷捷" in text and "谷捷有限" not in text:
+        return True
+    if event_context == "增资" and any(p in text for p in BLOCKED_PHRASES_A):
+        return True
+    if event_context == "资本公积转增" and any(p in text for p in BLOCKED_PHRASES_F):
+        return True
+    return False
+
+
 def extract_from_snippets(snippets, company_code, company_name):
     """从文本片段提取订阅事件"""
     records = []
@@ -205,7 +231,7 @@ def extract_from_snippets(snippets, company_code, company_name):
                         break
 
                 # 工商/换发/核准日期优先（股权转让、整体变更、吸收合并、复合事件）
-                if ev_type in ("股权转让", "整体变更", "吸收合并", "增资及股权转让"):
+                if ev_type in ("股权转让", "整体变更", "吸收合并", "增资及股权转让", "增资"):
                     has_leading_date = re.search(r'\d{4}\s*年\s*\d{1,2}\s*月', m.group(0)) is not None
                     if not has_leading_date or is_proposal_date(m.group(0)):
                         window = text[max(0, m.start() - 150):min(len(text), m.end() + 800)]
@@ -257,6 +283,8 @@ def extract_from_snippets(snippets, company_code, company_name):
                 ctx = text[max(0,m.start()-20):min(len(text),m.end()+100)].replace('\n',' ')[:300]
 
                 for inv in investors:
+                    if is_blocked_record(ev_type, ctx):
+                        continue
                     key = (date_str, inv, ev_type)
                     if key in seen: continue
                     seen.add(key)
