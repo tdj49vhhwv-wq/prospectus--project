@@ -10,6 +10,19 @@
     "pevc_investor_recall": 0.9524,
     "pevc_investor_f1": 0.9412
   },
+  "reproduced_metrics": {
+    "scope": "pevc_investor (frozen parser, Dev 8)",
+    "gold": 42,
+    "auto": 45,
+    "tp": 39,
+    "fp": 6,
+    "fn": 3,
+    "precision": 0.8666666666666667,
+    "recall": 0.9285714285714286,
+    "f1": 0.896551724137931,
+    "reproduced_by": "week9/reproduce_freeze.py",
+    "note": "Original freeze-time investor metrics (P 93.02% / R 95.24% / F1 94.12% = TP 40 / FP 3 / FN 2) used a frozen runtime that was never committed (runtime/markdown_source.py 4c3acb5f and runtime/pg8000.py are lost). Reproducing with the reconstructed runtime (markdown_source.py = current week6 copy cfaec860) yields F1 89.66%; the gap is 4 alias/normalization misses (e.g. 上汽科技 vs SAIC TECHNOLOGIES FUND II, 深圳达晨创程 vs 深圳市达晨创程…) plus 2 parse artifacts."
+  },
   "freeze_rule": {
     "core_event_precision_min": 0.9,
     "core_event_recall_min": 0.9,

@@ -19,6 +19,26 @@ Frozen parser: `stage71_frozen/event_local_pevc.py`
 
 SHA256: `66a80a6f89f2b29de394a26292324db4b8e94f48a823531c2b921b049f2d11df`
 
+### Reproducibility
+
+The freeze-time investor metrics above (P 93.02% / R 95.24% / F1 94.12%) were produced with a frozen runtime that was never committed — `stage71_frozen/runtime/markdown_source.py` (original SHA256 `4c3acb5f`) and `runtime/pg8000.py` are lost.
+
+Re-running the frozen parser today, with the reconstructed runtime (`markdown_source.py` = current `week6/pipeline/markdown_source.py`), reproduces **F1 89.66%** (Gold 42 / Auto 45 / TP 39 / FP 6 / FN 3):
+
+```text
+Precision  : 86.67%
+Recall     : 92.86%
+F1         : 89.66%
+```
+
+One-click reproduction:
+
+```bash
+python3 week9/reproduce_freeze.py
+```
+
+The ~4-point gap vs the original 94.12% is concentrated in four alias/normalization misses (e.g. `上汽科技` ↔ `SAIC TECHNOLOGIES FUND II`, `深圳达晨创程` ↔ `深圳市达晨创程…`) plus two parse artifacts — not a substantive pipeline difference.
+
 ## Formal Blind Run #1
 
 Blind companies:
@@ -59,6 +79,8 @@ The blind result reveals a major generalization gap: precision is high, but reca
 - `blind_run1/blind_eval_details.csv` — TP/FP/FN details
 - `blind_run1/BLIND_RUN_1_EVALUATION.md` — audit and error analysis
 - `evaluate_blind_run1.py` — reproducible evaluator
+- `reproduce_freeze.py` — one-click reproduction of the Dev PE/VC investor metrics
+- `freeze_repro/` — reproduced frozen-parser output + eval (F1 89.66%)
 
 ## Week 10 Boundary
 
