@@ -1,0 +1,35 @@
+{
+  "week": 9,
+  "status": "FROZEN",
+  "freeze_gate": "PASS",
+  "development_set_companies": 8,
+  "metrics": {
+    "core_event_precision": 0.9024,
+    "core_event_recall": 0.925,
+    "pevc_investor_precision": 0.9302,
+    "pevc_investor_recall": 0.9524,
+    "pevc_investor_f1": 0.9412
+  },
+  "freeze_rule": {
+    "core_event_precision_min": 0.9,
+    "core_event_recall_min": 0.9,
+    "pevc_investor_f1_min": 0.9
+  },
+  "frozen_parser": "week9/stage71_frozen/event_local_pevc.py",
+  "frozen_parser_sha256": "66a80a6f89f2b29de394a26292324db4b8e94f48a823531c2b921b049f2d11df",
+  "blind_run_1": {
+    "companies": [
+      "688795",
+      "688802"
+    ],
+    "raw_result_locked": true,
+    "gold_pevc": 161,
+    "auto_pevc": 7,
+    "tp": 7,
+    "fp": 0,
+    "fn": 154,
+    "precision": 1.0,
+    "recall": 0.043478260869565216,
+    "f1": 0.08333333333333333
+  }
+}
