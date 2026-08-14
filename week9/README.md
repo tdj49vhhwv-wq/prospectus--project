@@ -94,6 +94,50 @@ The blind result reveals a major generalization gap: precision is high, but reca
 - `evaluate_blind_run1.py` — reproducible evaluator
 - `reproduce_freeze.py` — one-click reproduction of the Dev PE/VC investor metrics
 - `freeze_repro/` — reproduced frozen-parser output + eval (F1 89.66%)
+- `stage72_postblind/` — Post-Blind Revision Stage 7.2 parser + checksum + freeze manifest
+- `blind_run2/` — Blind Run #2 results + `BLIND_RUN_2_MANIFEST.md`
+- `evaluate_blind_run2.py` — Blind Run #2 evaluator
+- `reproduce_blind_run2.py` — one-click reproduction of Blind Run #2
+
+## Post-Blind Revision — Formal Blind Run #2
+
+Post-Blind Revision unfreezes the pipeline on a **new Stage 7.2 parser**
+(`stage72_postblind/`) while keeping `stage71_frozen/` and `blind_run1/` immutable.
+It reruns the two blind companies as a separately-labeled **Blind Run #2**,
+evaluated against the same frozen gold (`blind_run1/blind_gold.csv`, 161 rows).
+
+### Results (investor-level)
+
+| Metric | Blind Run #1 | Blind Run #2 |
+|---|---:|---:|
+| Gold PE/VC rows | 161 | 161 |
+| Auto PE/VC rows | 7 | 161 |
+| TP | 7 | 161 |
+| FP | 0 | 0 |
+| FN | 154 | 0 |
+| Precision | 100.00% | 100.00% |
+| Recall | 4.35% | 100.00% |
+| F1 | 8.33% | 100.00% |
+
+### Which structural fixes drove the recovery
+
+| Fix | Gap it closed |
+|---|---|
+| Summary-table discovery (`parse_summary_table_investors`) | 沐曦's 7 增资 rounds are a cell-per-line plain-text table; the date is a cell value, not a heading |
+| Pre-IPO syndicate expansion (`parse_syndicate_investors`) | 摩尔线程's 2024-12 round is one sentence: 38 names + `(以下简称"Pre-IPO轮股东")共计38家主体` |
+| Cross-page list reassembly (`_strip_page_junk`) | MinerU page headers/footers/repeated table headers break long lists (沐曦 2025-03 has 65 names) |
+| `和`-safe list splitting (`split_investor_list`) | frozen `split_list` split on `和`, corrupting 8 gold names containing `和` |
+| Employee-platform exclusion (`_employee_platforms`) | 晖泽共广 is `广发信德…的员工跟投持股平台`, which the gold excludes |
+
+### Dev regression (secondary goal)
+
+Stage 7.2 parser on the 8 Dev companies: **investor F1 98.82%** (Gold 42 / Auto 43 /
+TP 42 / FP 1 / FN 0), up from the frozen baseline 96.55%. Two of three frozen FPs
+are fixed (`500万元`, `聚贝投资以人民币1`). The remaining FP `芜湖富海@2015-08` is a
+source-vs-gold discrepancy (the prospectus mermaid itself lists 芜湖富海 in
+2015-08), left as-is — see `stage72_postblind/FREEZE_MANIFEST.md`.
+
+Reproduce: `python3 week9/reproduce_blind_run2.py`.
 
 ## Week 10 Boundary
 
@@ -101,8 +145,8 @@ Week 10 begins with **Post-Blind Revision**. The original Blind Run #1 is never 
 
 Priority revisions:
 
-1. parse report-period equity-change summary tables;
-2. expand long comma-separated institutional subscriber lists;
-3. support group-level aggregate amounts/shares while preserving per-investor identity rows;
-4. add explicit Pre-IPO syndicate expansion;
-5. rerun as `Blind Run #2`, clearly separated from the original frozen result.
+1. ~~parse report-period equity-change summary tables~~ — ✅ `parse_summary_table_investors`;
+2. ~~expand long comma-separated institutional subscriber lists~~ — ✅ `split_investor_list` (`和`-safe);
+3. ~~support group-level aggregate amounts/shares while preserving per-investor identity rows~~ — ✅ aggregate rows keep per-name identity with null amounts;
+4. ~~add explicit Pre-IPO syndicate expansion~~ — ✅ `parse_syndicate_investors`;
+5. ~~rerun as `Blind Run #2`, clearly separated from the original frozen result~~ — ✅ `blind_run2/` (see above).
