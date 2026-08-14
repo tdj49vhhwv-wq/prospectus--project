@@ -1,0 +1,124 @@
+{
+  "overall": {
+    "gold_investor_rows": 108,
+    "auto_investor_rows": 249,
+    "matched_investor_rows": 43,
+    "investor_recall": 0.39814814814814814,
+    "investor_precision": 0.17269076305220885,
+    "amount_accuracy": 0.1388888888888889,
+    "shares_accuracy": 0.0,
+    "price_accuracy": 0.0,
+    "auto_missing_amount_rate": 0.14457831325301204,
+    "auto_missing_shares_rate": 0.7188755020080321,
+    "auto_missing_price_rate": 0.9196787148594378
+  },
+  "by_company": {
+    "001282": {
+      "gold_investor_rows": 15,
+      "auto_investor_rows": 52,
+      "matched_investor_rows": 10,
+      "investor_recall": 0.6666666666666666,
+      "investor_precision": 0.19230769230769232,
+      "amount_accuracy": 0.1,
+      "shares_accuracy": null,
+      "price_accuracy": null,
+      "auto_missing_amount_rate": 0.019230769230769232,
+      "auto_missing_shares_rate": 0.9423076923076923,
+      "auto_missing_price_rate": 1.0
+    },
+    "301563": {
+      "gold_investor_rows": 24,
+      "auto_investor_rows": 98,
+      "matched_investor_rows": 12,
+      "investor_recall": 0.5,
+      "investor_precision": 0.12244897959183673,
+      "amount_accuracy": 0.1,
+      "shares_accuracy": null,
+      "price_accuracy": 0.0,
+      "auto_missing_amount_rate": 0.11224489795918367,
+      "auto_missing_shares_rate": 0.5,
+      "auto_missing_price_rate": 1.0
+    },
+    "301581": {
+      "gold_investor_rows": 13,
+      "auto_investor_rows": 22,
+      "matched_investor_rows": 3,
+      "investor_recall": 0.23076923076923078,
+      "investor_precision": 0.13636363636363635,
+      "amount_accuracy": 1.0,
+      "shares_accuracy": null,
+      "price_accuracy": null,
+      "auto_missing_amount_rate": 0.18181818181818182,
+      "auto_missing_shares_rate": 0.7727272727272727,
+      "auto_missing_price_rate": 1.0
+    },
+    "603418": {
+      "gold_investor_rows": 19,
+      "auto_investor_rows": 18,
+      "matched_investor_rows": 1,
+      "investor_recall": 0.05263157894736842,
+      "investor_precision": 0.05555555555555555,
+      "amount_accuracy": 0.0,
+      "shares_accuracy": 0.0,
+      "price_accuracy": 0.0,
+      "auto_missing_amount_rate": 0.2777777777777778,
+      "auto_missing_shares_rate": 1.0,
+      "auto_missing_price_rate": 0.8888888888888888
+    },
+    "688758": {
+      "gold_investor_rows": 24,
+      "auto_investor_rows": 17,
+      "matched_investor_rows": 13,
+      "investor_recall": 0.5416666666666666,
+      "investor_precision": 0.7647058823529411,
+      "amount_accuracy": 0.0,
+      "shares_accuracy": null,
+      "price_accuracy": 0.0,
+      "auto_missing_amount_rate": 0.7058823529411765,
+      "auto_missing_shares_rate": 0.35294117647058826,
+      "auto_missing_price_rate": 1.0
+    },
+    "688775": {
+      "gold_investor_rows": 5,
+      "auto_investor_rows": 5,
+      "matched_investor_rows": 1,
+      "investor_recall": 0.2,
+      "investor_precision": 0.2,
+      "amount_accuracy": 1.0,
+      "shares_accuracy": null,
+      "price_accuracy": null,
+      "auto_missing_amount_rate": 0.0,
+      "auto_missing_shares_rate": 1.0,
+      "auto_missing_price_rate": 1.0
+    },
+    "920100": {
+      "gold_investor_rows": 5,
+      "auto_investor_rows": 35,
+      "matched_investor_rows": 3,
+      "investor_recall": 0.6,
+      "investor_precision": 0.08571428571428572,
+      "amount_accuracy": 1.0,
+      "shares_accuracy": 0.0,
+      "price_accuracy": 0.0,
+      "auto_missing_amount_rate": 0.02857142857142857,
+      "auto_missing_shares_rate": 0.9428571428571428,
+      "auto_missing_price_rate": 0.4857142857142857
+    },
+    "920116": {
+      "gold_investor_rows": 3,
+      "auto_investor_rows": 2,
+      "matched_investor_rows": 0,
+      "investor_recall": 0.0,
+      "investor_precision": 0.0,
+      "amount_accuracy": null,
+      "shares_accuracy": null,
+      "price_accuracy": null,
+      "auto_missing_amount_rate": 1.0,
+      "auto_missing_shares_rate": 1.0,
+      "auto_missing_price_rate": 1.0
+    }
+  },
+  "match_options": {
+    "relax_gold_day_to_month": true
+  }
+}

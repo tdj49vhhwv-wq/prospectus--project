@@ -1,0 +1,43 @@
+{
+  "protocol": {
+    "scope": "PE/VC-focused institutional investors",
+    "evidence_source": "data/gold_standard/融资事件总表.jsonl",
+    "included_type_patterns": [
+      "PE",
+      "VC",
+      "CVC",
+      "产业资本",
+      "战略投资",
+      "战略资本",
+      "券商直投",
+      "政府引导基金",
+      "国有资本",
+      "创投",
+      "私募"
+    ],
+    "excluded_type_patterns": [
+      "自然人",
+      "控股股东",
+      "实际控制人",
+      "员工持股平台",
+      "其他"
+    ],
+    "entity_normalization": "auditable alias map + conservative institution containment",
+    "date_match": "same year-month on dev set",
+    "source_details": "week9/stage3/investor_eval/investor_eval_details.csv"
+  },
+  "overall": {
+    "gold_pevc_investors": 42,
+    "auto_pevc_investors": 8,
+    "matched": 5,
+    "precision": 0.625,
+    "recall": 0.11904761904761904,
+    "f1": 0.19999999999999998,
+    "amount_accuracy": 0.0,
+    "amount_missing_rate_matched": 1.0,
+    "shares_accuracy": 0.0,
+    "shares_missing_rate_matched": 0.6,
+    "price_accuracy": 0.0,
+    "price_missing_rate_matched": 1.0
+  }
+}

@@ -1,0 +1,634 @@
+"""
+从 Markdown 源跑完整 pipeline — 8家公司 subscription_flow 提取
+"""
+import sys, json, re, os
+from pathlib import Path
+from datetime import datetime
+from collections import defaultdict
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from markdown_source import make_located_data
+
+import pg8000
+DB_CONFIG = {
+    'host': os.environ.get('DB_HOST', ''),
+    'port': int(os.environ.get('DB_PORT', '5433')),
+    'database': os.environ.get('DB_NAME', 'student'),
+    'user': os.environ.get('DB_USER', ''),
+    'password': os.environ.get('DB_PASSWORD', ''),
+}
+
+COMPANIES = [
+    ("001282", "三联锻造"), ("301563", "云汉芯城"), ("301581", "黄山谷捷"),
+    ("603418", "友升股份"), ("688758", "赛分科技"), ("688775", "影石创新"),
+    ("920100", "三协电机"), ("920116", "星图测控"),
+]
+
+COMPANY_NAMES = {
+    **dict(COMPANIES),
+    # Week 9 新公司候选层 A（只读支线，不含盲测两家 688795/688802）
+    "688411": "海博思创", "688545": "兴福电子", "688583": "思看科技",
+    "688727": "恒坤新材", "688729": "屹唐股份", "688755": "汉邦科技",
+    "688757": "胜科纳米", "688759": "必贝特", "688765": "禾元生物",
+    "688783": "西安奕材", "688790": "昂瑞微", "688796": "百奥赛图",
+    "688805": "健信超导", "688807": "优迅股份", "688809": "强一股份",
+}
+
+# 完整正则模式（Week7 成果）
+PATTERNS = [
+    # 定向发行
+    (r'(?:(\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日)|(\d{4}\s*年\s*\d{1,2}\s*月)).*?'
+     r'股票定向发行.*?发行价格[为：:]?\s*(\d+\.?\d*)\s*元/股.*?'
+     r'发行普通股\s*(\d+[\d,]*\.?\d*)\s*万股.*?'
+     r'募集资金总额[为：:]?\s*(\d+[\d,]*\.?\d*)\s*万元', '增资'),
+    # 验收报告
+    (r'截至\s*(\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日).*?'
+     r'已收到\s*(.+?)\s*缴纳的出资款\s*(\d+[\d,]*\.?\d*)\s*万元', '增资'),
+    # 出资XX万
+    (r'([一-龥]{2,30}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|集团|中心|管理)?)\s*'
+     r'(?:以(?:货币|现金|实物|机器设备|土地使用权)方式)?出资\s*'
+     r'([\d,]+\.?\d*)\s*万(?:元|美元)', '增资'),
+    # 认购XX万股
+    (r'([一-龥]{2,30}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|中心|管理)?)\s*'
+     r'认购\s*([\d,]+\.?\d*)\s*万股?\s*[（(]\s*([\d,]+\.?\d*)\s*万元\s*[)）]', '增资'),
+    # 认缴新增资本
+    (r'([一-龥A-Za-z]{2,40}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|FUND)?)\s*'
+     r'以(?:现金|货币)\s*([\d,]+\.?\d*)\s*万(?:元|美元)\s*认缴', '增资'),
+    # 共同增资/增至
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,80}?(?:共同)?增资\s*([\d,]+\.?\d*)\s*万元.*?'
+     r'注册资本[增至为:：]*\s*([\d,]+\.?\d*)\s*万元', '增资'),
+    # 新增注册资本
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?(?:新增|增加)注册资本\s*([\d,]+\.?\d*)\s*万(?:元|美元)', '增资'),
+    # 整体变更折股
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日).*?整体变更.*?折[成为合]\s*([\d,]+\.?\d*)\s*万股?', '整体变更'),
+    # 设立：发行人基本信息表中的“有限公司成立日期”（限定发行人自身）
+    (r'(?:有限公司)\s*成立日期\s*[:：]?\s*(\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日)', '设立'),
+    # 设立：正文表述“公司/有限成立于”
+    (r'(?:发行人|本公司|公司|有限|有限公司)成立于\s*[:：]?\s*(\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日)', '设立'),
+    # 吸收合并
+    (r'吸收合并\s*([一-龥]{2,30}(?:有限|公司)).*?注册资本.*?(?:变更为|增至)\s*([\d,]+\.?\d*)\s*万元', '吸收合并'),
+    # 股权转让
+    (r'([一-龥]{2,30}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资)?)\s*将\s*([\d.]+)\s*万元.*?转让予\s*([一-龥]{2,30}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资)?)', '股权转让'),
+    # 转让予/转让给
+    (r'([一-龥]{2,30})\s*(?:向|予|给)\s*([一-龥]{2,30}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资)?)\s*转让.*?([\d,]+\.?\d*)\s*万(?:元|美元)', '股权转让'),
+    # 资本公积转增
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*日).*?(?:资本公积|股票发行溢价).*?每\s*10\s*股\s*转增\s*(\d+\.?\d*)\s*股.*?转增\s*(\d+[\d,]*\.?\d*)\s*万股', '资本公积转增'),
+    # 员工持股平台
+    (r'([一-龥]+(?:合伙企业|管理中心|投资中心)[（(]有限合伙[)）])\s*(?:以货币方式)?(?:认缴)?出资\s*([\d,]+\.?\d*)\s*万元', '员工持股平台出资'),
+    # 增资：注册资本由X万元增至Y万元
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?注册资本由\s*[\d,]+\.?\d*\s*万元增至\s*([\d,]+\.?\d*)\s*万元', '增资'),
+    # 增资：第N次增资X万元，注册资本增至Y
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,30}?第[一二三四五六七八九十]+次增资[^。；]{0,80}?([\d,]+\.?\d*)\s*万元[^。；]{0,200}?注册资本[增至为:：]*\s*([\d,]+\.?\d*)\s*万元', '增资'),
+    # 增资：增资至X万元
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,80}?增资至\s*([\d,]+\.?\d*)\s*万元', '增资'),
+    # 增资：股本总额增至X万股
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?股本总额增至\s*([\d,]+\.?\d*)\s*万股', '增资'),
+    # 增资：增加注册资本X万元（允许注/册/资/本间换行）
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?增加注\s*册\s*资\s*本\s*([\d,]+\.?\d*)\s*万元', '增资'),
+    # 增资：认购（上述）新增股份X万股
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?认购(?:上述)?新增股份\s*([\d,]+\.?\d*)\s*万股', '增资'),
+    # 增资：增发股份X股
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?增发股份\s*([\d,]+\.?\d*)\s*股', '增资'),
+    # 增资：有限（公司）设立 + 注册资本（设立出资口径）
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?(?:有限(?:公司)?|有限公司)设立.*?注册资本[为：:]?\s*([\d,]+\.?\d*)\s*万元', '增资'),
+    # 增资：名称预先登记核准
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?名称预先登记核准', '增资'),
+    # 增资：认缴出资X万元
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?认缴出资\s*([\d,]+\.?\d*)\s*万元', '增资'),
+    # 复合事件：增资及股权转让
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,15}?(?:第[一二三四五六七八九十]+次增资[^。；]{0,400}?转\s*让(?:予|给)|第[一二三四五六七八九十]+次股权转让及增资|增加注册资本暨[^。；]{0,200}?股权转让|增资和[^。；]{0,200}?股权转让|股权转让及增资|增资及股权转让)', '增资及股权转让'),
+    # 整体变更：折合股本/股本总额（日期在前）
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；\]]{0,200}?整体变更[^。；\]]{0,300}?(?:股本总额|折合股本)\s*([\d,]+\.?\d*)\s*万股?', '整体变更'),
+    # 整体变更：折股X股
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,200}?折股[^。；]{0,120}?([\d,]+\.?\d*)\s*股', '整体变更'),
+    # 整体变更：办理完毕工商变更登记
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月).*?整体变更.*?办理完毕.*?工商变更登记', '整体变更'),
+    # 整体变更：折合股本X万元 + 核准/备案登记日（日期在后）
+    (r'折合股本\s*([\d,]+\.?\d*)\s*万元.*?(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?).*?(?:核准|备案登记|登记注册|领取)', '整体变更'),
+    # 股权转让：零对价转让给
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,150}?将其所\s*持.*?股权以零对价.*?转\s*让\s*给\s*([\s一-龥A-Za-z]{2,40})', '股权转让'),
+    # 股权转让：以人民币0元的价格转让给
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,150}?将其持\s*有\s*的.*?以人民币0\s*元的价格转\s*让\s*给\s*([\s一-龥A-Za-z]{2,40})', '股权转让'),
+    # 股权转让：以X万元的对价向Y转让股本
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,70}?([\s一-龥A-Za-z]{2,40}?)\s*以([\d,]+\.?\d*)\s*万元(?:的对价)?向\s*([\s一-龥A-Za-z]{2,40}?)\s*转\s*让(?:股本|股权|股份)', '股权转让'),
+    # 股权转让：X%股权转让予
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,150}?将其持\s*有\s*的.*?(\d+(?:\.\d+)?)%\s*股权.*?转\s*让\s*予\s*([\s一-龥]{2,20})', '股权转让'),
+    # 股权转让：X%股权分别转让予（多受让方名单）
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,150}?将其(?:各自)?持\s*有\s*的.*?(\d+(?:\.\d+)?)%\s*股权.*?分别转\s*让\s*予\s*([\s一-龥、]{2,40}?)', '股权转让'),
+    # 增资：设立出资（有限/公司设立 + 注册资本）
+    (r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)[^。；]{0,150}?(?:出资)?设立[^。；]{0,60}?(?:有限|公司|股份)[^。；]{0,220}?注册资本[为：:]?\s*([\d,]+\.?\d*)\s*万元', '增资'),
+]
+
+# 每条规则的捕获组字段角色（与 PATTERNS 一一对应）：
+# None=忽略；"amount"=认缴/出资/转让金额（万元）；"shares"=股数（万股）；
+# "price"=每股价格（元/股）；("shares","股")=股数单位是“股”，需换算为万股。
+PATTERN_FIELD_ROLES = [
+    (None, None, "price", "shares", "amount"),   # 0 定向发行
+    (None, None, "amount"),                      # 1 验收报告
+    (None, "amount"),                            # 2 出资XX万
+    (None, "shares", "amount"),                  # 3 认购XX万股（X万元）
+    (None, "amount"),                            # 4 认缴新增资本
+    (None, "amount", None),                      # 5 共同增资/增至
+    (None, "amount"),                            # 6 新增注册资本
+    (None, "shares"),                            # 7 整体变更折股
+    (None,),                                     # 8 有限公司成立日期
+    (None,),                                     # 9 公司成立于
+    (None, None),                                # 10 吸收合并
+    (None, "amount", None),                      # 11 股权转让
+    (None, None, "amount"),                      # 12 转让予/转让给
+    (None, None, "shares"),                      # 13 资本公积转增
+    (None, "amount"),                            # 14 员工持股平台出资
+    (None, None),                                # 15 注册资本由X增至Y
+    (None, "amount", None),                      # 16 第N次增资
+    (None, None),                                # 17 增资至X万元
+    (None, None),                                # 18 股本总额增至X万股
+    (None, "amount"),                            # 19 增加注册资本X万元
+    (None, "shares"),                            # 20 认购新增股份X万股
+    (None, ("shares", "股")),                    # 21 增发股份X股
+    (None, "amount"),                            # 22 有限设立+注册资本
+    (None,),                                     # 23 名称预先登记核准
+    (None, "amount"),                            # 24 认缴出资X万元
+    (None,),                                     # 25 复合事件
+    (None, None),                                # 26 整体变更折合股本/股本总额
+    (None, ("shares", "股")),                    # 27 整体变更折股X股
+    (None,),                                     # 28 办理完毕工商变更登记
+    (None, None),                                # 29 折合股本X万元+登记日
+    (None, None),                                # 30 零对价转让给
+    (None, None),                                # 31 以0元价格转让给
+    (None, None, "amount", None),                # 32 以X万元对价向Y转让
+    (None, None, None),                          # 33 X%股权转让予
+    (None, None, None),                          # 34 X%股权分别转让予
+    (None, "amount"),                            # 35 设立出资
+]
+
+EVENT_TYPE_CODES = {
+    "增资": "A", "整体变更": "B", "增资及股权转让": "C", "股权转让": "D",
+    "设立": "E", "资本公积转增": "F", "吸收合并": "G", "员工持股平台出资": "J",
+}
+
+
+def build_pattern_registry():
+    """给每条规则生成稳定的 rule_id（类型码 + 组内序号）。"""
+    counts = {}
+    registry = []
+    for i, (pattern, ev_type) in enumerate(PATTERNS):
+        code = EVENT_TYPE_CODES.get(ev_type, "X")
+        counts[ev_type] = counts.get(ev_type, 0) + 1
+        roles = PATTERN_FIELD_ROLES[i]
+        registry.append((pattern, ev_type, f"{code}{counts[ev_type]:02d}", roles))
+    return registry
+
+
+PATTERN_REGISTRY = build_pattern_registry()
+
+
+def normalize_date(date_str):
+    m = re.match(r'(\d{4})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日', date_str)
+    if m: return f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
+    m = re.match(r'(\d{4})\s*年\s*(\d{1,2})\s*月', date_str)
+    if m: return f"{m.group(1)}-{int(m.group(2)):02d}"
+    m = re.match(r'(\d{4})-(\d{1,2})-(\d{1,2})', date_str)
+    if m: return f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
+    return date_str.strip() if date_str else ''
+
+
+REGISTRATION_KEYWORDS = (
+    "工商变更登记", "变更登记", "换发", "核准", "登记手续", "工商登记",
+    "备案", "取得", "营业执照",
+)
+
+
+def prefer_registration_date(text, fallback):
+    """在给定窗口内优先取其后紧跟工商/换发/核准等登记动作的日期。"""
+    best = None
+    for m in re.finditer(r'(\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?)', text):
+        ctx = text[m.end():m.end() + 40]
+        if any(kw in ctx for kw in REGISTRATION_KEYWORDS):
+            best = m.group(1)
+            break
+    return normalize_date(best) if best else fallback
+
+
+def is_proposal_date(text):
+    """首段日期是否为批复/股东会/决议/协议等“提议型”日期。"""
+    m0 = re.search(r'\d{4}\s*年\s*\d{1,2}\s*月(?:\s*\d{1,2}\s*日)?', text)
+    if not m0:
+        return False
+    ctx = text[m0.end():m0.end() + 40]
+    return any(kw in ctx for kw in ("批复", "股东会", "决议", "签署", "协议",
+                                    "审计报告", "评估报告", "会计师", "董事会",
+                                    "缴纳", "申请", "股东决定", "审计"))
+
+
+def classify(name):
+    if not name or len(name) < 2: return '其他'
+    if re.search(r'(政府|引导|国有|国家)', name): return '政府基金'
+    if re.search(r'(有限|合伙|基金|创投|投资|中心|资本|达晨|高瓴|启明|IDG|深创投|东方富海|复星|国科|华泰|聚贝|金浦|杉|EARN|QM|CASREV)', name): return 'PE'
+    if re.match(r'^[A-Z][A-Za-z0-9\s&]{2,30}$', name): return '外资基金'
+    if re.match(r'^[一-龥]{2,4}$', name): return '自然人'
+    return '其他'
+
+
+def stable_unique_names(names, limit=None):
+    """Return cleaned unique names in deterministic Unicode sort order."""
+    unique_names = sorted({name.strip() for name in names if len(name.strip()) >= 2})
+    return unique_names if limit is None else unique_names[:limit]
+
+
+def _norm_investor_name(name):
+    """投资人名规范化：去空白、全角括号转半角、去尾部标点。"""
+    s = str(name or "").strip().upper()
+    s = re.sub(r"[\s\u3000]+", "", s)
+    return s.replace("（", "(").replace("）", ")").strip("，。；、,;")
+
+
+def dedupe_records_by_entity(records):
+    """实体规范化去重：归一化投资人名后合并同字段重复行。"""
+    seen = set()
+    out = []
+    for r in records:
+        key = (r["subscription_date"], r["event_context"],
+               _norm_investor_name(r["subscriber_name"]),
+               r["amount_subscribed"], r["shares_subscribed"], r["price_per_share"])
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(r)
+    return out
+
+
+NON_INVESTOR_TOKENS = (
+    "法定代表人", "注册地址", "经营范围", "执行事务合伙人", "注册资本", "实收资本",
+    "出资额", "出资比例", "成立日期", "注销日期", "统一社会信用代码", "企业类型",
+    "主要生产经营地", "办公地址", "负责人", "营业执照", "证券代码", "股份总数",
+    "招股说明书", "审计报告", "验资报告", "董事会", "股东会", "本次", "上述", "合计",
+    "总计", "截至", "序号", "股东名称", "股权比例", "募集资金", "发行价格", "每股",
+    "单位", "小计", "发行新股", "送股", "转增", "发行", "以及", "备注", "新增股东",
+    "万元", "万股", "元/股", "元/注册资本", "出资", "认缴", "成立", "日期",
+    "有限公司成立日期", "股份公司成立日期", "股份公司设立日期", "整体变更设立日期",
+    "企业名称", "公司名称", "发行人名称", "住所", "邮政编码",
+    "股权结构如下", "并取得了由", "新增股份的认购价格为", "认购价格", "换发",
+)
+
+HTML_TAG_TOKENS = {
+    "table", "td", "tr", "th", "thead", "tbody", "tfoot", "col", "colgroup",
+    "rowspan", "colspan", "style", "width", "height", "border", "align",
+    "valign", "caption", "summary", "abbr", "axis", "headers", "scope",
+    "cellpadding", "cellspacing", "bgcolor", "background", "class", "id",
+    "href", "src", "alt", "title", "img", "svg", "div", "span", "html",
+}
+
+
+def is_valid_investor_name(name: str) -> bool:
+    """过滤明显非投资人实体名。"""
+    if not name or len(name.strip()) < 2:
+        return False
+    if name.strip().lower() in HTML_TAG_TOKENS:
+        return False
+    if re.fullmatch(r"[\d\s,.\-%/]+", name):
+        return False
+    if any(tok in name for tok in NON_INVESTOR_TOKENS):
+        return False
+    if name in ("公司", "有限", "发行人", "本公司", "（待识别）"):
+        return False
+    return True
+
+
+BLOCKED_PHRASES_GLOBAL = (
+    "瑞安市", "三连零部件", "深圳三协", "第一美亚", "补充协议",
+    "员工股权激励方案", "个人所得税", "完税证明", "整体变更设立日期",
+    "设立北京岚锋",
+)
+BLOCKED_PHRASES_A = ("净资产折股", "评估", "股份总数", "长期股权投资", "追溯评估", "整体变更", "股权转让")
+BLOCKED_PHRASES_F = ("验资报告",)
+
+
+def is_blocked_record(event_context: str, evidence_text: str) -> bool:
+    """过滤明显非发行人主体/非目标事件（范围外历史、子公司、境外代持等）。"""
+    text = evidence_text or ""
+    if any(p in text for p in BLOCKED_PHRASES_GLOBAL):
+        return True
+    if "昆山谷捷" in text and "谷捷有限" not in text:
+        return True
+    if event_context == "增资" and any(p in text for p in BLOCKED_PHRASES_A):
+        return True
+    if event_context == "资本公积转增" and any(p in text for p in BLOCKED_PHRASES_F):
+        return True
+    return False
+
+
+_MERMAID_BOUNDARY = re.compile(r'"\]\s*-->\s*[A-Za-z0-9_]+\["')
+
+
+def _event_context_window(text: str, m: re.Match, before: int = 20, after: int = 100) -> str:
+    """取匹配所在节点/段落的证据窗口。
+
+    若窗口跨过 mermaid 节点边界，截断到本节点内，避免下一节点的“整体变更”
+    等表述误伤当前事件的过滤判定。
+    """
+    start = max(0, m.start() - before)
+    end = min(len(text), m.end() + after)
+    ctx = text[start:end]
+    boundary = _MERMAID_BOUNDARY.search(ctx)
+    if boundary:
+        ctx = ctx[:boundary.start() + 2]
+    return ctx.replace("\n", " ")[:300]
+
+
+def extract_from_snippets(snippets, company_code, company_name):
+    """从文本片段提取订阅事件"""
+    records = []
+    seen = set()
+
+    for idx, snippet in enumerate(snippets):
+        text = snippet['text']
+        page = snippet['pdf_page']
+        next_text = snippets[idx + 1]['text'][:1500] if idx + 1 < len(snippets) else ''
+
+        for pattern, ev_type, rule_id, field_roles in PATTERN_REGISTRY:
+            for m in re.finditer(pattern, text, re.DOTALL):
+                groups = m.groups()
+
+                # 提取日期
+                date_str = ''
+                for g in groups:
+                    if g and re.search(r'\d{4}\s*年', str(g)):
+                        date_str = normalize_date(g)
+                        break
+
+                # 工商/换发/核准日期优先（股权转让、整体变更、吸收合并、复合事件）
+                if ev_type in ("股权转让", "整体变更", "吸收合并", "增资及股权转让", "增资"):
+                    has_leading_date = re.search(r'\d{4}\s*年\s*\d{1,2}\s*月', m.group(0)) is not None
+                    # 增资类只在“提议型日期 + 有工商登记日”时升级；无日期的出资行保持候选
+                    if ev_type == "增资":
+                        apply_pref = has_leading_date and is_proposal_date(m.group(0))
+                    else:
+                        apply_pref = not has_leading_date or is_proposal_date(m.group(0))
+                    if apply_pref:
+                        window = text[max(0, m.start() - 150):min(len(text), m.end() + 800)]
+                        if ev_type == "整体变更" and next_text:
+                            window = window + "\n" + next_text
+                        date_str = prefer_registration_date(window, date_str)
+
+                # 字段映射：按规则声明的捕获组角色取金额/股数/价格
+                amount = shares = price = None
+                for g, role in zip(groups, field_roles):
+                    if not g: continue
+                    if re.search(r'[年月日]', str(g)): continue
+                    val = str(g).replace(',', '').strip()
+                    if not re.match(r'^[\d.]+$', val): continue
+                    try:
+                        num = float(val)
+                    except ValueError:
+                        continue
+                    if isinstance(role, tuple):
+                        role, unit = role
+                    else:
+                        unit = None
+                    if role == "amount":
+                        amount = num
+                    elif role == "shares":
+                        shares = num / 10000 if unit == "股" else num
+                    elif role == "price":
+                        price = num
+
+                # 补充价格：窗口内显式的“认购价格/发行价格 X 元/股”
+                if price is None:
+                    win = text[max(0, m.start() - 120):min(len(text), m.end() + 240)]
+                    pm = re.search(r'(?:认购价格|发行价格|每股价格|股份价格)[为：:]\s*([\d,]+\.?\d*)\s*元/股', win)
+                    if pm:
+                        try:
+                            price = float(pm.group(1).replace(',', ''))
+                        except ValueError:
+                            pass
+
+                # 提取投资人
+                if ev_type == "股权转让":
+                    # 股权转让只取“转让给/转让予/向…转让”后的受让方，避免把转出方和背景文本混入
+                    tail = text[m.start():min(len(text), m.end() + 160)]
+                    m_tr = re.search(r'分别转\s*让\s*予\s*([^。；]{2,200})', tail)
+                    if not m_tr:
+                        m_tr = re.search(r'转\s*让\s*(?:给|予)\s*([^。；]{2,200})', tail)
+                    chunk = m_tr.group(1) if m_tr else ""
+                    if not chunk:
+                        m_xiang = re.search(r'向\s*([\s一-龥A-Za-z]{2,40}?)\s*转\s*让', tail)
+                        chunk = m_xiang.group(1) if m_xiang else ""
+                    chunk = chunk.replace('\n', '')
+                    investors = stable_unique_names(
+                        [n for n in re.findall(r'[一-龥A-Za-z]{2,40}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|集团|中心|管理)?', chunk)
+                         if is_valid_investor_name(n)],
+                        limit=10,
+                    )
+                else:
+                    investors = re.findall(
+                        r'([一-龥A-Za-z]{2,30}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|集团|中心|管理|FUND)?)',
+                        text[m.start():min(m.end()+300, len(text))]
+                    )
+                # 过滤非投资人（明显非实体 + 非发行人主体）
+                investors = stable_unique_names(
+                    [i for i in investors if is_valid_investor_name(i)],
+                    limit=8,
+                )
+
+                if not investors:
+                    investors = ['（待识别）']
+
+                ctx = _event_context_window(text, m)
+
+                for inv in investors:
+                    if is_blocked_record(ev_type, ctx):
+                        continue
+                    key = (date_str, inv, ev_type)
+                    if key in seen: continue
+                    seen.add(key)
+
+                    validated = bool(date_str) and inv != "（待识别）"
+
+                    records.append({
+                        "event_id": f"{company_code}_{date_str.replace('-','')}_{ev_type}_{len(records):03d}",
+                        "company_name": company_name,
+                        "stock_code": company_code,
+                        "subscription_date": date_str,
+                        "subscriber_name": inv[:200],
+                        "shares_subscribed": shares,
+                        "amount_subscribed": amount,
+                        "price_per_share": price,
+                        "event_context": ev_type,
+                        "investor_type": classify(inv),
+                        "source_page": f"MD p{page}",
+                        "evidence_text": ctx[:500],
+                        "data_source": "markdown_extracted",
+                        "extraction_method": "regex_from_md",
+                        "rule_id": rule_id,
+                        "processing_status": "extracted",
+                        "validation_status": "validated" if validated else "candidate",
+                        "confidence": "high" if validated else "low",
+                        "extracted_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    })
+
+    return records
+
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Markdown 候选管线")
+    parser.add_argument("--companies", nargs="*", default=None,
+                        help="公司代码列表（默认 8 家开发集）")
+    parser.add_argument("--out", default="auto_output_md", help="输出目录")
+    parser.add_argument("--no-db", action="store_true", help="跳过数据库写入")
+    args = parser.parse_args()
+
+    companies = COMPANIES
+    if args.companies:
+        companies = [(c, COMPANY_NAMES.get(c, c)) for c in args.companies]
+
+    all_results = {}
+    all_candidates = {}
+    all_validated = {}
+
+    for code, name in companies:
+        print(f"\n{'='*50}")
+        print(f"📄 {name} ({code})")
+        located = make_located_data(code, name)
+        if not located:
+            print(f"  ⚠ markdown不可用，跳过")
+            continue
+
+        snippets = located['pevc_snippets']
+        print(f"  {len(snippets)} 个文本段落")
+
+        records = extract_from_snippets(snippets, code, name)
+
+        # 确定性去重：同 (日期, 类型, 投资人, 金额, 股数) 只保留首条
+        dedup_seen = set()
+        deduped = []
+        for r in records:
+            dk = (r["subscription_date"], r["event_context"], r["subscriber_name"],
+                  r["amount_subscribed"], r["shares_subscribed"])
+            if dk in dedup_seen:
+                continue
+            dedup_seen.add(dk)
+            deduped.append(r)
+        records = sorted(deduped, key=lambda r: (r["subscription_date"], r["event_context"],
+                                                 r["subscriber_name"]))
+        records = dedupe_records_by_entity(records)
+        records = sorted(records, key=lambda r: (r["subscription_date"], r["event_context"],
+                                                 r["subscriber_name"]))
+
+        # 同事件去重：
+        # 1) 同月已有复合事件 C 时，丢弃同月 A（同一披露拆出的重复）
+        # 2) 同月同时存在月粒度与日粒度 A 时，保留月粒度（经 relax 匹配 Gold）
+        c_months = {r["subscription_date"][:7] for r in records if r["event_context"] == "增资及股权转让"}
+        b_day_months = {r["subscription_date"][:7] for r in records
+                        if r["event_context"] == "整体变更" and len(r["subscription_date"]) > 7}
+        a_day_months = {r["subscription_date"][:7] for r in records
+                        if r["event_context"] == "增资" and len(r["subscription_date"]) > 7}
+        a_month_exists = {r["subscription_date"][:7] for r in records
+                          if r["event_context"] == "增资" and len(r["subscription_date"]) <= 7}
+        kept = []
+        for r in records:
+            if r["event_context"] == "增资":
+                ym = r["subscription_date"][:7]
+                if ym in c_months:
+                    continue
+                if len(r["subscription_date"]) > 7 and ym in a_month_exists:
+                    continue
+            if r["event_context"] == "整体变更" and len(r["subscription_date"]) <= 7 \
+                    and r["subscription_date"][:7] in b_day_months:
+                continue
+            kept.append(r)
+        records = kept
+
+        candidates = [r for r in records if r["validation_status"] == "candidate"]
+        validated = [r for r in records if r["validation_status"] == "validated"]
+        print(f"  ✅ 候选 {len(records)} 条 / validated {len(validated)} 条")
+
+        # 按类型统计
+        from collections import Counter
+        types = Counter(r['event_context'] for r in records)
+        for t, c in types.most_common():
+            print(f"    {t}: {c}")
+
+        all_results[code] = records
+        all_candidates[code] = records
+        all_validated[code] = validated
+
+    # 写 JSONL（candidate 与 validated 分目录）+ 入库（仅 validated）
+    output_dir = Path(args.out)
+    output_dir.mkdir(exist_ok=True)
+    candidate_dir = output_dir / "candidate"
+    validated_dir = output_dir / "validated"
+    final_dir = output_dir / "final"
+    candidate_dir.mkdir(exist_ok=True)
+    validated_dir.mkdir(exist_ok=True)
+    final_dir.mkdir(exist_ok=True)
+
+    grand_total = 0
+    validated_total = 0
+    for code, records in all_results.items():
+        candidate_path = candidate_dir / f"{code}_subscription_flow.jsonl"
+        with open(candidate_path, 'w', encoding='utf-8') as f:
+            for r in records:
+                f.write(json.dumps(r, ensure_ascii=False) + '\n')
+        validated_path = validated_dir / f"{code}_subscription_flow.jsonl"
+        with open(validated_path, 'w', encoding='utf-8') as f:
+            for r in all_validated[code]:
+                f.write(json.dumps(r, ensure_ascii=False) + '\n')
+        # final 层：当前与 validated 内容一致，作为稳定快照层
+        final_path = final_dir / f"{code}_subscription_flow.jsonl"
+        with open(final_path, 'w', encoding='utf-8') as f:
+            for r in all_validated[code]:
+                f.write(json.dumps(r, ensure_ascii=False) + '\n')
+        grand_total += len(records)
+        validated_total += len(all_validated[code])
+
+    # 尝试入库（新公司候选层默认 --no-db）
+    if not args.no_db:
+        try:
+            conn = pg8000.connect(**DB_CONFIG)
+            cur = conn.cursor()
+            cur.execute("DELETE FROM zbq_subscription_flow WHERE extraction_method = 'regex_from_md'")
+            inserted = 0
+            for records in all_validated.values():
+                for r in records:
+                    try:
+                        cur.execute("""
+                            INSERT INTO zbq_subscription_flow
+                                (event_id, company_name, stock_code, event_type, event_date,
+                                 investor_name, investor_type,
+                                 subscription_qty_wan, subscription_amount_wan, subscription_price,
+                                 pdf_page, evidence_text, extraction_method, review_status)
+                            VALUES (%s,%s,%s,%s,%s, %s,%s, %s,%s,%s, %s,%s,%s,%s)
+                        """, (
+                            r['event_id'], r['company_name'], r['stock_code'],
+                            r['event_context'], r['subscription_date'],
+                            r['subscriber_name'], r['investor_type'],
+                            r['shares_subscribed'], r['amount_subscribed'], r['price_per_share'],
+                            _parse_page(r['source_page']), r['evidence_text'],
+                            'regex_from_md', 'extracted',
+                        ))
+                        inserted += 1
+                    except Exception as e:
+                        pass
+            conn.commit()
+            cur.execute("SELECT COUNT(*) FROM zbq_subscription_flow WHERE extraction_method='regex_from_md'")
+            db_count = cur.fetchone()[0]
+            conn.close()
+            print(f"\n入库: {db_count} 条")
+        except Exception as e:
+            print(f"\n入库跳过(数据库不可用): {e}")
+
+    print(f"\n{'='*50}")
+    print(f"总计: 候选 {grand_total} 条 / validated {validated_total} 条")
+    print(f"输出: {output_dir}/candidate/、{output_dir}/validated/ 与 {output_dir}/final/")
+    return grand_total
+
+
+def _parse_page(val):
+    if not val: return None
+    m = re.search(r'p(\d+)', str(val))
+    return int(m.group(1)) if m else None
+
+
+if __name__ == "__main__":
+    main()
