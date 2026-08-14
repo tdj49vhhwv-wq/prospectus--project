@@ -23,21 +23,34 @@ SHA256: `66a80a6f89f2b29de394a26292324db4b8e94f48a823531c2b921b049f2d11df`
 
 The freeze-time investor metrics above (P 93.02% / R 95.24% / F1 94.12%) were produced with a frozen runtime that was never committed — `stage71_frozen/runtime/markdown_source.py` (original SHA256 `4c3acb5f`) and `runtime/pg8000.py` are lost.
 
-Re-running the frozen parser today, with the reconstructed runtime (`markdown_source.py` = current `week6/pipeline/markdown_source.py`), reproduces **F1 89.66%** (Gold 42 / Auto 45 / TP 39 / FP 6 / FN 3):
+Re-running the frozen parser today, with the reconstructed runtime (`markdown_source.py` = current `week6/pipeline/markdown_source.py`) and a corrected evaluation harness, reproduces **F1 96.55%** (Gold 42 / Auto 45 / TP 42 / FP 3 / FN 0):
 
 ```text
-Precision  : 86.67%
-Recall     : 92.86%
-F1         : 89.66%
+Precision  : 93.33%
+Recall     : 100.00%
+F1         : 96.55%
 ```
+
+Two evaluation-side defects were repaired to reach this (the frozen parser `event_local_pevc.py` is untouched):
+
+1. **Gold transcription fix** — `301581` 2021-11-11 增资's 27% investor was mislabeled `上海广弘实业有限公司` in `stage3/investor_eval/investor_eval_details.csv`. Per the master table (`data/gold_standard/融资事件总表.jsonl`) and the prospectus glossary it is `深圳赛格高技术投资股份有限公司` (赛格高技术).
+2. **Alias-table completion** — three prospectus-defined aliases were missing from the evaluator's `ALIAS_GROUPS`:
+   - `赛格高技术` → `深圳赛格高技术投资股份有限公司`
+   - `上汽科技` / `SAIC` → `SAIC TECHNOLOGIES FUND II,LLC`
+   - `深圳达晨创程` → `深圳市达晨创程私募股权投资基金企业(有限合伙)`
+
+The original 94.12% is therefore *understated*: it carried the same gold error plus two missing aliases. The 3 remaining FPs are frozen-parser over-extraction artifacts (see below), not evaluation issues.
+
+Remaining FPs (frozen parser, unfixable without unfreezing `stage71`):
+- `芜湖富海` @ 301563 2015-08 — over-extracted into the wrong event
+- `聚贝投资以人民币1` @ 688758 2021-12 — parse fragment
+- `500万元` @ 688758 2021-12 — amount misparsed as a name
 
 One-click reproduction:
 
 ```bash
 python3 week9/reproduce_freeze.py
 ```
-
-The ~4-point gap vs the original 94.12% is concentrated in four alias/normalization misses (e.g. `上汽科技` ↔ `SAIC TECHNOLOGIES FUND II`, `深圳达晨创程` ↔ `深圳市达晨创程…`) plus two parse artifacts — not a substantive pipeline difference.
 
 ## Formal Blind Run #1
 

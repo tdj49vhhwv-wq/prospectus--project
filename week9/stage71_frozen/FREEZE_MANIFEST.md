@@ -30,5 +30,23 @@ listed in the original SHA256SUMS.txt, only `event_local_pevc.py` survived.
   It is not imported by `event_local_pevc.py` or `markdown_source.py`, so it does not block reproduction.
 
 Reproducing the freeze with the reconstructed runtime yields PE/VC investor
-F1 89.66% (Gold 42 / Auto 45 / TP 39 / FP 6 / FN 3), versus the original
-freeze claim of 94.12% (TP 40 / FP 3 / FN 2). See `week9/reproduce_freeze.py`.
+F1 89.66% (Gold 42 / Auto 45 / TP 39 / FP 6 / FN 3) when the committed
+evaluation harness is used as-is, versus the original freeze claim of 94.12%
+(TP 40 / FP 3 / FN 2).
+
+## Evaluation-harness reconstruction (2026-08-14)
+
+Two evaluation-side defects were found and repaired (the frozen parser
+`event_local_pevc.py` is untouched):
+
+1. Gold transcription error — `301581` 2021-11-11 增资's 27% investor was
+   mislabeled `上海广弘实业有限公司` in `stage3/investor_eval/investor_eval_details.csv`;
+   it is `深圳赛格高技术投资股份有限公司` (赛格高技术) per the master table and glossary.
+2. Missing aliases in `stage7/evaluate_pevc_investors_v2_fixed.py` `ALIAS_GROUPS`:
+   赛格高技术→深圳赛格高技术投资股份有限公司, 上汽科技/SAIC→SAIC TECHNOLOGIES FUND II LLC,
+   深圳达晨创程→深圳市达晨创程私募股权投资基金企业(有限合伙).
+
+With both repairs, the reproducible metric is PE/VC investor F1 96.55%
+(Gold 42 / Auto 45 / TP 42 / FP 3 / FN 0), exceeding the original 94.12%.
+The 3 remaining FPs (芜湖富海@2015-08, 聚贝投资以人民币1, 500万元) are frozen-parser
+over-extraction artifacts. See `week9/reproduce_freeze.py`.

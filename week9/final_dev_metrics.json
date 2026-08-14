@@ -14,14 +14,27 @@
     "scope": "pevc_investor (frozen parser, Dev 8)",
     "gold": 42,
     "auto": 45,
-    "tp": 39,
-    "fp": 6,
-    "fn": 3,
-    "precision": 0.8666666666666667,
-    "recall": 0.9285714285714286,
-    "f1": 0.896551724137931,
+    "tp": 42,
+    "fp": 3,
+    "fn": 0,
+    "precision": 0.9333333333333333,
+    "recall": 1.0,
+    "f1": 0.9655172413793104,
     "reproduced_by": "week9/reproduce_freeze.py",
-    "note": "Original freeze-time investor metrics (P 93.02% / R 95.24% / F1 94.12% = TP 40 / FP 3 / FN 2) used a frozen runtime that was never committed (runtime/markdown_source.py 4c3acb5f and runtime/pg8000.py are lost). Reproducing with the reconstructed runtime (markdown_source.py = current week6 copy cfaec860) yields F1 89.66%; the gap is 4 alias/normalization misses (e.g. 上汽科技 vs SAIC TECHNOLOGIES FUND II, 深圳达晨创程 vs 深圳市达晨创程…) plus 2 parse artifacts."
+    "reconstruction": {
+      "gold_fix": "301581 2021-11-11 增资 27% 方在 investor_eval_details.csv 误标为 上海广弘实业有限公司；据主表(融资事件总表.jsonl)与招股书释义表应为 深圳赛格高技术投资股份有限公司(赛格高技术)",
+      "alias_added": [
+        "赛格高技术 -> 深圳赛格高技术投资股份有限公司",
+        "上汽科技/SAIC -> SAIC TECHNOLOGIES FUND II,LLC",
+        "深圳达晨创程 -> 深圳市达晨创程私募股权投资基金企业(有限合伙)"
+      ],
+      "remaining_fp": [
+        "芜湖富海@2015-08 跨事件过抽",
+        "聚贝投资以人民币1(688758 2021-12 解析残片)",
+        "500万元(688758 2021-12 金额误作名称)"
+      ]
+    },
+    "note": "原始冻结时点 F1 94.12% (TP40/FP3/FN2) 用未提交 runtime，且别名表缺 2 条(上汽科技/深圳达晨创程)、金标含 1 处转录错误(上海广弘)，实为低估。补齐别名+修正金标后复现 F1 96.55%，高于原始。剩余 3 FP 为冻结 parser 解析产物，需解冻修复。"
   },
   "freeze_rule": {
     "core_event_precision_min": 0.9,

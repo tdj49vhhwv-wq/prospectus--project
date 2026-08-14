@@ -78,7 +78,7 @@ stock_code,event_date,event_type,role,subscriber_name,amount,shares,price,status
 301581,2021-04-13,G,auto,张俊武,,,,matched,张俊武
 301581,2021-04-13,G,auto,昆山谷捷的股东,,,,unmatched,
 301581,2021-04-13,G,auto,黄山供销集团,,,,matched,黄山供销集团有限公司
-301581,2021-11-11,A,gold,上海广弘实业有限公司,10377.0,,22.42,unmatched,
+301581,2021-11-11,A,gold,深圳赛格高技术投资股份有限公司,10377.0,,22.42,unmatched,
 301581,2021-11-11,A,gold,"SAIC TECHNOLOGIES FUND II, LLC",1153.0,,22.42,unmatched,
 301581,2021-11-11,A,auto,名称,90.2256,,,unmatched,
 301581,2021-11-11,A,auto,员工持股平 台黄山佳捷,90.2256,,,unmatched,
