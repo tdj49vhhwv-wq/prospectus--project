@@ -1,0 +1,64 @@
+name: Week10 Stage5B4 Acquisition Smoke Test
+
+on:
+  push:
+    branches: [week10-stage5b4]
+    paths:
+      - 'week10/acquisition/**'
+      - '.github/workflows/week10_stage5b4.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  smoke-test:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install PDF dependency
+        run: pip install pypdf
+      - name: Run Stage 5B.4 acquisition pipeline
+        run: python week10/acquisition/run_acquisition_v1.py
+      - name: Show resolver outputs
+        if: always()
+        run: |
+          echo '===== DISCOVERED ====='
+          cat week10/acquisition/resolver_v1/discovered_candidates_v1.csv || true
+          echo '===== RESOLVED ====='
+          cat week10/acquisition/resolver_v1/acquisition_manifest_resolved_v1.csv || true
+          echo '===== VALIDATED ====='
+          cat week10/acquisition/manifests/acquisition_manifest_validated_v1.csv || true
+          echo '===== DOWNLOAD LOG ====='
+          cat week10/acquisition/logs/download_validation_v1.csv || true
+      - name: Persist diagnostics to branch
+        if: always()
+        run: |
+          mkdir -p week10/acquisition/ci_results
+          cp week10/acquisition/resolver_v1/discovered_candidates_v1.csv week10/acquisition/ci_results/ 2>/dev/null || true
+          cp week10/acquisition/resolver_v1/candidate_diagnostics_v1.csv week10/acquisition/ci_results/ 2>/dev/null || true
+          cp week10/acquisition/resolver_v1/acquisition_manifest_resolved_v1.csv week10/acquisition/ci_results/ 2>/dev/null || true
+          cp week10/acquisition/manifests/acquisition_manifest_validated_v1.csv week10/acquisition/ci_results/ 2>/dev/null || true
+          cp week10/acquisition/logs/download_validation_v1.csv week10/acquisition/ci_results/ 2>/dev/null || true
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- week10/acquisition/ci_results
+          if ! git diff --cached --quiet; then
+            git commit -m 'week10: persist Stage 5B.4 smoke diagnostics [stage5b4-ci]'
+            git push
+          fi
+      - name: Upload Stage 5B.4 diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: week10-stage5b4-smoke-test
+          path: |
+            week10/acquisition/resolver_v1/*.csv
+            week10/acquisition/manifests/acquisition_manifest_validated_v1.csv
+            week10/acquisition/logs/download_validation_v1.csv
+          if-no-files-found: warn

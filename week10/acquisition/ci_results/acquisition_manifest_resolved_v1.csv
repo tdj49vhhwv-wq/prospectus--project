@@ -1,0 +1,4 @@
+﻿sample_id,role,board,year,stock_code,company_name,exchange,disclosure_date,source_url,source_type,download_status,pdf_path,sha256,notes
+S504,DEV,Main,2024,603312,西典新能,SSE,2024-01-08,https://www.sse.com.cn/disclosure/listedinfo/announcement/c/new/2024-01-08/603312_20240108_9ARC.pdf,official_exchange,resolved,,,Stage 5B.4 smoke test; resolver_v1 score=17
+S511,DEV,ChiNext,2024,301536,星宸科技,SZSE,2024-03-22,https://reportdocs.static.szse.cn/UpFiles/rasinfodisc1/202309/RAS_202309_D62095CA75574CFCB2C5871C86947137.pdf,official_exchange,resolved,,,Stage 5B.4 smoke test; resolver_v1 score=14
+S519,DEV,BSE,2024,920002,万达轴承,BSE,2024-05-17,,,needs_resolution,,,Stage 5B.4 smoke test; resolver_v1 fail-closed
