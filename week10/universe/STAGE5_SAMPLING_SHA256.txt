@@ -1,0 +1,2 @@
+1ab961d88f6b64e8cd76a2ad792cd5b8b94362dc298d772d43949063caa30ce1  week10/universe/stage5_sampling_manifest_v1.csv
+452103d0a3f5c9595a9f6b770d7a5fe902be15f3d111f1026e9e2b35f37996d8  week10/universe/STAGE5_SAMPLING_RULES.md

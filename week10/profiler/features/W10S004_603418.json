@@ -1,0 +1,102 @@
+{
+  "document": {
+    "document_id": "W10S004",
+    "stock_code": "603418",
+    "company_short_name": "友升股份",
+    "board": "Main",
+    "historical_role": "historical_dev",
+    "canonical_parts": 2,
+    "missing_parts": 0,
+    "character_count": 495394,
+    "line_count": 6714,
+    "nonempty_line_count": 3649,
+    "markdown_heading_count": 911,
+    "numbered_heading_count": 372,
+    "equity_heading_count": 9,
+    "html_table_count": 297,
+    "markdown_table_line_count": 23,
+    "mermaid_count": 8,
+    "image_count": 52,
+    "page_marker_count": 0,
+    "date_expression_count": 1527,
+    "equity_term_total": 118,
+    "restructuring_term_total": 10,
+    "investor_term_total": 900,
+    "vie_term_total": 4,
+    "summary_table_term_total": 2,
+    "longest_delimited_line_score": 63,
+    "table_line_ratio": 0.006303,
+    "heading_density_per_10k_chars": 18.389403,
+    "equity_signal_per_10k_chars": 2.381942,
+    "investor_signal_per_10k_chars": 18.167358,
+    "narrative_line_ratio": 0.881063
+  },
+  "canonical_files": [
+    "友升股份1.md",
+    "友升股份2.md"
+  ],
+  "missing_files": [],
+  "equity_headings": [
+    "# （六）申请发行上市前 12个月内增资入股的股东所持股份的限售安排、自愿锁定、持股及减持意向的承诺",
+    "# 二、发行人设立情况和报告期内股本、股东变化情况",
+    "# （一）有限责任公司的设立情况",
+    "# （二）股份有限公司的设立情况",
+    "# 2、2020 年 9 月，整体变更为股份有限公司，股本增加至 12,000.00 万元",
+    "# 3、2020 年 9 月，增资至 13,380.00 万元",
+    "# 4、2022 年 12 月，增资至 14,480.1333 万元",
+    "# （五）发行人历史沿革中存在股份代持的情况",
+    "# （六）发行人设立时存在部分实缴出资超期的情况"
+  ],
+  "longest_delimited_line_example": "<table><tr><td>序号</td><td>股东名称</td><td>特殊股东权利内容</td><td>解除情况</td><td>义务主体</td><td>是否设置恢复条款</td></tr><tr><td>1</td><td>达晨创联基金</td><td>回购权、共同出售权、股权转让限制、优先受让权和随售权、优先认购权等</td><td>2021年6月各方已签署《补充协议三》,约定相关特殊股东权利自标的公司正式申报上市材料之日起不可撤销的自动终止且自始无效,特殊股东权利的违约条款未被触发;标的公司于2021年6月完成上市申报,相关特殊股东权利已于2021年6月不可撤销地自动终止且自始无效</td><td>友升有限、泽升贸易、罗世兵、共青城泽升</td><td>否</td></tr><tr><td>2</td><td>金浦临港基金、金浦科创基金</td><td>股权转让限制、优先受让和认购权、不进行更优惠的增资和股权转让等</td><td>2021年5月各方已签署《补充协议二》,各方不可撤销同意,自《补充协议二》签署之日,《补充协议一》第1.2条自动终止,自向证券交易所申报上传",
+  "term_counts": {
+    "equity": {
+      "历史沿革": 4,
+      "股本演变": 0,
+      "股本形成": 0,
+      "股权演变": 0,
+      "历次增资": 0,
+      "增资": 29,
+      "股权转让": 14,
+      "整体变更": 11,
+      "设立": 59,
+      "股份制改造": 0,
+      "发行融资": 1
+    },
+    "restructuring": {
+      "重大资产重组": 3,
+      "重组": 5,
+      "吸收合并": 1,
+      "资产置换": 0,
+      "业务重组": 0,
+      "同一控制下": 1
+    },
+    "investor": {
+      "投资": 495,
+      "基金": 198,
+      "创投": 3,
+      "资本": 88,
+      "合伙企业": 73,
+      "认购": 15,
+      "认缴": 15,
+      "增资方": 0,
+      "新增股东": 13
+    },
+    "vie": {
+      "VIE": 4,
+      "协议控制": 0,
+      "可变利益实体": 0,
+      "境外架构": 0,
+      "红筹": 0,
+      "返程投资": 0,
+      "WFOE": 0
+    },
+    "summary_table": {
+      "报告期内股本变化": 1,
+      "报告期内股权变动": 0,
+      "历次股本变化": 0,
+      "历次股权变动": 0,
+      "股本变化情况": 1,
+      "股权变动情况": 0
+    }
+  }
+}

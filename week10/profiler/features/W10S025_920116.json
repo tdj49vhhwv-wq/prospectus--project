@@ -1,0 +1,91 @@
+{
+  "document": {
+    "document_id": "W10S025",
+    "stock_code": "920116",
+    "company_short_name": "星图测控",
+    "board": "BSE",
+    "historical_role": "historical_dev",
+    "canonical_parts": 1,
+    "missing_parts": 0,
+    "character_count": 351618,
+    "line_count": 29585,
+    "nonempty_line_count": 27115,
+    "markdown_heading_count": 366,
+    "numbered_heading_count": 3794,
+    "equity_heading_count": 0,
+    "html_table_count": 0,
+    "markdown_table_line_count": 0,
+    "mermaid_count": 0,
+    "image_count": 0,
+    "page_marker_count": 365,
+    "date_expression_count": 1203,
+    "equity_term_total": 29,
+    "restructuring_term_total": 6,
+    "investor_term_total": 626,
+    "vie_term_total": 2,
+    "summary_table_term_total": 0,
+    "longest_delimited_line_score": 11,
+    "table_line_ratio": 0.0,
+    "heading_density_per_10k_chars": 10.409023,
+    "equity_signal_per_10k_chars": 0.824759,
+    "investor_signal_per_10k_chars": 17.803412,
+    "narrative_line_ratio": 0.999963
+  },
+  "canonical_files": [
+    "星图测控_招股书_正式稿_20241220.md"
+  ],
+  "missing_files": [],
+  "equity_headings": [],
+  "longest_delimited_line_example": "断拓展，已经在农业、林业、国土、水利、城乡建设、环境、测绘、交通、气象、海洋、",
+  "term_counts": {
+    "equity": {
+      "历史沿革": 2,
+      "股本演变": 0,
+      "股本形成": 0,
+      "股权演变": 0,
+      "历次增资": 0,
+      "增资": 4,
+      "股权转让": 4,
+      "整体变更": 4,
+      "设立": 14,
+      "股份制改造": 0,
+      "发行融资": 1
+    },
+    "restructuring": {
+      "重大资产重组": 2,
+      "重组": 3,
+      "吸收合并": 0,
+      "资产置换": 0,
+      "业务重组": 0,
+      "同一控制下": 1
+    },
+    "investor": {
+      "投资": 435,
+      "基金": 23,
+      "创投": 0,
+      "资本": 112,
+      "合伙企业": 44,
+      "认购": 4,
+      "认缴": 4,
+      "增资方": 0,
+      "新增股东": 4
+    },
+    "vie": {
+      "VIE": 2,
+      "协议控制": 0,
+      "可变利益实体": 0,
+      "境外架构": 0,
+      "红筹": 0,
+      "返程投资": 0,
+      "WFOE": 0
+    },
+    "summary_table": {
+      "报告期内股本变化": 0,
+      "报告期内股权变动": 0,
+      "历次股本变化": 0,
+      "历次股权变动": 0,
+      "股本变化情况": 0,
+      "股权变动情况": 0
+    }
+  }
+}

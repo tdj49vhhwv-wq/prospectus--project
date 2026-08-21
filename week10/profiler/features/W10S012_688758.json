@@ -1,0 +1,91 @@
+{
+  "document": {
+    "document_id": "W10S012",
+    "stock_code": "688758",
+    "company_short_name": "赛分科技",
+    "board": "STAR",
+    "historical_role": "historical_dev",
+    "canonical_parts": 1,
+    "missing_parts": 0,
+    "character_count": 468609,
+    "line_count": 34634,
+    "nonempty_line_count": 32410,
+    "markdown_heading_count": 469,
+    "numbered_heading_count": 6746,
+    "equity_heading_count": 0,
+    "html_table_count": 0,
+    "markdown_table_line_count": 0,
+    "mermaid_count": 0,
+    "image_count": 0,
+    "page_marker_count": 468,
+    "date_expression_count": 1134,
+    "equity_term_total": 107,
+    "restructuring_term_total": 53,
+    "investor_term_total": 935,
+    "vie_term_total": 9,
+    "summary_table_term_total": 0,
+    "longest_delimited_line_score": 9,
+    "table_line_ratio": 0.0,
+    "heading_density_per_10k_chars": 10.008344,
+    "equity_signal_per_10k_chars": 2.283353,
+    "investor_signal_per_10k_chars": 19.952668,
+    "narrative_line_ratio": 0.999784
+  },
+  "canonical_files": [
+    "688758_赛分科技_招股书_正式稿_20250106.md"
+  ],
+  "missing_files": [],
+  "equity_headings": [],
+  "longest_delimited_line_example": "药物、融合蛋白、白蛋白、GLP-1 类似物、多肽、肝素、质粒、病毒、AAV、",
+  "term_counts": {
+    "equity": {
+      "历史沿革": 0,
+      "股本演变": 0,
+      "股本形成": 0,
+      "股权演变": 0,
+      "历次增资": 0,
+      "增资": 31,
+      "股权转让": 16,
+      "整体变更": 16,
+      "设立": 44,
+      "股份制改造": 0,
+      "发行融资": 0
+    },
+    "restructuring": {
+      "重大资产重组": 0,
+      "重组": 46,
+      "吸收合并": 0,
+      "资产置换": 0,
+      "业务重组": 3,
+      "同一控制下": 4
+    },
+    "investor": {
+      "投资": 649,
+      "基金": 61,
+      "创投": 1,
+      "资本": 122,
+      "合伙企业": 52,
+      "认购": 20,
+      "认缴": 23,
+      "增资方": 1,
+      "新增股东": 6
+    },
+    "vie": {
+      "VIE": 0,
+      "协议控制": 9,
+      "可变利益实体": 0,
+      "境外架构": 0,
+      "红筹": 0,
+      "返程投资": 0,
+      "WFOE": 0
+    },
+    "summary_table": {
+      "报告期内股本变化": 0,
+      "报告期内股权变动": 0,
+      "历次股本变化": 0,
+      "历次股权变动": 0,
+      "股本变化情况": 0,
+      "股权变动情况": 0
+    }
+  }
+}

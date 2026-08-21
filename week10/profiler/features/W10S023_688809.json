@@ -1,0 +1,91 @@
+{
+  "document": {
+    "document_id": "W10S023",
+    "stock_code": "688809",
+    "company_short_name": "强一股份",
+    "board": "STAR",
+    "historical_role": "exploratory",
+    "canonical_parts": 1,
+    "missing_parts": 0,
+    "character_count": 416283,
+    "line_count": 25528,
+    "nonempty_line_count": 24056,
+    "markdown_heading_count": 386,
+    "numbered_heading_count": 4971,
+    "equity_heading_count": 0,
+    "html_table_count": 0,
+    "markdown_table_line_count": 0,
+    "mermaid_count": 0,
+    "image_count": 0,
+    "page_marker_count": 385,
+    "date_expression_count": 1175,
+    "equity_term_total": 89,
+    "restructuring_term_total": 28,
+    "investor_term_total": 775,
+    "vie_term_total": 7,
+    "summary_table_term_total": 0,
+    "longest_delimited_line_score": 9,
+    "table_line_ratio": 0.0,
+    "heading_density_per_10k_chars": 9.272538,
+    "equity_signal_per_10k_chars": 2.137969,
+    "investor_signal_per_10k_chars": 18.617143,
+    "narrative_line_ratio": 0.999958
+  },
+  "canonical_files": [
+    "688809_强一股份_招股书_正式稿_20251225.md"
+  ],
+  "missing_files": [],
+  "equity_headings": [],
+  "longest_delimited_line_example": "青藤、C 公司、翱捷科技、众星微、智芯微、龙芯中科、卓胜微、昂瑞微、瑞芯微、",
+  "term_counts": {
+    "equity": {
+      "历史沿革": 0,
+      "股本演变": 0,
+      "股本形成": 0,
+      "股权演变": 0,
+      "历次增资": 0,
+      "增资": 8,
+      "股权转让": 21,
+      "整体变更": 8,
+      "设立": 52,
+      "股份制改造": 0,
+      "发行融资": 0
+    },
+    "restructuring": {
+      "重大资产重组": 2,
+      "重组": 11,
+      "吸收合并": 10,
+      "资产置换": 0,
+      "业务重组": 4,
+      "同一控制下": 1
+    },
+    "investor": {
+      "投资": 485,
+      "基金": 64,
+      "创投": 9,
+      "资本": 83,
+      "合伙企业": 68,
+      "认购": 23,
+      "认缴": 28,
+      "增资方": 0,
+      "新增股东": 15
+    },
+    "vie": {
+      "VIE": 1,
+      "协议控制": 6,
+      "可变利益实体": 0,
+      "境外架构": 0,
+      "红筹": 0,
+      "返程投资": 0,
+      "WFOE": 0
+    },
+    "summary_table": {
+      "报告期内股本变化": 0,
+      "报告期内股权变动": 0,
+      "历次股本变化": 0,
+      "历次股权变动": 0,
+      "股本变化情况": 0,
+      "股权变动情况": 0
+    }
+  }
+}

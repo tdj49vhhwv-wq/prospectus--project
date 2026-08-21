@@ -1,0 +1,26 @@
+﻿document_id,stock_code,company_short_name,board,historical_role,equity_complexity,investor_complexity,restructuring_complexity,summary_table_complexity,vie_complexity,date_complexity,long_list_complexity,activated_parsers,n_special_parsers
+W10S001,001282,三联锻造,Main,historical_dev,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,HIGH,EXTREME,base_event_parser | long_syndicate_parser | date_anchor_enhancer,2
+W10S002,301563,云汉芯城,ChiNext,historical_dev,EXTREME,EXTREME,NORMAL,NORMAL,NORMAL,NORMAL,EXTREME,base_event_parser | long_syndicate_parser | dense_equity_history_parser,2
+W10S003,301581,黄山谷捷,ChiNext,historical_dev,EXTREME,NORMAL,EXTREME,NORMAL,NORMAL,NORMAL,NORMAL,base_event_parser | restructuring_parser | dense_equity_history_parser,2
+W10S004,603418,友升股份,Main,historical_dev,NORMAL,NORMAL,NORMAL,HIGH,NORMAL,NORMAL,EXTREME,base_event_parser | summary_table_parser | long_syndicate_parser,2
+W10S005,688411,海博思创,STAR,exploratory,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,HIGH,base_event_parser | long_syndicate_parser,1
+W10S006,688545,兴福电子,STAR,exploratory,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,base_event_parser,0
+W10S007,688583,思看科技,STAR,exploratory,NORMAL,NORMAL,NORMAL,NORMAL,HIGH,NORMAL,NORMAL,base_event_parser | vie_parser,1
+W10S008,688727,恒坤新材,STAR,exploratory,HIGH,NORMAL,NORMAL,EXTREME,NORMAL,HIGH,HIGH,base_event_parser | summary_table_parser | long_syndicate_parser | dense_equity_history_parser | date_anchor_enhancer,4
+W10S009,688729,屹唐股份,STAR,exploratory,EXTREME,EXTREME,NORMAL,EXTREME,NORMAL,NORMAL,NORMAL,base_event_parser | summary_table_parser | long_syndicate_parser | dense_equity_history_parser,3
+W10S010,688755,汉邦科技,STAR,exploratory,NORMAL,NORMAL,HIGH,NORMAL,NORMAL,EXTREME,NORMAL,base_event_parser | restructuring_parser | date_anchor_enhancer,2
+W10S011,688757,胜科纳米,STAR,exploratory,NORMAL,NORMAL,NORMAL,EXTREME,NORMAL,NORMAL,NORMAL,base_event_parser | summary_table_parser,1
+W10S012,688758,赛分科技,STAR,historical_dev,NORMAL,NORMAL,HIGH,NORMAL,EXTREME,NORMAL,NORMAL,base_event_parser | restructuring_parser | vie_parser,2
+W10S013,688759,必贝特,STAR,exploratory,HIGH,HIGH,NORMAL,HIGH,NORMAL,NORMAL,NORMAL,base_event_parser | summary_table_parser | long_syndicate_parser | dense_equity_history_parser,3
+W10S014,688765,禾元生物,STAR,exploratory,NORMAL,HIGH,EXTREME,NORMAL,NORMAL,NORMAL,HIGH,base_event_parser | long_syndicate_parser | restructuring_parser,2
+W10S015,688775,影石创新,STAR,historical_dev,NORMAL,NORMAL,NORMAL,HIGH,EXTREME,EXTREME,NORMAL,base_event_parser | summary_table_parser | vie_parser | date_anchor_enhancer,3
+W10S016,688783,西安奕材,STAR,exploratory,NORMAL,NORMAL,HIGH,NORMAL,NORMAL,EXTREME,NORMAL,base_event_parser | restructuring_parser | date_anchor_enhancer,2
+W10S017,688790,昂瑞微,STAR,exploratory,HIGH,EXTREME,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,base_event_parser | long_syndicate_parser | dense_equity_history_parser,2
+W10S018,688795,摩尔线程,STAR,historical_blind_failure,NORMAL,EXTREME,NORMAL,NORMAL,HIGH,EXTREME,NORMAL,base_event_parser | long_syndicate_parser | vie_parser | date_anchor_enhancer,3
+W10S019,688796,百奥赛图,STAR,exploratory,NORMAL,HIGH,EXTREME,NORMAL,NORMAL,HIGH,NORMAL,base_event_parser | long_syndicate_parser | restructuring_parser | date_anchor_enhancer,3
+W10S020,688802,沐曦股份,STAR,historical_blind_failure,NORMAL,EXTREME,NORMAL,EXTREME,NORMAL,NORMAL,NORMAL,base_event_parser | summary_table_parser | long_syndicate_parser,2
+W10S021,688805,健信超导,STAR,exploratory,NORMAL,NORMAL,NORMAL,NORMAL,EXTREME,NORMAL,NORMAL,base_event_parser | vie_parser,1
+W10S022,688807,优迅股份,STAR,exploratory,NORMAL,NORMAL,NORMAL,NORMAL,HIGH,NORMAL,NORMAL,base_event_parser | vie_parser,1
+W10S023,688809,强一股份,STAR,exploratory,NORMAL,NORMAL,NORMAL,NORMAL,HIGH,NORMAL,NORMAL,base_event_parser | vie_parser,1
+W10S024,920100,三协电机,BSE,historical_dev,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,HIGH,base_event_parser | long_syndicate_parser,1
+W10S025,920116,星图测控,BSE,historical_dev,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,base_event_parser,0

@@ -1,0 +1,13 @@
+board,year,target_new,selection_method
+Main,2022,2,stratified_random
+Main,2023,2,stratified_random
+Main,2024,2,stratified_random
+Main,2025,2,stratified_random
+ChiNext,2022,2,stratified_random
+ChiNext,2023,2,stratified_random
+ChiNext,2024,2,stratified_random
+ChiNext,2025,2,stratified_random
+BSE,2022,2,stratified_random
+BSE,2023,2,stratified_random
+BSE,2024,2,stratified_random
+BSE,2025,2,stratified_random

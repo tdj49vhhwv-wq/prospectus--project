@@ -1,0 +1,4 @@
+sample_id,role,board,year,stock_code,company_name,exchange,source_url,source_type,download_status,pdf_path,sha256,notes
+S504,DEV,Main,2024,603312,西典新能,SSE,,,pending,,,
+S511,DEV,ChiNext,2024,301536,星宸科技,SZSE,,,pending,,,
+S519,DEV,BSE,2024,920002,万达轴承,BSE,,,pending,,,

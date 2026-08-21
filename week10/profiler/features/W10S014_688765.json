@@ -1,0 +1,91 @@
+{
+  "document": {
+    "document_id": "W10S014",
+    "stock_code": "688765",
+    "company_short_name": "禾元生物",
+    "board": "STAR",
+    "historical_role": "exploratory",
+    "canonical_parts": 1,
+    "missing_parts": 0,
+    "character_count": 476700,
+    "line_count": 31770,
+    "nonempty_line_count": 29969,
+    "markdown_heading_count": 452,
+    "numbered_heading_count": 5247,
+    "equity_heading_count": 0,
+    "html_table_count": 0,
+    "markdown_table_line_count": 0,
+    "mermaid_count": 0,
+    "image_count": 0,
+    "page_marker_count": 451,
+    "date_expression_count": 1539,
+    "equity_term_total": 117,
+    "restructuring_term_total": 742,
+    "investor_term_total": 1248,
+    "vie_term_total": 7,
+    "summary_table_term_total": 0,
+    "longest_delimited_line_score": 13,
+    "table_line_ratio": 0.0,
+    "heading_density_per_10k_chars": 9.481854,
+    "equity_signal_per_10k_chars": 2.454374,
+    "investor_signal_per_10k_chars": 26.179987,
+    "narrative_line_ratio": 0.999967
+  },
+  "canonical_files": [
+    "688765_禾元生物_招股书_正式稿_20251020.md"
+  ],
+  "missing_files": [],
+  "equity_headings": [],
+  "longest_delimited_line_example": "N1、N2、N5、N6、N7、N9、N33、N36、W1、W2、W3、W4、W5、",
+  "term_counts": {
+    "equity": {
+      "历史沿革": 0,
+      "股本演变": 0,
+      "股本形成": 0,
+      "股权演变": 0,
+      "历次增资": 1,
+      "增资": 34,
+      "股权转让": 15,
+      "整体变更": 19,
+      "设立": 47,
+      "股份制改造": 0,
+      "发行融资": 1
+    },
+    "restructuring": {
+      "重大资产重组": 2,
+      "重组": 731,
+      "吸收合并": 0,
+      "资产置换": 0,
+      "业务重组": 2,
+      "同一控制下": 7
+    },
+    "investor": {
+      "投资": 709,
+      "基金": 190,
+      "创投": 5,
+      "资本": 98,
+      "合伙企业": 164,
+      "认购": 27,
+      "认缴": 40,
+      "增资方": 0,
+      "新增股东": 15
+    },
+    "vie": {
+      "VIE": 0,
+      "协议控制": 7,
+      "可变利益实体": 0,
+      "境外架构": 0,
+      "红筹": 0,
+      "返程投资": 0,
+      "WFOE": 0
+    },
+    "summary_table": {
+      "报告期内股本变化": 0,
+      "报告期内股权变动": 0,
+      "历次股本变化": 0,
+      "历次股权变动": 0,
+      "股本变化情况": 0,
+      "股权变动情况": 0
+    }
+  }
+}

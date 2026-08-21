@@ -1,0 +1,4 @@
+sample_id,stock_code,company_name,exchange,document_type,document_date,source_domain,source_url,resolution_status,resolution_notes
+S504,603312,西典新能,SSE,招股说明书,2024-01-08,,,needs_resolution,正式招股说明书已确认披露日期
+S511,301536,星宸科技,SZSE,招股说明书,2024-03-22,,,needs_resolution,正式招股说明书已确认披露日期
+S519,920002,万达轴承,BSE,招股说明书,2024-05-17,,,needs_resolution,北交所正式发行阶段招股说明书

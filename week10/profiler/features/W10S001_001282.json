@@ -1,0 +1,102 @@
+{
+  "document": {
+    "document_id": "W10S001",
+    "stock_code": "001282",
+    "company_short_name": "三联锻造",
+    "board": "Main",
+    "historical_role": "historical_dev",
+    "canonical_parts": 2,
+    "missing_parts": 0,
+    "character_count": 737917,
+    "line_count": 39746,
+    "nonempty_line_count": 36500,
+    "markdown_heading_count": 823,
+    "numbered_heading_count": 6935,
+    "equity_heading_count": 9,
+    "html_table_count": 151,
+    "markdown_table_line_count": 146,
+    "mermaid_count": 7,
+    "image_count": 39,
+    "page_marker_count": 476,
+    "date_expression_count": 2592,
+    "equity_term_total": 183,
+    "restructuring_term_total": 20,
+    "investor_term_total": 777,
+    "vie_term_total": 0,
+    "summary_table_term_total": 0,
+    "longest_delimited_line_score": 67,
+    "table_line_ratio": 0.004,
+    "heading_density_per_10k_chars": 11.153016,
+    "equity_signal_per_10k_chars": 2.479954,
+    "investor_signal_per_10k_chars": 10.52964,
+    "narrative_line_ratio": 0.989123
+  },
+  "canonical_files": [
+    "三联锻造_招股书_PyMuPDF.md",
+    "三联锻造3.md"
+  ],
+  "missing_files": [],
+  "equity_headings": [
+    "# 二、发行人设立及报告期内股本演变情况",
+    "# （一）有限公司设立情况",
+    "# 1、有限公司设立程序",
+    "# 2、设立时股东出资的验资情况",
+    "# （二）股份公司设立情况",
+    "# 1、发行人设立的程序",
+    "# 2、发行人报告期内的股本演变情况",
+    "# （1）增资情况",
+    "# （三）公司设立以来主营业务、主要产品的变化情况"
+  ],
+  "longest_delimited_line_example": "<table><tr><td>序号</td><td>公司名称</td><td>公司简介</td></tr><tr><td>1</td><td>江苏太平洋精锻科技股份有限公司(精锻科技,300258)</td><td>精锻科技成立于1992年,深交所上市公司,主营业务为汽车精锻齿轮及其他精密锻件的研发、生产与销售,主要采用冷温热复合精锻、热处理和机加工的生产工艺,主要产品包括汽车差速器锥齿轮、汽车变速器结合齿齿轮、汽车变速器轴类件、EDL齿轮、同步器齿圈、离合器驱动盘毂类零件、驻车齿轮、新能源车中央电机轴和差速器总成、高端农业机械用齿轮等。</td></tr><tr><td>2</td><td>天润工业技术股份有限公司(天润工业,002283)</td><td>天润工业成立于1995年,深交所上市公司,主营业务为船机、中重卡、轻卡和轿车曲轴以及连杆、铸件、锻件七大业务板块,主要采用铸造、锻造(热模锻)、热处理和机加工的生产工艺,主要产品有曲轴、连杆、毛坯、铸件、锻件。</td></tr><tr><td>3</td><td>云南西仪工业股份有限公司(西仪股份,002265)</td><td",
+  "term_counts": {
+    "equity": {
+      "历史沿革": 12,
+      "股本演变": 14,
+      "股本形成": 0,
+      "股权演变": 0,
+      "历次增资": 0,
+      "增资": 35,
+      "股权转让": 18,
+      "整体变更": 18,
+      "设立": 86,
+      "股份制改造": 0,
+      "发行融资": 0
+    },
+    "restructuring": {
+      "重大资产重组": 4,
+      "重组": 16,
+      "吸收合并": 0,
+      "资产置换": 0,
+      "业务重组": 0,
+      "同一控制下": 0
+    },
+    "investor": {
+      "投资": 494,
+      "基金": 41,
+      "创投": 0,
+      "资本": 200,
+      "合伙企业": 28,
+      "认购": 4,
+      "认缴": 4,
+      "增资方": 0,
+      "新增股东": 6
+    },
+    "vie": {
+      "VIE": 0,
+      "协议控制": 0,
+      "可变利益实体": 0,
+      "境外架构": 0,
+      "红筹": 0,
+      "返程投资": 0,
+      "WFOE": 0
+    },
+    "summary_table": {
+      "报告期内股本变化": 0,
+      "报告期内股权变动": 0,
+      "历次股本变化": 0,
+      "历次股权变动": 0,
+      "股本变化情况": 0,
+      "股权变动情况": 0
+    }
+  }
+}

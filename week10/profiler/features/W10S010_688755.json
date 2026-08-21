@@ -1,0 +1,91 @@
+{
+  "document": {
+    "document_id": "W10S010",
+    "stock_code": "688755",
+    "company_short_name": "汉邦科技",
+    "board": "STAR",
+    "historical_role": "exploratory",
+    "canonical_parts": 1,
+    "missing_parts": 0,
+    "character_count": 414951,
+    "line_count": 30910,
+    "nonempty_line_count": 29018,
+    "markdown_heading_count": 412,
+    "numbered_heading_count": 5641,
+    "equity_heading_count": 0,
+    "html_table_count": 0,
+    "markdown_table_line_count": 0,
+    "mermaid_count": 0,
+    "image_count": 0,
+    "page_marker_count": 411,
+    "date_expression_count": 1713,
+    "equity_term_total": 109,
+    "restructuring_term_total": 44,
+    "investor_term_total": 756,
+    "vie_term_total": 3,
+    "summary_table_term_total": 0,
+    "longest_delimited_line_score": 8,
+    "table_line_ratio": 0.0,
+    "heading_density_per_10k_chars": 9.928883,
+    "equity_signal_per_10k_chars": 2.626816,
+    "investor_signal_per_10k_chars": 18.219019,
+    "narrative_line_ratio": 0.999966
+  },
+  "canonical_files": [
+    "688755_汉邦科技_招股书_正式稿_20250513.md"
+  ],
+  "missing_files": [],
+  "equity_headings": [],
+  "longest_delimited_line_example": "日益广泛，是胰岛素、多肽、抗体、重组蛋白、疫苗、核酸、造影剂、抗生素",
+  "term_counts": {
+    "equity": {
+      "历史沿革": 0,
+      "股本演变": 0,
+      "股本形成": 0,
+      "股权演变": 0,
+      "历次增资": 0,
+      "增资": 38,
+      "股权转让": 23,
+      "整体变更": 7,
+      "设立": 41,
+      "股份制改造": 0,
+      "发行融资": 0
+    },
+    "restructuring": {
+      "重大资产重组": 4,
+      "重组": 14,
+      "吸收合并": 0,
+      "资产置换": 0,
+      "业务重组": 3,
+      "同一控制下": 23
+    },
+    "investor": {
+      "投资": 489,
+      "基金": 55,
+      "创投": 5,
+      "资本": 135,
+      "合伙企业": 41,
+      "认购": 24,
+      "认缴": 7,
+      "增资方": 0,
+      "新增股东": 0
+    },
+    "vie": {
+      "VIE": 0,
+      "协议控制": 3,
+      "可变利益实体": 0,
+      "境外架构": 0,
+      "红筹": 0,
+      "返程投资": 0,
+      "WFOE": 0
+    },
+    "summary_table": {
+      "报告期内股本变化": 0,
+      "报告期内股权变动": 0,
+      "历次股本变化": 0,
+      "历次股权变动": 0,
+      "股本变化情况": 0,
+      "股权变动情况": 0
+    }
+  }
+}

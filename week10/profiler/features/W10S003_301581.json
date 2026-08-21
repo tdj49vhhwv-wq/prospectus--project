@@ -1,0 +1,91 @@
+{
+  "document": {
+    "document_id": "W10S003",
+    "stock_code": "301581",
+    "company_short_name": "黄山谷捷",
+    "board": "ChiNext",
+    "historical_role": "historical_dev",
+    "canonical_parts": 1,
+    "missing_parts": 0,
+    "character_count": 344896,
+    "line_count": 22177,
+    "nonempty_line_count": 20798,
+    "markdown_heading_count": 344,
+    "numbered_heading_count": 3917,
+    "equity_heading_count": 0,
+    "html_table_count": 0,
+    "markdown_table_line_count": 0,
+    "mermaid_count": 0,
+    "image_count": 0,
+    "page_marker_count": 343,
+    "date_expression_count": 996,
+    "equity_term_total": 139,
+    "restructuring_term_total": 66,
+    "investor_term_total": 667,
+    "vie_term_total": 3,
+    "summary_table_term_total": 0,
+    "longest_delimited_line_score": 9,
+    "table_line_ratio": 0.0,
+    "heading_density_per_10k_chars": 9.974021,
+    "equity_signal_per_10k_chars": 4.0302,
+    "investor_signal_per_10k_chars": 19.339163,
+    "narrative_line_ratio": 0.999808
+  },
+  "canonical_files": [
+    "黄山谷捷_招股书_PyMuPDF.md"
+  ],
+  "missing_files": [],
+  "equity_headings": [],
+  "longest_delimited_line_example": "销售商品、提供劳务收到的现金289,642,201.50 717,452,985.94 446,746,811.31 202,440,049.43",
+  "term_counts": {
+    "equity": {
+      "历史沿革": 0,
+      "股本演变": 0,
+      "股本形成": 0,
+      "股权演变": 0,
+      "历次增资": 0,
+      "增资": 60,
+      "股权转让": 22,
+      "整体变更": 11,
+      "设立": 46,
+      "股份制改造": 0,
+      "发行融资": 0
+    },
+    "restructuring": {
+      "重大资产重组": 2,
+      "重组": 7,
+      "吸收合并": 33,
+      "资产置换": 0,
+      "业务重组": 4,
+      "同一控制下": 20
+    },
+    "investor": {
+      "投资": 517,
+      "基金": 23,
+      "创投": 0,
+      "资本": 98,
+      "合伙企业": 4,
+      "认购": 2,
+      "认缴": 10,
+      "增资方": 1,
+      "新增股东": 12
+    },
+    "vie": {
+      "VIE": 0,
+      "协议控制": 3,
+      "可变利益实体": 0,
+      "境外架构": 0,
+      "红筹": 0,
+      "返程投资": 0,
+      "WFOE": 0
+    },
+    "summary_table": {
+      "报告期内股本变化": 0,
+      "报告期内股权变动": 0,
+      "历次股本变化": 0,
+      "历次股权变动": 0,
+      "股本变化情况": 0,
+      "股权变动情况": 0
+    }
+  }
+}

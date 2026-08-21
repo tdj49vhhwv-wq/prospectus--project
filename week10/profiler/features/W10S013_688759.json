@@ -1,0 +1,91 @@
+{
+  "document": {
+    "document_id": "W10S013",
+    "stock_code": "688759",
+    "company_short_name": "必贝特",
+    "board": "STAR",
+    "historical_role": "exploratory",
+    "canonical_parts": 1,
+    "missing_parts": 0,
+    "character_count": 494089,
+    "line_count": 28619,
+    "nonempty_line_count": 26718,
+    "markdown_heading_count": 472,
+    "numbered_heading_count": 3051,
+    "equity_heading_count": 0,
+    "html_table_count": 0,
+    "markdown_table_line_count": 0,
+    "mermaid_count": 0,
+    "image_count": 0,
+    "page_marker_count": 471,
+    "date_expression_count": 1223,
+    "equity_term_total": 146,
+    "restructuring_term_total": 31,
+    "investor_term_total": 1286,
+    "vie_term_total": 1,
+    "summary_table_term_total": 1,
+    "longest_delimited_line_score": 8,
+    "table_line_ratio": 0.0,
+    "heading_density_per_10k_chars": 9.552935,
+    "equity_signal_per_10k_chars": 2.954933,
+    "investor_signal_per_10k_chars": 26.027699,
+    "narrative_line_ratio": 0.999925
+  },
+  "canonical_files": [
+    "688759_必贝特_招股书_正式稿_20251023.md"
+  ],
+  "missing_files": [],
+  "equity_headings": [],
+  "longest_delimited_line_example": "司、钱长庚、蔡雄、熊燕、王麦宁、吴纯、戈民、罗红、陈",
+  "term_counts": {
+    "equity": {
+      "历史沿革": 1,
+      "股本演变": 0,
+      "股本形成": 0,
+      "股权演变": 0,
+      "历次增资": 2,
+      "增资": 52,
+      "股权转让": 27,
+      "整体变更": 17,
+      "设立": 46,
+      "股份制改造": 0,
+      "发行融资": 1
+    },
+    "restructuring": {
+      "重大资产重组": 1,
+      "重组": 10,
+      "吸收合并": 16,
+      "资产置换": 0,
+      "业务重组": 3,
+      "同一控制下": 1
+    },
+    "investor": {
+      "投资": 738,
+      "基金": 216,
+      "创投": 4,
+      "资本": 144,
+      "合伙企业": 123,
+      "认购": 10,
+      "认缴": 35,
+      "增资方": 1,
+      "新增股东": 15
+    },
+    "vie": {
+      "VIE": 1,
+      "协议控制": 0,
+      "可变利益实体": 0,
+      "境外架构": 0,
+      "红筹": 0,
+      "返程投资": 0,
+      "WFOE": 0
+    },
+    "summary_table": {
+      "报告期内股本变化": 0,
+      "报告期内股权变动": 0,
+      "历次股本变化": 0,
+      "历次股权变动": 1,
+      "股本变化情况": 0,
+      "股权变动情况": 0
+    }
+  }
+}

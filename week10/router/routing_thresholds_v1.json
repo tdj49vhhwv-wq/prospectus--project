@@ -1,0 +1,41 @@
+{
+  "version": "routing_thresholds_v1",
+  "calibration_rule": "exclude historical_blind_failure",
+  "dimensions": {
+    "equity_complexity": {
+      "feature": "equity_signal",
+      "p75": 2.8374,
+      "p90": 3.2514946000000005
+    },
+    "investor_complexity": {
+      "feature": "investor_signal",
+      "p75": 25.6981415,
+      "p90": 28.223922800000004
+    },
+    "restructuring_complexity": {
+      "feature": "restructuring_signal",
+      "p75": 0.892003904282463,
+      "p90": 1.3302691745067332
+    },
+    "summary_table_complexity": {
+      "feature": "summary_table_signal",
+      "p75": 0.02021870621218715,
+      "p90": 0.0470684321697097
+    },
+    "vie_complexity": {
+      "feature": "vie_signal",
+      "p75": 0.15484771224840244,
+      "p90": 0.1913784350025189
+    },
+    "date_complexity": {
+      "feature": "date_density",
+      "p75": 34.87733397110024,
+      "p90": 40.3400353272201
+    },
+    "long_list_complexity": {
+      "feature": "long_list_log",
+      "p75": 2.5649493574615367,
+      "p90": 3.8165105572617017
+    }
+  }
+}

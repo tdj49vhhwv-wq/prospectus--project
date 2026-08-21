@@ -1,0 +1,91 @@
+{
+  "document": {
+    "document_id": "W10S024",
+    "stock_code": "920100",
+    "company_short_name": "三协电机",
+    "board": "BSE",
+    "historical_role": "historical_dev",
+    "canonical_parts": 1,
+    "missing_parts": 0,
+    "character_count": 383121,
+    "line_count": 30396,
+    "nonempty_line_count": 28514,
+    "markdown_heading_count": 383,
+    "numbered_heading_count": 6396,
+    "equity_heading_count": 0,
+    "html_table_count": 0,
+    "markdown_table_line_count": 0,
+    "mermaid_count": 0,
+    "image_count": 0,
+    "page_marker_count": 382,
+    "date_expression_count": 1156,
+    "equity_term_total": 72,
+    "restructuring_term_total": 30,
+    "investor_term_total": 769,
+    "vie_term_total": 1,
+    "summary_table_term_total": 0,
+    "longest_delimited_line_score": 12,
+    "table_line_ratio": 0.0,
+    "heading_density_per_10k_chars": 9.996842,
+    "equity_signal_per_10k_chars": 1.879302,
+    "investor_signal_per_10k_chars": 20.071988,
+    "narrative_line_ratio": 0.999965
+  },
+  "canonical_files": [
+    "三协电机_招股书_正式稿_20250711.md"
+  ],
+  "missing_files": [],
+  "equity_headings": [],
+  "longest_delimited_line_example": "水泥、电解铝、煤炭、冶金、化工、石化、建材、造纸、酿造、制药、发酵、纺织、制革和采矿业16",
+  "term_counts": {
+    "equity": {
+      "历史沿革": 1,
+      "股本演变": 0,
+      "股本形成": 0,
+      "股权演变": 0,
+      "历次增资": 0,
+      "增资": 8,
+      "股权转让": 34,
+      "整体变更": 1,
+      "设立": 26,
+      "股份制改造": 0,
+      "发行融资": 2
+    },
+    "restructuring": {
+      "重大资产重组": 2,
+      "重组": 10,
+      "吸收合并": 0,
+      "资产置换": 0,
+      "业务重组": 0,
+      "同一控制下": 18
+    },
+    "investor": {
+      "投资": 550,
+      "基金": 10,
+      "创投": 15,
+      "资本": 150,
+      "合伙企业": 4,
+      "认购": 16,
+      "认缴": 3,
+      "增资方": 0,
+      "新增股东": 21
+    },
+    "vie": {
+      "VIE": 0,
+      "协议控制": 1,
+      "可变利益实体": 0,
+      "境外架构": 0,
+      "红筹": 0,
+      "返程投资": 0,
+      "WFOE": 0
+    },
+    "summary_table": {
+      "报告期内股本变化": 0,
+      "报告期内股权变动": 0,
+      "历次股本变化": 0,
+      "历次股权变动": 0,
+      "股本变化情况": 0,
+      "股权变动情况": 0
+    }
+  }
+}

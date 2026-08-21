@@ -1,0 +1,91 @@
+{
+  "document": {
+    "document_id": "W10S005",
+    "stock_code": "688411",
+    "company_short_name": "海博思创",
+    "board": "STAR",
+    "historical_role": "exploratory",
+    "canonical_parts": 1,
+    "missing_parts": 0,
+    "character_count": 642527,
+    "line_count": 46527,
+    "nonempty_line_count": 44056,
+    "markdown_heading_count": 580,
+    "numbered_heading_count": 6043,
+    "equity_heading_count": 0,
+    "html_table_count": 0,
+    "markdown_table_line_count": 0,
+    "mermaid_count": 0,
+    "image_count": 0,
+    "page_marker_count": 579,
+    "date_expression_count": 2227,
+    "equity_term_total": 103,
+    "restructuring_term_total": 43,
+    "investor_term_total": 1630,
+    "vie_term_total": 6,
+    "summary_table_term_total": 1,
+    "longest_delimited_line_score": 12,
+    "table_line_ratio": 0.0,
+    "heading_density_per_10k_chars": 9.026858,
+    "equity_signal_per_10k_chars": 1.603045,
+    "investor_signal_per_10k_chars": 25.368584,
+    "narrative_line_ratio": 0.999977
+  },
+  "canonical_files": [
+    "688411_海博思创_招股书_正式稿_20250122.md"
+  ],
+  "missing_files": [],
+  "equity_headings": [],
+  "longest_delimited_line_example": "2,008,952,552.67 5,650,798,257.89 4,015,084,719.83 1,071,993,909.40",
+  "term_counts": {
+    "equity": {
+      "历史沿革": 0,
+      "股本演变": 0,
+      "股本形成": 0,
+      "股权演变": 0,
+      "历次增资": 0,
+      "增资": 43,
+      "股权转让": 16,
+      "整体变更": 3,
+      "设立": 41,
+      "股份制改造": 0,
+      "发行融资": 0
+    },
+    "restructuring": {
+      "重大资产重组": 4,
+      "重组": 20,
+      "吸收合并": 2,
+      "资产置换": 0,
+      "业务重组": 0,
+      "同一控制下": 17
+    },
+    "investor": {
+      "投资": 934,
+      "基金": 98,
+      "创投": 27,
+      "资本": 279,
+      "合伙企业": 192,
+      "认购": 85,
+      "认缴": 1,
+      "增资方": 0,
+      "新增股东": 14
+    },
+    "vie": {
+      "VIE": 2,
+      "协议控制": 4,
+      "可变利益实体": 0,
+      "境外架构": 0,
+      "红筹": 0,
+      "返程投资": 0,
+      "WFOE": 0
+    },
+    "summary_table": {
+      "报告期内股本变化": 0,
+      "报告期内股权变动": 0,
+      "历次股本变化": 0,
+      "历次股权变动": 0,
+      "股本变化情况": 1,
+      "股权变动情况": 0
+    }
+  }
+}

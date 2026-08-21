@@ -1,0 +1,4 @@
+﻿sample_id,stock_code,company_name,exchange,source_url,transport_status,content_type,notes
+S504,603312,西典新能,SSE,,UNRESOLVED,,source_url empty
+S511,301536,星宸科技,SZSE,,UNRESOLVED,,source_url empty
+S519,920002,万达轴承,BSE,,UNRESOLVED,,source_url empty

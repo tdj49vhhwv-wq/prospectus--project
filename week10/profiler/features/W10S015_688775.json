@@ -1,0 +1,91 @@
+{
+  "document": {
+    "document_id": "W10S015",
+    "stock_code": "688775",
+    "company_short_name": "影石创新",
+    "board": "STAR",
+    "historical_role": "historical_dev",
+    "canonical_parts": 1,
+    "missing_parts": 0,
+    "character_count": 559617,
+    "line_count": 44958,
+    "nonempty_line_count": 42658,
+    "markdown_heading_count": 556,
+    "numbered_heading_count": 4981,
+    "equity_heading_count": 0,
+    "html_table_count": 0,
+    "markdown_table_line_count": 0,
+    "mermaid_count": 0,
+    "image_count": 0,
+    "page_marker_count": 555,
+    "date_expression_count": 2386,
+    "equity_term_total": 158,
+    "restructuring_term_total": 16,
+    "investor_term_total": 972,
+    "vie_term_total": 78,
+    "summary_table_term_total": 2,
+    "longest_delimited_line_score": 11,
+    "table_line_ratio": 0.0,
+    "heading_density_per_10k_chars": 9.935367,
+    "equity_signal_per_10k_chars": 2.82336,
+    "investor_signal_per_10k_chars": 17.369022,
+    "narrative_line_ratio": 0.999977
+  },
+  "canonical_files": [
+    "688775_影石创新_招股书_正式稿_20250606.md"
+  ],
+  "missing_files": [],
+  "equity_headings": [],
+  "longest_delimited_line_example": "第10,529,052 号、第10,574,894 号、第10,958,840 号、第11,336,832 号和第",
+  "term_counts": {
+    "equity": {
+      "历史沿革": 0,
+      "股本演变": 0,
+      "股本形成": 0,
+      "股权演变": 0,
+      "历次增资": 2,
+      "增资": 10,
+      "股权转让": 20,
+      "整体变更": 4,
+      "设立": 122,
+      "股份制改造": 0,
+      "发行融资": 0
+    },
+    "restructuring": {
+      "重大资产重组": 4,
+      "重组": 9,
+      "吸收合并": 0,
+      "资产置换": 0,
+      "业务重组": 0,
+      "同一控制下": 3
+    },
+    "investor": {
+      "投资": 659,
+      "基金": 91,
+      "创投": 6,
+      "资本": 102,
+      "合伙企业": 74,
+      "认购": 18,
+      "认缴": 7,
+      "增资方": 2,
+      "新增股东": 13
+    },
+    "vie": {
+      "VIE": 57,
+      "协议控制": 9,
+      "可变利益实体": 0,
+      "境外架构": 6,
+      "红筹": 0,
+      "返程投资": 0,
+      "WFOE": 6
+    },
+    "summary_table": {
+      "报告期内股本变化": 0,
+      "报告期内股权变动": 0,
+      "历次股本变化": 1,
+      "历次股权变动": 1,
+      "股本变化情况": 0,
+      "股权变动情况": 0
+    }
+  }
+}
