@@ -1,0 +1,4 @@
+stock_code,url,title,source,stage,notes
+603312,https://static.sse.com.cn/stock/disclosure/announcement/c/202302/001582_20230228_7BEU.pdf,苏州西典新能源电气股份有限公司招股说明书（申报稿）,verified_official_hint,申报稿,SSE official PDF verified; used as fallback discovery candidate rather than final-version substitute
+301536,https://reportdocs.static.szse.cn/UpFiles/rasinfodisc1/202309/RAS_202309_D62095CA75574CFCB2C5871C86947137.pdf,星宸科技股份有限公司首次公开发行股票并在创业板上市招股说明书（注册稿）,verified_official_hint,注册稿,SZSE official registration draft verified
+920002,https://www.bse.cn/disclosure/2024/2024-05-27/1716806648_649247.pdf,江苏万达特种轴承股份有限公司上市公告书,negative_control_official,上市公告书,BSE official listing announcement deliberately included to prove negative-title rejection; final prospectus URL still must be discovered
