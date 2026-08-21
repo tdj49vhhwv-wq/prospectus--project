@@ -1,0 +1,9 @@
+﻿stock_code,company_name,exchange,url,title,source,discovery_status,discovery_notes
+603312,西典新能,SSE,https://www.sse.com.cn/disclosure/listedinfo/announcement/c/new/2024-01-08/603312_20240108_9ARC.pdf,"ull,""ROWNUM_"":null,""SECURITY_CODE"":""603312"",""SECURITY_NAME"":""西典新能"",""SSEDATE"":""2024-01-08"",""SSEDate"":null,""SSETime"":null,""SSETimeStr"":null,""TITLE"":""西典新能首次公开发行股票并在主板上市招股说明书"",""URL"":""\/disclosure\/listedinfo\/announcement\/c\/new\/2024-01-08\/603312_20240108_9ARC.pdf"",""author"":null,""book_Name"":null,""bulletinHeading"":null,""bulletinType"":null,""bulletin_No"":null,""bulletin_Type"":null,""bulletin_Year"":null,""category_A"":null,""category_B"":null,""catego",sse_queryCompanyBulletin,candidate,
+603312,西典新能,SSE,https://www.sse.com.cn/disclosure/listedinfo/announcement/c/new/2024-01-08/603312_20240108_ME69.pdf,"ROWNUM_"":null,""SECURITY_CODE"":""603312"",""SECURITY_NAME"":""西典新能"",""SSEDATE"":""2024-01-08"",""SSEDate"":null,""SSETime"":null,""SSETimeStr"":null,""TITLE"":""西典新能首次公开发行股票并在主板上市招股说明书提示性公告"",""URL"":""\/disclosure\/listedinfo\/announcement\/c\/new\/2024-01-08\/603312_20240108_ME69.pdf"",""author"":null,""book_Name"":null,""bulletinHeading"":null,""bulletinType"":null,""bulletin_No"":null,""bulletin_Type"":null,""bulletin_Year"":null,""category_A"":null,""category_B"":null,""catego",sse_queryCompanyBulletin,candidate,
+301536,星宸科技,SZSE,,,szse_official_page,candidate,adapter_error:URLError:<urlopen error [Errno 104] Connection reset by peer>
+920002,万达轴承,BSE,,,bse_official_page,candidate,"adapter_error:HTTPError:HTTP Error 302: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Temporarily|HTTPError:HTTP Error 302: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Temporarily"

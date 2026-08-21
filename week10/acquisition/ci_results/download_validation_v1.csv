@@ -1,0 +1,2 @@
+﻿sample_id,stock_code,company_name,exchange,source_url,http_status,content_type,bytes,pdf_magic,page_count,prospectus_match,issuer_match,stock_code_match,sha256,status,error
+S504,603312,西典新能,SSE,https://www.sse.com.cn/disclosure/listedinfo/announcement/c/new/2024-01-08/603312_20240108_9ARC.pdf,200,text/html; charset=utf-8,3872,False,,False,False,False,,FAILED,RuntimeError:missing %PDF magic
