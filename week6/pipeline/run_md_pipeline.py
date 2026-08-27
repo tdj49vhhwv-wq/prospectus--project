@@ -32,6 +32,11 @@ COMPANY_NAMES = {
     "688757": "胜科纳米", "688759": "必贝特", "688765": "禾元生物",
     "688783": "西安奕材", "688790": "昂瑞微", "688796": "百奥赛图",
     "688805": "健信超导", "688807": "优迅股份", "688809": "强一股份",
+    # Week 10 DEV 12
+    "001286": "陕西能源", "001400": "江顺科技", "301358": "湖南裕能",
+    "301536": "星宸科技", "301603": "乔锋智能", "301662": "宏工科技",
+    "603307": "扬州金泉", "603312": "西典新能", "920002": "万达轴承",
+    "920008": "成电光信", "920066": "科拜尔", "920363": "莱赛激光",
 }
 
 # 完整正则模式（Week7 成果）
@@ -335,6 +340,252 @@ def _event_context_window(text: str, m: re.Match, before: int = 20, after: int =
     return ctx.replace("\n", " ")[:300]
 
 
+
+def _w9_clean_actor_piece(piece: str) -> str:
+    s = str(piece or "").strip(" ，。；、:：()（）[]【】<>\"'")
+    s = re.sub(r'^(?:其中|由|以及|并由|新增股东|股东|投资人|认购人|受让方|出资人|公司股东)+', '', s)
+    s = re.sub(r'(?:分别|共同|合计|全额|以现金|以货币|以自有资金)$', '', s)
+    return s.strip(" ，。；、:：")
+
+
+def _w9_split_actor_list(chunk: str):
+    if not chunk:
+        return []
+    chunk = chunk.replace("\n", " ")
+    parts = re.split(r'[、；;]|(?:，|,)(?=[一-龥])|(?:和|及|与)(?=[一-龥A-Za-z])', chunk)
+    out = []
+    for p in parts:
+        p = _w9_clean_actor_piece(p)
+        if 2 <= len(p) <= 80 and is_valid_investor_name(p):
+            out.append(p)
+    return stable_unique_names(out, limit=20)
+
+
+def extract_investors_anchored(text: str, m: re.Match, ev_type: str):
+    start = max(0, m.start() - 100)
+    end = min(len(text), m.end() + 500)
+    win = text[start:end].replace("\n", " ")
+    candidates = []
+
+    if ev_type == "股权转让":
+        for pat in (
+            r'(?:转让给|转让予|分别转让予|分别转让给)\s*([^。；]{2,180})',
+            r'向\s*([^。；]{2,100}?)\s*转让',
+        ):
+            mm = re.search(pat, win)
+            if mm:
+                candidates += _w9_split_actor_list(mm.group(1))
+        return stable_unique_names(candidates, limit=20)
+
+    action_patterns = (
+        r'([一-龥A-Za-z0-9&（）()·\-\s]{2,100}?)\s*(?:分别)?(?:以[^。；，]{0,30})?认购',
+        r'([一-龥A-Za-z0-9&（）()·\-\s]{2,100}?)\s*(?:分别)?(?:以[^。；，]{0,30})?认缴',
+        r'([一-龥A-Za-z0-9&（）()·\-\s]{2,100}?)\s*(?:分别)?(?:以[^。；，]{0,30})?出资',
+        r'由\s*([一-龥A-Za-z0-9&（）()·、，,\-\s]{2,160}?)\s*(?:共同)?(?:增资|认购|认缴|出资)',
+        r'新增股份由\s*([一-龥A-Za-z0-9&（）()·、，,\-\s]{2,160}?)\s*(?:认购|认缴)',
+        r'新增注册资本[^。；]{0,80}?由\s*([一-龥A-Za-z0-9&（）()·、，,\-\s]{2,160}?)\s*(?:认购|认缴|出资)',
+    )
+    for pat in action_patterns:
+        for mm in re.finditer(pat, win):
+            candidates += _w9_split_actor_list(mm.group(1))
+
+    for mm in re.finditer(
+        r'([一-龥A-Za-z0-9&（）()·\-]{2,60})\s*(?:认购|认缴|出资)\s*[\d,]+(?:\.\d+)?',
+        win
+    ):
+        p = _w9_clean_actor_piece(mm.group(1))
+        if is_valid_investor_name(p):
+            candidates.append(p)
+
+    if ev_type in ("设立", "整体变更", "吸收合并"):
+        for pat in (
+            r'(?:由|发起人为|发起人包括|股东为|股东包括)\s*([^。；]{2,220})',
+            r'(?:股权结构如下|发起人姓名/名称)[：:\s]*([^。；]{2,220})',
+        ):
+            mm = re.search(pat, win)
+            if mm:
+                candidates += _w9_split_actor_list(mm.group(1))
+
+    bad_exact = {
+        "COM", "WWW", "HTTP", "HTTPS", "CN", "END", "SUBGRAPH",
+        "GRAPH", "DETAILS", "ZC", "ZB"
+    }
+    cleaned = []
+    for c in stable_unique_names(candidates, limit=30):
+        n = c.strip()
+        if n.upper() in bad_exact:
+            continue
+        if any(tok in n for tok in (
+            "公司网址", "互联网网址", "传真号码", "联系电话",
+            "审议通过", "协议", "报告", "股东大会", "董事会",
+            "注册资本", "股本总额", "净资产", "营业执照"
+        )):
+            continue
+        cleaned.append(n)
+
+    return stable_unique_names(cleaned, limit=20)
+
+
+
+def _w9s6_clean(name):
+    s = str(name or "").strip().replace("（","(").replace("）",")")
+    s = re.sub(r"\s+", "", s)
+    s = re.sub(r"(?:将|以|向|共同|分别|缴纳的|认购的|出资的)$", "", s)
+    return s.strip("，。；、,;:：")
+
+
+def _w9s6_ok(name):
+    n = _w9s6_clean(name)
+    if not n or len(n) < 2:
+        return False
+    bad = (
+        "待识别","名称","实缴","股本","注册资本","净资产","营业执照",
+        "股东大会","董事会","协议","报告","公司网址","互联网网址","传真号码",
+        "信息技术服务","软件","名认购人缴纳的","持股比例为",
+        "新增股份的","新增股本的","整体变更设立股份公司","设立时股东及"
+    )
+    if any(x in n for x in bad):
+        return False
+    if n.upper() in {"COM","WWW","HTTP","HTTPS","CN","END","SUBGRAPH","GRAPH","DETAILS","ZC","ZB"}:
+        return False
+    return is_valid_investor_name(n)
+
+
+def _w9s6_split(chunk):
+    if not chunk:
+        return []
+    c = str(chunk).replace("\n", " ")
+    c = re.sub(r"(?:共同|分别)?(?:认购|认缴|出资|缴纳|受让).*$", "", c)
+    parts = re.split(r"[、；;]|(?:，|,)(?=[一-龥A-Za-z])|(?:和|及|与)(?=[一-龥A-Za-z])", c)
+    out = []
+    for x in parts:
+        x = _w9s6_clean(x)
+        if _w9s6_ok(x):
+            out.append(x)
+    return stable_unique_names(out, limit=30)
+
+
+def _w9s6_extract_ac(win, ev_type):
+    names = []
+    for pat in (
+        r'([一-龥A-Za-z0-9&（）()·\-]{2,80})\s*(?:以[^。；，]{0,30})?(?:认购|认缴|出资)',
+        r'由\s*([^。；]{2,180}?)\s*(?:共同)?(?:认购|认缴|出资)',
+        r'新增股份由\s*([^。；]{2,180}?)\s*(?:认购|认缴)',
+        r'新增注册资本[^。；]{0,80}?由\s*([^。；]{2,180}?)\s*(?:认购|认缴|出资)',
+        r'已收到\s*([^。；]{2,220}?)\s*缴纳的出资款',
+    ):
+        for mm in re.finditer(pat, win):
+            names += _w9s6_split(mm.group(1))
+
+    for pat in (
+        r'([一-龥A-Za-z0-9&（）()·、，,\-\s]{2,220}?)\s*(?:共同增资|共同出资)',
+        r'新增股东\s*([一-龥A-Za-z0-9&（）()·、，,\-\s]{2,220})',
+    ):
+        for mm in re.finditer(pat, win):
+            names += _w9s6_split(mm.group(1))
+
+    if ev_type == "增资及股权转让":
+        for pat in (
+            r'(?:转让给|转让予|分别转让给|分别转让予)\s*([^。；]{2,180})',
+            r'向\s*([^。；]{2,120}?)\s*转让',
+        ):
+            for mm in re.finditer(pat, win):
+                names += _w9s6_split(mm.group(1))
+
+    return stable_unique_names([_w9s6_clean(x) for x in names if _w9s6_ok(x)], limit=30)
+
+
+def _w9s6_extract_be(win):
+    names = []
+    for pat in (
+        r'(?:发起人为|发起人包括|股东为|股东包括)\s*([^。；]{2,260})',
+        r'(?:股东姓名/名称|发起人姓名/名称|股东情况为)[：:\s]*([^。；]{2,260})',
+        r'由\s*([^。；]{2,220}?)\s*(?:共同)?出资设立',
+    ):
+        mm = re.search(pat, win)
+        if mm:
+            names += _w9s6_split(mm.group(1))
+
+    for mm in re.finditer(
+        r'([一-龥A-Za-z0-9&（）()·\-]{2,80})\s*(?:持股|出资)?\s*[\d,]+(?:\.\d+)?\s*(?:万股|万元|%)',
+        win
+    ):
+        n = _w9s6_clean(mm.group(1))
+        if _w9s6_ok(n):
+            names.append(n)
+
+    return stable_unique_names(names, limit=40)
+
+
+def _w9s6_extract_g(win):
+    names = []
+    for pat in (
+        r'吸收合并后[^。；]{0,120}?其中\s*([^。；]{2,220})',
+        r'注册资本变更为[^。；]{0,80}?其中\s*([^。；]{2,220})',
+        r'股东(?:为|包括)\s*([^。；]{2,220})',
+    ):
+        mm = re.search(pat, win)
+        if mm:
+            names += _w9s6_split(mm.group(1))
+    return stable_unique_names(names, limit=30)
+
+
+def _w9s6_extract_investors(text, m, ev_type):
+    start = max(0, m.start() - 140)
+    end = min(len(text), m.end() + 900)
+    win = text[start:end].replace("\n", " ")
+
+    if ev_type in ("增资", "增资及股权转让"):
+        return _w9s6_extract_ac(win, ev_type)
+    if ev_type in ("设立", "整体变更"):
+        return _w9s6_extract_be(win)
+    if ev_type == "吸收合并":
+        return _w9s6_extract_g(win)
+    if ev_type == "股权转让":
+        return extract_investors_anchored(text, m, ev_type)
+    return []
+
+
+def _w9s6_bind_fields(text, m, investor, default_amount=None, default_shares=None, default_price=None):
+    start = max(0, m.start() - 160)
+    end = min(len(text), m.end() + 1000)
+    win = text[start:end].replace("\n", " ")
+    n = _w9s6_clean(investor)
+    pos = win.find(n)
+    clause = win[max(0, pos-20):min(len(win), pos+len(n)+220)] if pos >= 0 else win[:220]
+
+    amount, shares, price = default_amount, default_shares, default_price
+
+    ma = re.search(r'(?:认购金额|出资金额|投资金额|以现金|以货币|出资|认购|认缴)?\s*([\d,]+(?:\.\d+)?)\s*万元', clause)
+    if ma:
+        try:
+            amount = float(ma.group(1).replace(",", ""))
+        except Exception:
+            pass
+
+    ms = re.search(r'(?:认购|新增|取得|受让)?\s*([\d,]+(?:\.\d+)?)\s*万股', clause)
+    if ms:
+        try:
+            shares = float(ms.group(1).replace(",", ""))
+        except Exception:
+            pass
+    else:
+        ms = re.search(r'(?:认购|新增|取得|受让)?\s*([\d,]+(?:\.\d+)?)\s*股', clause)
+        if ms:
+            try:
+                shares = float(ms.group(1).replace(",", "")) / 10000.0
+            except Exception:
+                pass
+
+    mp = re.search(r'(?:股份价格|认购价格|发行价格|每股价格|转让单价|单价)[为：:\s]*([\d,]+(?:\.\d+)?)\s*元/(?:股|注册资本)', clause)
+    if mp:
+        try:
+            price = float(mp.group(1).replace(",", ""))
+        except Exception:
+            pass
+
+    return amount, shares, price
+
 def extract_from_snippets(snippets, company_code, company_name):
     """从文本片段提取订阅事件"""
     records = []
@@ -402,34 +653,12 @@ def extract_from_snippets(snippets, company_code, company_name):
                         except ValueError:
                             pass
 
-                # 提取投资人
-                if ev_type == "股权转让":
-                    # 股权转让只取“转让给/转让予/向…转让”后的受让方，避免把转出方和背景文本混入
-                    tail = text[m.start():min(len(text), m.end() + 160)]
-                    m_tr = re.search(r'分别转\s*让\s*予\s*([^。；]{2,200})', tail)
-                    if not m_tr:
-                        m_tr = re.search(r'转\s*让\s*(?:给|予)\s*([^。；]{2,200})', tail)
-                    chunk = m_tr.group(1) if m_tr else ""
-                    if not chunk:
-                        m_xiang = re.search(r'向\s*([\s一-龥A-Za-z]{2,40}?)\s*转\s*让', tail)
-                        chunk = m_xiang.group(1) if m_xiang else ""
-                    chunk = chunk.replace('\n', '')
-                    investors = stable_unique_names(
-                        [n for n in re.findall(r'[一-龥A-Za-z]{2,40}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|集团|中心|管理)?', chunk)
-                         if is_valid_investor_name(n)],
-                        limit=10,
-                    )
-                else:
-                    investors = re.findall(
-                        r'([一-龥A-Za-z]{2,30}(?:有限(?:责任)?公司|合伙企业|基金|创投|投资|集团|中心|管理|FUND)?)',
-                        text[m.start():min(m.end()+300, len(text))]
-                    )
-                # 过滤非投资人（明显非实体 + 非发行人主体）
+                # Week 9 Stage 6: parser by event type
+                investors = _w9s6_extract_investors(text, m, ev_type)
                 investors = stable_unique_names(
-                    [i for i in investors if is_valid_investor_name(i)],
-                    limit=8,
+                    [_w9s6_clean(x) for x in investors if _w9s6_ok(x)],
+                    limit=30,
                 )
-
                 if not investors:
                     investors = ['（待识别）']
 
@@ -442,7 +671,16 @@ def extract_from_snippets(snippets, company_code, company_name):
                     if key in seen: continue
                     seen.add(key)
 
-                    validated = bool(date_str) and inv != "（待识别）"
+                    # Week 9 Stage 2: 事件验证与投资人识别解耦
+                    # 投资人缺失只影响 investor-level，不应让正确事件从 validated 消失。
+                    validated = bool(date_str)
+
+                    inv_amount, inv_shares, inv_price = _w9s6_bind_fields(
+                        text, m, inv,
+                        default_amount=amount,
+                        default_shares=shares,
+                        default_price=price,
+                    )
 
                     records.append({
                         "event_id": f"{company_code}_{date_str.replace('-','')}_{ev_type}_{len(records):03d}",
@@ -450,9 +688,9 @@ def extract_from_snippets(snippets, company_code, company_name):
                         "stock_code": company_code,
                         "subscription_date": date_str,
                         "subscriber_name": inv[:200],
-                        "shares_subscribed": shares,
-                        "amount_subscribed": amount,
-                        "price_per_share": price,
+                        "shares_subscribed": inv_shares,
+                        "amount_subscribed": inv_amount,
+                        "price_per_share": inv_price,
                         "event_context": ev_type,
                         "investor_type": classify(inv),
                         "source_page": f"MD p{page}",

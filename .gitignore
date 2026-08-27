@@ -19,6 +19,7 @@ venv/
 # Data (large files)
 data/prospectus_pdfs/*.pdf
 week10/acquisition/raw_pdf/
+week10/acquisition/markdown/
 
 # Temp
 *.tmp

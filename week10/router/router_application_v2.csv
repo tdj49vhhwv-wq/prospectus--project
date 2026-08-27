@@ -1,0 +1,13 @@
+﻿document_id,stock_code,company_short_name,board,historical_role,equity_complexity,investor_complexity,restructuring_complexity,summary_table_complexity,vie_complexity,date_complexity,long_list_complexity,activated_parsers,n_special_parsers
+S501,001286,陕西能源,Main,DEV,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,EXTREME,base_event_parser | long_syndicate_parser,1
+S508,001400,江顺科技,Main,DEV,NORMAL,NORMAL,NORMAL,HIGH,NORMAL,NORMAL,EXTREME,base_event_parser | summary_table_parser | long_syndicate_parser,2
+S509,301358,湖南裕能,ChiNext,DEV,NORMAL,NORMAL,NORMAL,EXTREME,NORMAL,NORMAL,EXTREME,base_event_parser | summary_table_parser | long_syndicate_parser,2
+S511,301536,星宸科技,ChiNext,DEV,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,HIGH,base_event_parser | long_syndicate_parser,1
+S512,301603,乔锋智能,ChiNext,DEV,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,EXTREME,base_event_parser | long_syndicate_parser,1
+S516,301662,宏工科技,ChiNext,DEV,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,HIGH,base_event_parser | long_syndicate_parser,1
+S502,603307,扬州金泉,Main,DEV,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,EXTREME,base_event_parser | long_syndicate_parser,1
+S504,603312,西典新能,Main,DEV,NORMAL,NORMAL,NORMAL,HIGH,NORMAL,NORMAL,HIGH,base_event_parser | summary_table_parser | long_syndicate_parser,2
+S519,920002,万达轴承,BSE,DEV,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,EXTREME,base_event_parser | long_syndicate_parser,1
+S520,920008,成电光信,BSE,DEV,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,EXTREME,base_event_parser | long_syndicate_parser,1
+S524,920066,科拜尔,BSE,DEV,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,HIGH,base_event_parser | long_syndicate_parser,1
+S517,920363,莱赛激光,BSE,DEV,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,NORMAL,EXTREME,base_event_parser | long_syndicate_parser,1
