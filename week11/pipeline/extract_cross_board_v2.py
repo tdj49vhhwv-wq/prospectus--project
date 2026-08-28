@@ -340,7 +340,7 @@ def heading_event(heading):
     # 「X 受让…股份」= 股权转让（排除「受让方」名词性标题，如「受让方…外汇登记手续」）
     if '受让' in h and '受让方' not in h and '股份' in h:
         return '股权转让'
-    if '整体变更' in h or re.search(r'股份(?:有限)?公司设立', h):
+    if '整体变更' in h or re.search(r'股份(?:有限)?公司设立', h) or ('股份有限公司' in h and '设立' in h):
         return '整体变更'
     if ('有限公司' in h and '设立' in h) or '首期出资' in h or '设立及' in h:
         return '设立'
