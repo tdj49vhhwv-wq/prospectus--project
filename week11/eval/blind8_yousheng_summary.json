@@ -1,22 +1,22 @@
 {
   "gold_pevc": 11,
-  "auto_pevc": 12,
+  "auto_pevc": 11,
   "tp": 11,
-  "fp": 1,
+  "fp": 0,
   "fn": 0,
-  "precision": 0.9166666666666666,
+  "precision": 1.0,
   "recall": 1.0,
-  "f1": 0.9565217391304348,
+  "f1": 1.0,
   "per_company": {
     "603418": {
       "gold": 11,
-      "auto": 12,
+      "auto": 11,
       "tp": 11,
-      "fp": 1,
+      "fp": 0,
       "fn": 0,
-      "precision": 0.9166666666666666,
+      "precision": 1.0,
       "recall": 1.0,
-      "f1": 0.9565217391304348
+      "f1": 1.0
     }
   }
 }
