@@ -36,13 +36,24 @@ def key(r):
     )
 
 
-def load_gold(gold_csv):
+def load_gold(gold_csv, exclude_prelisting=False):
+    """Load gold PE/VC rows.
+
+    exclude_prelisting=True 时剔除 `disclosure_form == 'prelisting'`（挂牌前入股、
+    时点未在招股书披露 → 不可恢复项），不计入 Recall 分母（阶段 0 边界规则）。
+    """
     with Path(gold_csv).open(encoding="utf-8-sig") as f:
-        return [
+        rows = [
             r for r in csv.DictReader(f)
             if str(r.get("include_pevc", "")).strip()
             in {"是", "1", "true", "True", "yes", "YES"}
         ]
+    if exclude_prelisting:
+        rows = [
+            r for r in rows
+            if str(r.get("disclosure_form", "")).strip() != "prelisting"
+        ]
+    return rows
 
 
 def load_auto(pred_dir, codes):
@@ -141,8 +152,10 @@ def main():
     ap.add_argument("--pred-dir", required=True)
     ap.add_argument("--codes", nargs="+", required=True)
     ap.add_argument("--out", required=True, help="output prefix (writes <out>_summary.json / _details.csv)")
+    ap.add_argument("--exclude-prelisting", action="store_true",
+                    help="exclude disclosure_form=prelisting rows from Recall denominator (阶段0边界规则)")
     args = ap.parse_args()
-    gold = load_gold(args.gold)
+    gold = load_gold(args.gold, exclude_prelisting=args.exclude_prelisting)
     auto = load_auto(args.pred_dir, args.codes)
     evaluate(args.codes, gold, auto, args.out)
 

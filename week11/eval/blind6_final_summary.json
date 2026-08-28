@@ -1,0 +1,72 @@
+{
+  "gold_pevc": 24,
+  "auto_pevc": 27,
+  "tp": 24,
+  "fp": 3,
+  "fn": 0,
+  "precision": 0.8888888888888888,
+  "recall": 1.0,
+  "f1": 0.9411764705882353,
+  "per_company": {
+    "603257": {
+      "gold": 0,
+      "auto": 0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": 0,
+      "recall": 0,
+      "f1": 0
+    },
+    "603210": {
+      "gold": 0,
+      "auto": 3,
+      "tp": 0,
+      "fp": 3,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": 0,
+      "f1": 0
+    },
+    "301629": {
+      "gold": 9,
+      "auto": 9,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "301658": {
+      "gold": 11,
+      "auto": 11,
+      "tp": 11,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "920060": {
+      "gold": 3,
+      "auto": 3,
+      "tp": 3,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "920098": {
+      "gold": 1,
+      "auto": 1,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  }
+}
