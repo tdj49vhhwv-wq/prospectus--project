@@ -345,7 +345,7 @@ def heading_event(heading):
     if ('有限公司' in h and '设立' in h) or '首期出资' in h or '设立及' in h:
         return '设立'
     if ('增资' in h or '增加注册资本' in h or '定向发行' in h or '发行股票' in h
-            or '发行新股' in h or '现金增资' in h or '发行融资' in h):
+            or '股票发行' in h or '发行新股' in h or '现金增资' in h or '发行融资' in h):
         return '增资'
     return None
 
@@ -568,6 +568,20 @@ def extract_capital_receipt_names(body):
         n = clean_name(mm.group(1))
         if n and 2 <= len(n) <= 60:
             out.append(n)
+    return out
+
+
+def extract_receipt_names(body):
+    """「已收到 X、Y 缴纳(的)出资款」——北交所定向发行验资报告口径。
+
+    例: 截至 2022年8月9 日，公司已收到稳正景明、长泽创投缴纳的出资款 2,374.40万元。
+    名单在「收到」与「缴纳/缴付」之间，顿号或「及/和/与」分隔；简称已在释义表。
+    （自然人认购人由 is_institution 在 add 阶段过滤，不新增 FP。）
+    """
+    ns = normspace(body)
+    out = []
+    for mm in re.finditer(r'收到([一-鿿A-Za-z0-9&（）()·、，,]{2,300}?)(?:等)?(?:缴纳|缴付)', ns):
+        out += _split_prose_names(mm.group(1))
     return out
 
 
@@ -865,6 +879,9 @@ def extract_company(code):
             for n in extract_capital_receipt_names(body):
                 short = _canonical_short(normspace(n), full2alias)
                 add(date_ym, etype, short or n, evidence=clean(body)[:200])
+            # 北交所定向发行验资散文「已收到 X、Y 缴纳的出资款」
+            for n in extract_receipt_names(body):
+                add(date_ym, etype, n, evidence=clean(body)[:200])
             for n in extract_subscriber_names(body):
                 add(date_ym, etype, n, evidence=clean(body)[:200])
             if etype == '增资及股权转让':
