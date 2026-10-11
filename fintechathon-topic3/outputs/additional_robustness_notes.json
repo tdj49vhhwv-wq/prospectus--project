@@ -1,0 +1,18 @@
+{
+  "design": "post-result diagnostic, not confirmatory; fixed predictions, no refitting",
+  "same_year_positive_negative_pairs": 260,
+  "year_2017_merchants": 107,
+  "year_2017_closed": 2,
+  "limitations": [
+    "Only 2016 and 2017 contain both labels; only 260 within-year pairs.",
+    "Year-restricted diagnostics do not establish prospective validity.",
+    "No confidence intervals; do not interpret subgroup estimates as stable gains."
+  ],
+  "economics": {
+    "absolute_net_value": "k*(p*v-c)-F",
+    "increment_vs_equal_budget_low_rating": "(h_model-h_low_rating)*v-F_increment",
+    "definitions": "p=prospectively verified actionable-risk precision; v=measured net value per actionable hit; c=cost per review; F=period fixed cost",
+    "historical_status_hits_are_not_actionable_risk": true,
+    "illustration_only": "At 14 reviews, historical tree-minus-low-rating hit difference is 4, primary difference is 0; no monetary savings inferred."
+  }
+}

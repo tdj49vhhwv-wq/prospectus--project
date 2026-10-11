@@ -14,6 +14,7 @@ def main():
         "敏感性检查": "sensitivity_checks.csv",
         "主模型置换重要性": "permutation_importance.csv",
         "主模型回归系数": "primary_logistic_coefficients.csv",
+        "追加日期审计": "additional_robustness.csv",
     }
     summary = json.loads((OUT / "analysis_summary.json").read_text())
     audit = json.loads((OUT / "data_audit.json").read_text())
@@ -30,12 +31,14 @@ def main():
         "随机复核命中数为理论期望，不是实际抽查命中的小数家。",
         "Bootstrap只覆盖固定模型本次测试样本的不确定性，不涵盖训练和选择过程。",
         "置换重要性及回归系数均不表示因果效应；词典主题尚未经独立人工标注验证。",
+        "追加日期审计在原测试结果之后设计，不调参，不作为确认性检验；2017子组只有2家停业。",
     ]})
     destination = OUT / "分析结果汇总.xlsx"
     with pd.ExcelWriter(destination, engine="openpyxl") as writer:
         notes.to_excel(writer, sheet_name="阅读说明", index=False)
         for sheet, filename in mapping.items():
-            pd.read_csv(OUT / filename).to_excel(writer, sheet_name=sheet, index=False)
+            if (OUT / filename).exists():
+                pd.read_csv(OUT / filename).to_excel(writer, sheet_name=sheet, index=False)
         pd.DataFrame(intervals).to_excel(writer, sheet_name="模型置信区间", index=False)
         pd.DataFrame([{"字段": k, "值": str(v)} for k, v in audit.items()]).to_excel(writer, sheet_name="数据审计", index=False)
         for worksheet in writer.book.worksheets:

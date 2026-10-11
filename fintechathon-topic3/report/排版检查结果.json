@@ -18,12 +18,12 @@
     {
       "pdf_page": 1,
       "role": "cover",
-      "text_characters": 88
+      "text_characters": 98
     },
     {
       "pdf_page": 2,
       "role": "body",
-      "text_characters": 841
+      "text_characters": 872
     },
     {
       "pdf_page": 3,
@@ -33,7 +33,7 @@
     {
       "pdf_page": 4,
       "role": "body",
-      "text_characters": 814
+      "text_characters": 856
     },
     {
       "pdf_page": 5,
@@ -53,12 +53,12 @@
     {
       "pdf_page": 8,
       "role": "body",
-      "text_characters": 808
+      "text_characters": 859
     },
     {
       "pdf_page": 9,
       "role": "body",
-      "text_characters": 762
+      "text_characters": 806
     },
     {
       "pdf_page": 10,

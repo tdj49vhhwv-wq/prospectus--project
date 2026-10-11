@@ -1,0 +1,265 @@
+{
+  "scope": "reports, aggregate analyses, figures, sources, reproducible scripts; excludes raw and merchant-level data",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 161,
+      "sha256": "7879913fe964c6131cfd07103ec8bbedf982e685586a4b5c90ccdf2fe295806e"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5977,
+      "sha256": "b9ffdba3246e68eb1e6e225c213c1cd37b1ddbc7d865d25f643bffdab8b959d4"
+    },
+    {
+      "path": "outputs/additional_robustness.csv",
+      "bytes": 1442,
+      "sha256": "6f8a3b848fef7de9b9602e5439da9e27ee181927d5c09de4f78a0e1ff8e581f3"
+    },
+    {
+      "path": "outputs/additional_robustness_notes.json",
+      "bytes": 959,
+      "sha256": "3872b041d0d9d061f2edebf6d614d3dff5d7ce0f9008af5f48053254723831e0"
+    },
+    {
+      "path": "outputs/analysis_summary.json",
+      "bytes": 10035,
+      "sha256": "cdf1ffb4b63de1c293f366b9e1f7845f6f6e5dea7d858663ed83242c500c9ee2"
+    },
+    {
+      "path": "outputs/data_audit.json",
+      "bytes": 1258,
+      "sha256": "fecf725666d4a967a562c86ccf86b73370f037518ca217c62fc6bbba1f9106d9"
+    },
+    {
+      "path": "outputs/descriptive_stats.csv",
+      "bytes": 2006,
+      "sha256": "1219cafb91cfc42c31f4b19ab7efe622368b8c39b575c414646416398ff9511a"
+    },
+    {
+      "path": "outputs/feature_dictionary.csv",
+      "bytes": 1720,
+      "sha256": "d0c545c6b6ef5a33b3942942c3baf3f9dfa02810f06be409fd2ea870b50cac13"
+    },
+    {
+      "path": "outputs/fig01_group_comparison.png",
+      "bytes": 61652,
+      "sha256": "2756ff6fbcbcd6f66bbce1fb749b1a97f172bc0b0458f60f6bcbfdbafba408e7"
+    },
+    {
+      "path": "outputs/fig02_model_comparison.png",
+      "bytes": 41387,
+      "sha256": "708d8f16611e048240ab0880881bbb04b049d68c6b108e0ce7d3440f59c2d3ba"
+    },
+    {
+      "path": "outputs/fig03_precision_recall.png",
+      "bytes": 56125,
+      "sha256": "799dbef03119a73789a395d47e773dc7c6f3425c9bde4a47a80f06d210eacb1d"
+    },
+    {
+      "path": "outputs/fig04_review_budget.png",
+      "bytes": 93487,
+      "sha256": "4e6fa3224ef896ad5838e45bc1658982025cd8485c470459dac8e53d40f0ffb0"
+    },
+    {
+      "path": "outputs/fig05_calendar_confounding.png",
+      "bytes": 38506,
+      "sha256": "a39feedc61346921febb36ac5803d5af0578b2309286521431e449a6a0d03cd4"
+    },
+    {
+      "path": "outputs/model_metrics.csv",
+      "bytes": 808,
+      "sha256": "00115f4730527823046029732bb559725b905311faa5b8d92d8d9b058da27a88"
+    },
+    {
+      "path": "outputs/permutation_importance.csv",
+      "bytes": 1178,
+      "sha256": "dad2473b35100237c8ae9d6a4260979ff71203e27f405720f3ccb4552b3284e5"
+    },
+    {
+      "path": "outputs/primary_logistic_coefficients.csv",
+      "bytes": 578,
+      "sha256": "020f0bd99ee55b8c11975521d93e8422327a34cbf28ffe1d4b4fb0219a34eaf2"
+    },
+    {
+      "path": "outputs/review_budget.csv",
+      "bytes": 1450,
+      "sha256": "3543e5dcdc9daf9ff145f23eea5f81a7f9ae3e5e2572af1647974fd3d2e8678d"
+    },
+    {
+      "path": "outputs/sensitivity_checks.csv",
+      "bytes": 381,
+      "sha256": "3224eb400e8c32ad1bfe6786cac4fa549166e51f2a225e261394ad0922178f63"
+    },
+    {
+      "path": "outputs/分析结果汇总.xlsx",
+      "bytes": 20439,
+      "sha256": "e9d13cfd90d041466c4571dd20320048593e3bd54c0647e20bf77cdd7e80f567"
+    },
+    {
+      "path": "outputs/阶段分析报告.md",
+      "bytes": 14083,
+      "sha256": "35f646c5b50cf59d4decc40f9fcadf3799561af6d2c0eea2a3c3c342ff1c3841"
+    },
+    {
+      "path": "report/figures/figure01_sample.pdf",
+      "bytes": 42757,
+      "sha256": "cc97ac1ce20373f7d421dc0a72569230dc7b2f213d87b8585970bdae270fd883"
+    },
+    {
+      "path": "report/figures/figure01_sample.png",
+      "bytes": 128152,
+      "sha256": "290b9f06a8edb6e7c420727126290ffa3f1e06f590786adff1328b78747855c2"
+    },
+    {
+      "path": "report/figures/figure02_descriptive.pdf",
+      "bytes": 27637,
+      "sha256": "2f2ada185ce93121f2d4759571b0b74957545203bbbd92f0a11b6cfbf8f593ee"
+    },
+    {
+      "path": "report/figures/figure02_descriptive.png",
+      "bytes": 103578,
+      "sha256": "198b180ee26414d43513f2d87f2946e29f9fd673f2274f5481138a5f00345f69"
+    },
+    {
+      "path": "report/figures/figure03_models.pdf",
+      "bytes": 26460,
+      "sha256": "7de08d4c68d3d524d36f43e2bb8ab9224e0b0f163a9f8cd6cd31685b27692cf6"
+    },
+    {
+      "path": "report/figures/figure03_models.png",
+      "bytes": 115954,
+      "sha256": "64bc1f02a6b07f0c8c54b5a034228138c20b5cff1bddd1a34d27c75b2e38649f"
+    },
+    {
+      "path": "report/figures/figure04_budget.pdf",
+      "bytes": 54781,
+      "sha256": "c4c619e495d0ce9e948fca0f90a474b40d85d5fd17a144a870b9f269cf0767c6"
+    },
+    {
+      "path": "report/figures/figure04_budget.png",
+      "bytes": 198263,
+      "sha256": "c4ae4ca55eb1fe6fb423115d99720487309cbfaa48d60e0452b781f8f01f5f56"
+    },
+    {
+      "path": "report/figures/figure05_bias.pdf",
+      "bytes": 44362,
+      "sha256": "cf8977955e6adb7d679ebe488f335527886d1bfe9c69c81bcb7afc7e16fa4864"
+    },
+    {
+      "path": "report/figures/figure05_bias.png",
+      "bytes": 146072,
+      "sha256": "d182418c0ab87d613f217bd5236264ca6943f18b35e5b993a8814076d805f3bd"
+    },
+    {
+      "path": "report/fonts/COPYING",
+      "bytes": 35737,
+      "sha256": "853b586f0d520493390e571431afaf36a5fbb27dcfd239338a7ee9b0505cb004"
+    },
+    {
+      "path": "report/fonts/README.md",
+      "bytes": 13,
+      "sha256": "4e610ed8797e4e42ce22cef8f077a24a3437302f2f37000f4391df5dfdcd5b81"
+    },
+    {
+      "path": "report/report.tex",
+      "bytes": 21194,
+      "sha256": "f6e067d29d56516b464692ddd8ed9572234f294044efd16a63685cf6578e2c0b"
+    },
+    {
+      "path": "report/二次审核与修改记录.md",
+      "bytes": 3137,
+      "sha256": "5ac6f8547ced310e75a9b974bd21139714829bb7c6fa6544d76213a5179519eb"
+    },
+    {
+      "path": "report/使用说明.md",
+      "bytes": 3141,
+      "sha256": "50c701883f63ed10615b1e598f53204e99c3fd013f77c377b4389b1c0b01f2ed"
+    },
+    {
+      "path": "report/待填编号-赛题3.pdf",
+      "bytes": 458295,
+      "sha256": "fd407a878b061ef1db11ca5c2e09c850bf60805eb219c5562a3edbc4dcf832e0"
+    },
+    {
+      "path": "report/报告可编辑稿.docx",
+      "bytes": 641885,
+      "sha256": "452b2c76c580a1abc3000e99ccfcabc9ad5b5761ace3ee7aef9ec957832a017c"
+    },
+    {
+      "path": "report/报告正文.md",
+      "bytes": 17315,
+      "sha256": "f7b01967072b7b6d63addf7b2f49acfbbfe9e5a67b78586ba19076f4e277e388"
+    },
+    {
+      "path": "report/排版检查结果.json",
+      "bytes": 1590,
+      "sha256": "89d0fd65dee2ca6df6c2d75f688b3f003b0df92f741dbbbe6773f23c40a5b3d2"
+    },
+    {
+      "path": "report/版式与待办说明.json",
+      "bytes": 454,
+      "sha256": "0cd962cdeb3b4737444e536b4f6a6170b6875190a2d9c24618f197e4c543299c"
+    },
+    {
+      "path": "requirements-tested.txt",
+      "bytes": 559,
+      "sha256": "e06d41d59956a91090389cf234a7014966629179314237dd31c8a0d6787dcc98"
+    },
+    {
+      "path": "scripts/analyze.py",
+      "bytes": 14403,
+      "sha256": "5da3d8925de6f5affddd53f3ebe8d48a5cb0ef8bbbc546cf1bb3192579e0e849"
+    },
+    {
+      "path": "scripts/build_submission.py",
+      "bytes": 39968,
+      "sha256": "379d83624dcbdecc4fd8c2f1167d1b9343e05379e370dbd8ebac0710013d66ea"
+    },
+    {
+      "path": "scripts/bundle_deliverables.py",
+      "bytes": 1870,
+      "sha256": "52ab534396ce8c883aa24d4d6a64ab16975ece99fbca24a5417ff675df5959f1"
+    },
+    {
+      "path": "scripts/download_data.py",
+      "bytes": 3364,
+      "sha256": "cf992b3c72bec4e779978798aa20c137dccc75390e7c15e3035958460c310ab0"
+    },
+    {
+      "path": "scripts/package_results.py",
+      "bytes": 3050,
+      "sha256": "c0b1b04bca1c1f9b4fe54b209add6b72917c687d4488c0952f0102b67184c783"
+    },
+    {
+      "path": "scripts/prepare.py",
+      "bytes": 8447,
+      "sha256": "488654b02cc92fb0ec82837ce87cf6e62c32dfce6f5f36cfd36152e548796ec0"
+    },
+    {
+      "path": "scripts/review_evidence.py",
+      "bytes": 3468,
+      "sha256": "c45fa93c2be00e2f5282568ff96e8ef56d07e7430207cc18814006be85156b1f"
+    },
+    {
+      "path": "scripts/validate_outputs.py",
+      "bytes": 2646,
+      "sha256": "2e46a352f8433c230e9832dd909ade8f793aa36acbaf80f6d188a8cfab45bbd5"
+    },
+    {
+      "path": "scripts/validate_submission.py",
+      "bytes": 6411,
+      "sha256": "9ff8b66ecd60f0ff86b746327ab33390fbdf6a12b2bf5503f657c942d376aa37"
+    },
+    {
+      "path": "scripts/write_report.py",
+      "bytes": 16689,
+      "sha256": "95e86bde9f591909674a9685ea80800f14d3f75d05f9b8283362c84564857496"
+    },
+    {
+      "path": "sources/data_manifest.json",
+      "bytes": 1877,
+      "sha256": "5db78eb0c7c64d4808a6328acfc40e559f53d1c810fd826b514935ac4371302d"
+    }
+  ]
+}

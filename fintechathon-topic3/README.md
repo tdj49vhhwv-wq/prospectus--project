@@ -6,6 +6,8 @@
 - [可编辑Word稿](report/报告可编辑稿.docx)：便于填写队名和修改内容。
 - [5张中文核心图表](report/figures/)：包含PNG与矢量PDF版本。
 - [报告使用说明](report/使用说明.md)及[实际排版检查结果](report/排版检查结果.json)。
+- [二次审核与修改记录](report/二次审核与修改记录.md)：当前报告已补充同年份审计、成本公式和流水融合验证方案；不是获奖保证。
+- [交付文件清单及SHA256](交付文件清单.json)：核对文件完整性。
 
 PDF正文实测10.5磅、15.75磅行距、21磅首行缩进；字体是嵌入的Fandol开源宋体，不是系统SimSun。Word稿设为五号“宋体”。报告保留主分析增益不稳定的结论、模型不确定性及历史数据局限，未补造正向效果。
 
@@ -55,3 +57,17 @@ Python 3.12已验证。输入存在时下载脚本仅校验，不重复下载；
 分析随机种子为20261011。窗口锚点为各商户最后评论日期，不能称为同一观察时点的前瞻设计。所有缺失填补和标准化只在拟合数据执行；调参和主模型选择只使用验证集。测试结果保留全部六模型，原始数据及完整评论文本不写入报告或Excel。
 
 下载涉及第三方历史子集，应保留来源与历史局限的说明。数据集版本、标签采集日期和当前使用许可未证实部分均在清单及报告中明确标注。
+
+## 二次审核版本复现
+
+完成前述数据分析后运行下列命令。PDF额外需要系统安装XeLaTeX及fontspec、geometry、caption、titlesec、booktabs、array、float、indentfirst、fancyhdr等宏包；中文字体由脚本下载固定版本并校验。使用真实队名及编号可给build_submission.py传入`--team-name`与`--group-id`。
+
+```bash
+.venv/bin/python scripts/review_evidence.py
+.venv/bin/python scripts/package_results.py
+MPLCONFIGDIR="$PWD/.mpl-cache" .venv/bin/python scripts/build_submission.py
+.venv/bin/python scripts/validate_submission.py
+.venv/bin/python scripts/bundle_deliverables.py
+```
+
+追加日期审计为事后诊断，固定原测试预测，不作为独立验证。六模型全部结果见`outputs/additional_robustness.csv`；增强树模型同年份配对AUC为0.488。2017子组仅2家停业，不能利用子组高分选择主模型。正文及产品部分已相应修订。
