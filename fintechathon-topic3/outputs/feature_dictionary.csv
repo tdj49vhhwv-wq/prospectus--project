@@ -2,7 +2,7 @@ field,中文解释,formula,regex,missing_policy
 rating_mean_360,近360天评论均分,"mean(stars), age_days < 360",,无缺失
 low_rating_share_360,近360天低分评论占比,"mean(stars <= 2), age_days < 360",,无缺失
 rating_std_360,近360天评分标准差,"population_std(stars), age_days < 360",,无缺失
-rating_change_180,近期较前期均分变化,"mean(stars, age < 180) - mean(stars, 180 <= age < 360)",,训练集拟合中位数填补
+rating_change_180,近期较前期均分变化,"mean(stars, age < 180) - mean(stars, 180 <= age < 360)",,拟合数据中位数填补并加缺失指示；调参仅训练集，最终训练+验证集
 recent_reviews_180,近180天评论数,count(age < 180),,无缺失
 previous_reviews_180,前180天评论数,count(180 <= age < 360),,无缺失
 review_growth_log,评论活跃度对数变化,log(1 + recent_count) - log(1 + previous_count),,无缺失

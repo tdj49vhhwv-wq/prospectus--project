@@ -1,0 +1,14 @@
+{
+  "eligible": 674,
+  "restaurants": 1361,
+  "eligible_fraction": 0.4952240999265246,
+  "eligible_closed": 123,
+  "all_closed": 318,
+  "eligible_closed_fraction": 0.3867924528301887,
+  "excluded": 687,
+  "excluded_closed": 195,
+  "excluded_closed_prevalence": 0.2838427947598253,
+  "eligible_closed_prevalence": 0.1824925816023739,
+  "fitting_prevalence": 0.18181818181818182,
+  "note": "Eligibility coverage of this historical restaurant subset, not population coverage or future risk. Probability scores audited against a constant fitted without test labels."
+}

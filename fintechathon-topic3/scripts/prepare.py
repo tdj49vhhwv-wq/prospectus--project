@@ -151,7 +151,7 @@ def main():
     ]
     for i, name in enumerate([c for v in FEATURES.values() for c in v]):
         formula = formulas[i] if i < 8 else "count(stars <= 2 AND topic_match, age < 180) / count(age < 180)"
-        dictionary.append({"field": name, "中文解释": LABELS[name], "formula": formula, "regex": TOPICS.get(name, ""), "missing_policy": "训练集拟合中位数填补" if name == "rating_change_180" else "无缺失"})
+        dictionary.append({"field": name, "中文解释": LABELS[name], "formula": formula, "regex": TOPICS.get(name, ""), "missing_policy": "拟合数据中位数填补并加缺失指示；调参仅训练集，最终训练+验证集" if name == "rating_change_180" else "无缺失"})
     pd.DataFrame(dictionary).to_csv(OUT / "feature_dictionary.csv", index=False)
     print(json.dumps(audit, ensure_ascii=False, indent=2))
 

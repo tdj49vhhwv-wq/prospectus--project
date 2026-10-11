@@ -15,6 +15,8 @@ def main():
         "主模型置换重要性": "permutation_importance.csv",
         "主模型回归系数": "primary_logistic_coefficients.csv",
         "追加日期审计": "additional_robustness.csv",
+        "概率评分审计": "probability_audit.csv",
+        "指标相关性": "indicator_redundancy.csv",
     }
     summary = json.loads((OUT / "analysis_summary.json").read_text())
     audit = json.loads((OUT / "data_audit.json").read_text())

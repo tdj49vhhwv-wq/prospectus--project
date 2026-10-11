@@ -82,6 +82,11 @@ def main():
     assert robustness.loc[("LR_QAT", "year_2017"), "closed"] == 2
     for result in ["0.488", "260", "0.673", "净价值", "之后90天", "待执行方案"]:
         assert result in normalized, "Missing revised evidence or product condition: " + result
+    probability = pd.read_csv(ROOT / "outputs/probability_audit.csv").set_index("model")
+    assert probability.loc["LR_QAT", "brier"] > probability.loc["fitting_prevalence_constant", "brier"]
+    assert abs(probability.loc["LR_QAT", "brier"] - metrics.loc["LR_QAT", "brier"]) < 1e-12
+    for result in ["49.52%", "38.68%", "28.38%", "0.1509", "0.1663", "0.1519", "0.934"]:
+        assert result in normalized, "Missing coverage/probability/indicator evidence: " + result
     results = {"status": "passed", "total_pdf_pages": len(doc), "body_pages": 8, "cover_pages": 1, "reference_pages": 1,
                "chinese_core_figures": 5, "numbered_tables": 6, "body_font": "embedded FandolSong-Regular", "body_size_pdf_pt": round(sum(font_sizes)/len(font_sizes), 3),
                "body_baseline_pdf_pt": round(sum(line_distances)/len(line_distances), 3), "body_paragraph_indent_pdf_pt": round(sum(indent_distances)/len(indent_distances), 3),

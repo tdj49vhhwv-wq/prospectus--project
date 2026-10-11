@@ -9,7 +9,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from sklearn.metrics import average_precision_score, roc_auc_score
+from sklearn.metrics import average_precision_score, roc_auc_score, brier_score_loss
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -17,8 +17,12 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--predictions', type=Path, default=ROOT / 'outputs/test_predictions.csv')
+    parser.add_argument('--features', type=Path, default=ROOT / 'outputs/merchant_features.csv')
+    parser.add_argument('--splits', type=Path, default=ROOT / 'outputs/sample_split.csv')
     args = parser.parse_args()
     predictions = pd.read_csv(args.predictions)
+    features = pd.read_csv(args.features)
+    splits = pd.read_csv(args.splits)
     assert len(predictions) == 135 and predictions.closed.sum() == 25
     assert predictions.merchant_id.is_unique
     rows = []
@@ -50,7 +54,27 @@ def main():
                             'historical_status_hits_are_not_actionable_risk': True,
                             'illustration_only': 'At 14 reviews, historical tree-minus-low-rating hit difference is 4, primary difference is 0; no monetary savings inferred.'})
     (ROOT / 'outputs/additional_robustness_notes.json').write_text(json.dumps(notes, ensure_ascii=False, indent=2))
+    fitting = features.merge(splits[['merchant_id', 'split']], on='merchant_id', validate='one_to_one')
+    fitting = fitting[fitting.split != 'test']
+    assert len(fitting) == 539 and fitting.closed.sum() == 98
+    constant = float(fitting.closed.mean())
+    probability = [{'model': 'fitting_prevalence_constant', 'brier': brier_score_loss(predictions.closed, np.full(len(predictions), constant))}]
+    probability += [{'model': name, 'brier': brier_score_loss(predictions.closed, predictions[name])} for name in ['LR_QAT', 'HGB_QAT']]
+    pd.DataFrame(probability).to_csv(ROOT / 'outputs/probability_audit.csv', index=False)
+    correlations = [{'feature_a': a, 'feature_b': b, 'spearman': fitting[a].corr(fitting[b], method='spearman'), 'fitting_merchants': len(fitting)}
+                    for a, b in [('rating_mean_360', 'low_rating_share_360'), ('recent_reviews_180', 'previous_reviews_180')]]
+    pd.DataFrame(correlations).to_csv(ROOT / 'outputs/indicator_redundancy.csv', index=False)
+    audit = json.loads((ROOT / 'outputs/data_audit.json').read_text())
+    coverage = dict(eligible=674, restaurants=1361, eligible_fraction=674 / 1361,
+                   eligible_closed=123, all_closed=318, eligible_closed_fraction=123 / 318,
+                   excluded=687, excluded_closed=195, excluded_closed_prevalence=195 / 687,
+                   eligible_closed_prevalence=123 / 674,
+                   fitting_prevalence=constant,
+                   note='Eligibility coverage of this historical restaurant subset, not population coverage or future risk. Probability scores audited against a constant fitted without test labels.')
+    assert audit['restaurants_with_valid_status'] == 1361 and audit['restaurants_closed'] == 318
+    (ROOT / 'outputs/coverage_and_probability_notes.json').write_text(json.dumps(coverage, ensure_ascii=False, indent=2))
     print(pd.DataFrame(rows).to_string(index=False))
+    print(pd.DataFrame(probability).to_string(index=False))
 
 
 if __name__ == '__main__':
