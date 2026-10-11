@@ -1,0 +1,26 @@
+{
+  "verified_at_Asia_Shanghai": "2026-10-11T19:20:34.572516+08:00",
+  "original_source": "https://www.yelp.com/dataset",
+  "download_source": "third-party academic Cleveland subset on GitHub; not an official Yelp download",
+  "repository": "https://github.com/ahegel/yelp-dataset",
+  "commit": "e5b82be3c909f9bb45dfd03e164ae0b7897832bd",
+  "sampling_documentation": "https://raw.githubusercontent.com/ahegel/yelp-dataset/e5b82be3c909f9bb45dfd03e164ae0b7897832bd/create_sample_data.py",
+  "sampling_rule": "original published filter: city.str.contains('leveland'); data represent the source's regional subset",
+  "license_status": "UNCONFIRMED for current terms and this mirror's redistribution permission. Official endpoints were blocked by environment egress proxy. A 2015 academic-only agreement was archived as historical context, not proof of a current license or of permission to redistribute this 2017-review subset.",
+  "license_action": "Read the current official Yelp dataset terms and confirm this educational competition use is covered before submitting or sharing derived outputs. Do not redistribute raw merchant records, reviews or reviewer information.",
+  "business_status_capture_date": "not documented by the subset source",
+  "files": [
+    {
+      "file": "cleveland_business.jsonl",
+      "url": "https://raw.githubusercontent.com/ahegel/yelp-dataset/e5b82be3c909f9bb45dfd03e164ae0b7897832bd/data/business_sample_cleveland.json",
+      "sha256": "c0d2cd404c3f2b1c87673eb9dc9ce407fdcf3b49aab8cd631dc785672f7a0bd2",
+      "bytes": 2659623
+    },
+    {
+      "file": "cleveland_reviews.jsonl",
+      "url": "https://raw.githubusercontent.com/ahegel/yelp-dataset/e5b82be3c909f9bb45dfd03e164ae0b7897832bd/data/review_sample_cleveland.json",
+      "sha256": "fb80a0cc7bfd27bef27fbb8c11c632ebe928fa8c32c899fbedd0872ec416d0dd",
+      "bytes": 75283656
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+field,中文解释,formula,regex,missing_policy
+rating_mean_360,近360天评论均分,"mean(stars), age_days < 360",,无缺失
+low_rating_share_360,近360天低分评论占比,"mean(stars <= 2), age_days < 360",,无缺失
+rating_std_360,近360天评分标准差,"population_std(stars), age_days < 360",,无缺失
+rating_change_180,近期较前期均分变化,"mean(stars, age < 180) - mean(stars, 180 <= age < 360)",,训练集拟合中位数填补
+recent_reviews_180,近180天评论数,count(age < 180),,无缺失
+previous_reviews_180,前180天评论数,count(180 <= age < 360),,无缺失
+review_growth_log,评论活跃度对数变化,log(1 + recent_count) - log(1 + previous_count),,无缺失
+monthly_activity_cv,六个30天窗口评论数变异系数,population_std(six 30-day counts) / mean(six 30-day counts),,无缺失
+service_negative_share,近期低分且提及服务的评论占比,"count(stars <= 2 AND topic_match, age < 180) / count(age < 180)",\b(?:service|staff|waiter|waitress|server|rude|wait|waiting|slow)\b,无缺失
+hygiene_negative_share,近期低分且提及卫生的评论占比,"count(stars <= 2 AND topic_match, age < 180) / count(age < 180)",\b(?:dirty|dirt|filthy|cockroaches?|roaches?|mold|mould|unsanitary|hair|food poisoning)\b,无缺失
+price_negative_share,近期低分且提及价格的评论占比,"count(stars <= 2 AND topic_match, age < 180) / count(age < 180)",\b(?:price|prices|expensive|overpriced|costly|rip[ -]?off|value|charged|charge)\b,无缺失
+food_negative_share,近期低分且提及食物问题的评论占比,"count(stars <= 2 AND topic_match, age < 180) / count(age < 180)",\b(?:bland|cold|undercooked|overcooked|burnt|burned|stale|raw|tasteless|greasy|oily)\b,无缺失

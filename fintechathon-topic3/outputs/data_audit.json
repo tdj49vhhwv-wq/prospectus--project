@@ -1,0 +1,52 @@
+{
+  "business_rows_raw": 3164,
+  "review_rows_raw": 91057,
+  "duplicate_reviews_removed": 0,
+  "invalid_reviews_removed": 0,
+  "unmatched_reviews": 0,
+  "business_review_count_mismatches": 64,
+  "review_date_min": "2005-04-15",
+  "review_date_max": "2017-07-26",
+  "restaurants_with_valid_status": 1361,
+  "restaurants_closed": 318,
+  "restaurant_review_rows": 64693,
+  "exclusions_sequential": {
+    "fewer_than_10_reviews": 461,
+    "history_shorter_than_365_days": 49,
+    "fewer_than_3_recent_reviews": 177
+  },
+  "final_merchants": 674,
+  "final_closed": 123,
+  "final_open": 551,
+  "missing_previous_window": 40,
+  "cities_final": {
+    "Cleveland": 635,
+    "Cleveland Heights": 39
+  },
+  "anchor_year_by_status": {
+    "0": {
+      "2010": 0,
+      "2011": 0,
+      "2012": 0,
+      "2013": 0,
+      "2014": 0,
+      "2015": 3,
+      "2016": 20,
+      "2017": 528
+    },
+    "1": {
+      "2010": 1,
+      "2011": 9,
+      "2012": 11,
+      "2013": 18,
+      "2014": 17,
+      "2015": 29,
+      "2016": 32,
+      "2017": 6
+    }
+  },
+  "sha256": {
+    "cleveland_business.jsonl": "c0d2cd404c3f2b1c87673eb9dc9ce407fdcf3b49aab8cd631dc785672f7a0bd2",
+    "cleveland_reviews.jsonl": "fb80a0cc7bfd27bef27fbb8c11c632ebe928fa8c32c899fbedd0872ec416d0dd"
+  }
+}

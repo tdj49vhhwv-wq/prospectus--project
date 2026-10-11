@@ -1,0 +1,8 @@
+.venv/
+.mpl-cache/
+__pycache__/
+data/
+*.log
+outputs/merchant_features.csv
+outputs/sample_split.csv
+outputs/test_predictions.csv

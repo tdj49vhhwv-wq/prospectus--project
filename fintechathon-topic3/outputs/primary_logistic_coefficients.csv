@@ -1,0 +1,14 @@
+transformed_feature,standardized_coefficient
+rating_mean_360,-1.5516205093023847
+low_rating_share_360,-1.3137342308592086
+rating_std_360,-0.08901030194325793
+rating_change_180,-0.34688704185029046
+recent_reviews_180,-1.7309577507047416
+previous_reviews_180,0.9517957270197638
+review_growth_log,0.45812910304970356
+monthly_activity_cv,-0.5189864973038774
+service_negative_share,-0.15168434556045043
+hygiene_negative_share,-0.09374311790355025
+price_negative_share,0.2751039347284955
+food_negative_share,0.01132711537028782
+missingindicator_rating_change_180,-0.15855788255821326
