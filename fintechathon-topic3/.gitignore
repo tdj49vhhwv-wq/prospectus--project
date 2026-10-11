@@ -6,3 +6,5 @@ data/
 outputs/merchant_features.csv
 outputs/sample_split.csv
 outputs/test_predictions.csv
+report/build/
+report/fonts/*.otf

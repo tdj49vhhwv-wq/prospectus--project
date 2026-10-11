@@ -1,0 +1,73 @@
+{
+  "status": "passed",
+  "total_pdf_pages": 10,
+  "body_pages": 8,
+  "cover_pages": 1,
+  "reference_pages": 1,
+  "chinese_core_figures": 5,
+  "numbered_tables": 6,
+  "body_font": "embedded FandolSong-Regular",
+  "body_size_pdf_pt": 10.5,
+  "body_baseline_pdf_pt": 15.75,
+  "body_paragraph_indent_pdf_pt": 20.999,
+  "indented_paragraphs_checked": 30,
+  "identity_checks": "no member name, school or personal repository identity; blank PDF author",
+  "latex_overflows_or_missing_glyphs": 0,
+  "docx": "五号宋体、1.5倍行距、0段间距、2字符缩进；Word本机分页可能随字体环境变化",
+  "pages": [
+    {
+      "pdf_page": 1,
+      "role": "cover",
+      "text_characters": 88
+    },
+    {
+      "pdf_page": 2,
+      "role": "body",
+      "text_characters": 841
+    },
+    {
+      "pdf_page": 3,
+      "role": "body",
+      "text_characters": 782
+    },
+    {
+      "pdf_page": 4,
+      "role": "body",
+      "text_characters": 814
+    },
+    {
+      "pdf_page": 5,
+      "role": "body",
+      "text_characters": 782
+    },
+    {
+      "pdf_page": 6,
+      "role": "body",
+      "text_characters": 813
+    },
+    {
+      "pdf_page": 7,
+      "role": "body",
+      "text_characters": 782
+    },
+    {
+      "pdf_page": 8,
+      "role": "body",
+      "text_characters": 808
+    },
+    {
+      "pdf_page": 9,
+      "role": "body",
+      "text_characters": 762
+    },
+    {
+      "pdf_page": 10,
+      "role": "references",
+      "text_characters": 960
+    }
+  ],
+  "remaining": [
+    "fill actual team name and group ID",
+    "confirm current official data-use terms"
+  ]
+}
