@@ -1,3 +1,5 @@
+> **历史稿说明：当前推荐提交[真实订单与未来经营收缩版](../fintechathon-topic3-transaction/report/285-赛题3.pdf)。本目录餐饮营业状态稿保留作为分析过程，不与新版本同时提交。**
+
 > 完整报告、Excel、图表和代码可下载本目录的 `analysis-package.zip`。原始数据和逐商户记录不上传GitHub。
 
 ## 中文报告与PDF

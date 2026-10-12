@@ -1,0 +1,7 @@
+data/
+outputs/seller_panel.csv
+outputs/test_predictions.csv
+report/build/
+report/fonts/*.otf
+__pycache__/
+*.log

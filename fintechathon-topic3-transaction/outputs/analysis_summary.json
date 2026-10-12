@@ -1,0 +1,269 @@
+{
+  "design": {
+    "seed": 20261012,
+    "train": [
+      "2017-06-30",
+      "2017-09-30"
+    ],
+    "validation": [
+      "2017-12-31"
+    ],
+    "test": [
+      "2018-03-31"
+    ],
+    "feature_days": 180,
+    "recent_days": 90,
+    "horizon_days": 90,
+    "target": "future approved-order merchandise GMV <= 50% of past 90-day GMV",
+    "eligibility": "at least 10 approved orders in past 180 days, at least 3 in past 90 days; first approved order at least 90 days before cutoff",
+    "primary_family": "highest validation AP on T baseline; same family for baseline and TQL enhanced comparison",
+    "budget": 0.1,
+    "bootstrap_repetitions": 2000,
+    "scope": "historical chronological platform-contraction proxy, not prospective deployed experiment or credit risk",
+    "no_test_selection": true,
+    "reviews": "only single-seller orders; review_answer_timestamp strictly before cutoff; latest available response per order",
+    "delivery": "only actual delivery timestamps before cutoff; undelivered includes deliveries after cutoff; current final order_status excluded",
+    "raw_price_version_limit": "no point-in-time item-price history or cancellation/refund history; retrospective event-time reconstruction"
+  },
+  "selected_family": "LR",
+  "primary": "LR_TQL",
+  "baseline": "LR_T",
+  "parameters": {
+    "LR_T": {
+      "C": 0.1
+    },
+    "LR_TQ": {
+      "C": 0.1
+    },
+    "LR_TQL": {
+      "C": 0.1
+    },
+    "HGB_T": {
+      "max_leaf_nodes": 7,
+      "l2_regularization": 1.0
+    },
+    "HGB_TQ": {
+      "max_leaf_nodes": 7,
+      "l2_regularization": 5.0
+    },
+    "HGB_TQL": {
+      "max_leaf_nodes": 15,
+      "l2_regularization": 5.0
+    }
+  },
+  "validation_ap": {
+    "LR_T": 0.42856620960726516,
+    "LR_TQ": 0.4229964455107092,
+    "LR_TQL": 0.4126637563762253,
+    "HGB_T": 0.39904295779487664,
+    "HGB_TQ": 0.4059956651984295,
+    "HGB_TQL": 0.38735880578612736
+  },
+  "test_n": 581,
+  "test_positive": 229,
+  "test_prevalence": 0.39414802065404475,
+  "metrics": {
+    "LR_T": {
+      "validation_ap": 0.42856620960726516,
+      "roc_auc": 0.5982780865422787,
+      "ap": 0.5476440043572346,
+      "brier": 0.2406118852536843,
+      "reviewed": 59,
+      "captured": 42,
+      "precision": 0.711864406779661,
+      "recall": 0.18340611353711792,
+      "lift": 1.8060839316112798
+    },
+    "LR_TQ": {
+      "validation_ap": 0.4229964455107092,
+      "roc_auc": 0.6081406312028582,
+      "ap": 0.5521379902768586,
+      "brier": 0.23986567063429495,
+      "reviewed": 59,
+      "captured": 42,
+      "precision": 0.711864406779661,
+      "recall": 0.18340611353711792,
+      "lift": 1.8060839316112798
+    },
+    "LR_TQL": {
+      "validation_ap": 0.4126637563762253,
+      "roc_auc": 0.6107954545454546,
+      "ap": 0.5579760613568647,
+      "brier": 0.23900346845381773,
+      "reviewed": 59,
+      "captured": 42,
+      "precision": 0.711864406779661,
+      "recall": 0.18340611353711792,
+      "lift": 1.8060839316112798
+    },
+    "HGB_T": {
+      "validation_ap": 0.39904295779487664,
+      "roc_auc": 0.5938058257244938,
+      "ap": 0.5237615217039675,
+      "brier": 0.24996994926188804,
+      "reviewed": 59,
+      "captured": 37,
+      "precision": 0.6271186440677966,
+      "recall": 0.1615720524017467,
+      "lift": 1.591073939752794
+    },
+    "HGB_TQ": {
+      "validation_ap": 0.4059956651984295,
+      "roc_auc": 0.6295280865422787,
+      "ap": 0.5493647835251155,
+      "brier": 0.24313421536148655,
+      "reviewed": 59,
+      "captured": 39,
+      "precision": 0.6610169491525424,
+      "recall": 0.1703056768558952,
+      "lift": 1.6770779364961883
+    },
+    "HGB_TQL": {
+      "validation_ap": 0.38735880578612736,
+      "roc_auc": 0.6229902739182215,
+      "ap": 0.5389718474057941,
+      "brier": 0.24971650685603022,
+      "reviewed": 59,
+      "captured": 41,
+      "precision": 0.6949152542372882,
+      "recall": 0.17903930131004367,
+      "lift": 1.7630819332395826
+    }
+  },
+  "confidence_intervals": {
+    "LR_T": {
+      "ap": [
+        0.48598479863527705,
+        0.6113428985602275
+      ],
+      "roc_auc": [
+        0.5501231325373837,
+        0.6455838390169805
+      ],
+      "precision": [
+        0.5932203389830508,
+        0.8305084745762712
+      ],
+      "lift": [
+        1.5021545532892848,
+        2.116754732298432
+      ]
+    },
+    "LR_TQ": {
+      "ap": [
+        0.48998789445836954,
+        0.6149949661124079
+      ],
+      "roc_auc": [
+        0.5595762199342762,
+        0.6540600390444047
+      ],
+      "precision": [
+        0.576271186440678,
+        0.8305084745762712
+      ],
+      "lift": [
+        1.4791790026914962,
+        2.1069029111507764
+      ]
+    },
+    "LR_TQL": {
+      "ap": [
+        0.49706589999873446,
+        0.6203776402349126
+      ],
+      "roc_auc": [
+        0.5605765708624616,
+        0.6578130436552648
+      ],
+      "precision": [
+        0.6101694915254238,
+        0.847457627118644
+      ],
+      "lift": [
+        1.5438810686584314,
+        2.145022020129001
+      ]
+    },
+    "HGB_T": {
+      "ap": [
+        0.4621635447859067,
+        0.5876687176177482
+      ],
+      "roc_auc": [
+        0.5444974312743643,
+        0.6405119082915023
+      ],
+      "precision": [
+        0.4745762711864407,
+        0.7288135593220338
+      ],
+      "lift": [
+        1.219541653948563,
+        1.8826336750617712
+      ]
+    },
+    "HGB_TQ": {
+      "ap": [
+        0.4880827571423631,
+        0.612514874923763
+      ],
+      "roc_auc": [
+        0.5818003968420153,
+        0.6758198255926395
+      ],
+      "precision": [
+        0.5423728813559322,
+        0.7966101694915254
+      ],
+      "lift": [
+        1.3880876826202744,
+        2.001567765292444
+      ]
+    },
+    "HGB_TQL": {
+      "ap": [
+        0.4771845264723151,
+        0.6067610496114008
+      ],
+      "roc_auc": [
+        0.5786686395725872,
+        0.6706657382340692
+      ],
+      "precision": [
+        0.5423728813559322,
+        0.7966101694915254
+      ],
+      "lift": [
+        1.400185987201211,
+        2.038980883128644
+      ]
+    }
+  },
+  "primary_minus_baseline": {
+    "ap": [
+      -0.0070217285731487885,
+      0.027211753379463955
+    ],
+    "roc_auc": [
+      -0.009609421963746437,
+      0.031800885859672494
+    ],
+    "precision": [
+      -0.06779661016949146,
+      0.0847457627118644
+    ]
+  },
+  "constant_brier": 0.2526045476842674,
+  "fitting_prevalence": 0.2766355140186916,
+  "uncertainty": "2000 paired seller-level percentile bootstrap; fixed fitted models; single test quarter; excludes training/tuning uncertainty",
+  "constraints": [
+    "GMV is not bank cash flow",
+    "Future contraction is not credit default or closure",
+    "Platform samples not full merchant sales",
+    "Seller size unknown",
+    "Public review and fulfillment modules from same provider, not independent external platforms",
+    "Snapshot price/refund/cancellation history unavailable",
+    "Historical overseas ecommerce, not current Shenzhen restaurant merchants"
+  ]
+}

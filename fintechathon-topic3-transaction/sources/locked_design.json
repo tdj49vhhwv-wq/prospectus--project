@@ -1,0 +1,26 @@
+{
+  "seed": 20261012,
+  "train": [
+    "2017-06-30",
+    "2017-09-30"
+  ],
+  "validation": [
+    "2017-12-31"
+  ],
+  "test": [
+    "2018-03-31"
+  ],
+  "feature_days": 180,
+  "recent_days": 90,
+  "horizon_days": 90,
+  "target": "future approved-order merchandise GMV <= 50% of past 90-day GMV",
+  "eligibility": "at least 10 approved orders in past 180 days, at least 3 in past 90 days; first approved order at least 90 days before cutoff",
+  "primary_family": "highest validation AP on T baseline; same family for baseline and TQL enhanced comparison",
+  "budget": 0.1,
+  "bootstrap_repetitions": 2000,
+  "scope": "historical chronological platform-contraction proxy, not prospective deployed experiment or credit risk",
+  "no_test_selection": true,
+  "reviews": "only single-seller orders; review_answer_timestamp strictly before cutoff; latest available response per order",
+  "delivery": "only actual delivery timestamps before cutoff; undelivered includes deliveries after cutoff; current final order_status excluded",
+  "raw_price_version_limit": "no point-in-time item-price history or cancellation/refund history; retrospective event-time reconstruction"
+}

@@ -1,0 +1,16 @@
+{
+  "same_fixed_models_verified": true,
+  "primary_minus_baseline_ap_ci95": [
+    -0.013885882874795155,
+    0.02332442468725734
+  ],
+  "later_cohort": [
+    {
+      "stage": "test",
+      "anchor": "2018-04-30",
+      "active_sellers": 1827,
+      "eligible": 615
+    }
+  ],
+  "limitations": "Overlapping sellers and future windows; later-anchor check is not independent replication or model selection. No refitting with primary-test labels."
+}

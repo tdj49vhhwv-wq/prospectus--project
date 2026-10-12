@@ -1,0 +1,75 @@
+{
+  "orders_raw": 99441,
+  "items_raw": 112650,
+  "reviews_raw": 99224,
+  "sellers_raw": 3095,
+  "orders_missing_approval": 160,
+  "delivery_before_approval": 61,
+  "review_before_approval_removed": 20,
+  "items_unmatched_orders": 0,
+  "approved_seller_order_pairs": 99996,
+  "approved_order_start": "2016-09-15 12:16:38",
+  "approved_order_end": "2018-09-03 17:40:06",
+  "multi_seller_orders": 1278,
+  "review_invalid_score": 0,
+  "review_missing_answer": 0,
+  "cohort_counts": [
+    {
+      "stage": "train",
+      "anchor": "2017-06-30",
+      "active_sellers": 979,
+      "eligible": 262
+    },
+    {
+      "stage": "train",
+      "anchor": "2017-09-30",
+      "active_sellers": 1205,
+      "eligible": 351
+    },
+    {
+      "stage": "validation",
+      "anchor": "2017-12-31",
+      "active_sellers": 1479,
+      "eligible": 457
+    },
+    {
+      "stage": "test",
+      "anchor": "2018-03-31",
+      "active_sellers": 1686,
+      "eligible": 581
+    }
+  ],
+  "panel_rows": 1651,
+  "split_summary": [
+    {
+      "stage": "test",
+      "anchor": "2018-03-31",
+      "sellers": 581,
+      "positive": 229,
+      "positive_rate": 0.39414802065404475
+    },
+    {
+      "stage": "train",
+      "anchor": "2017-06-30",
+      "sellers": 262,
+      "positive": 75,
+      "positive_rate": 0.2862595419847328
+    },
+    {
+      "stage": "train",
+      "anchor": "2017-09-30",
+      "sellers": 351,
+      "positive": 86,
+      "positive_rate": 0.245014245014245
+    },
+    {
+      "stage": "validation",
+      "anchor": "2017-12-31",
+      "sellers": 457,
+      "positive": 135,
+      "positive_rate": 0.29540481400437635
+    }
+  ],
+  "unique_sellers": 747,
+  "test_review_missing": 0
+}

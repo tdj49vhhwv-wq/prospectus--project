@@ -1,0 +1,8 @@
+{
+  "anchor": "2018-04-30",
+  "horizon_days": 90,
+  "purpose": "later-anchor stability check using exactly the fixed primary fitted model and baseline",
+  "no_new_selection": true,
+  "limitation": "Repeated sellers and overlapping future windows; not a fully independent replication",
+  "specified_before_primary_results_review": true
+}
