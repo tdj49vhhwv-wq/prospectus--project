@@ -8,8 +8,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 6565,
-      "sha256": "a512136d05c8f1d39842a467442310e9998c972292327c003c3f85b6ac092355"
+      "bytes": 6550,
+      "sha256": "0030f966533a2a9aff1e470cd1f7bc93c18a641c82ff988269a57c6e413b8b8a"
     },
     {
       "path": "outputs/additional_robustness.csv",
@@ -117,9 +117,14 @@
       "sha256": "35f646c5b50cf59d4decc40f9fcadf3799561af6d2c0eea2a3c3c342ff1c3841"
     },
     {
+      "path": "report/285-赛题3.pdf",
+      "bytes": 467720,
+      "sha256": "8740895ac8a306df92ac2fd471c1da1b11b3bbd2576f1fcf00148313d9faf5a8"
+    },
+    {
       "path": "report/figures/figure01_sample.pdf",
       "bytes": 44530,
-      "sha256": "60c064e83d86edb543be05714c701345451421d66fec1f2e4a098ee2cfe08914"
+      "sha256": "369b1e362ae233d0d67e51a08e4059fd9fdc1ff629d41cd62b7e1eae716da9c6"
     },
     {
       "path": "report/figures/figure01_sample.png",
@@ -129,7 +134,7 @@
     {
       "path": "report/figures/figure02_descriptive.pdf",
       "bytes": 27637,
-      "sha256": "3ca0482b51b588a1b5729340f5cdffa61382a5127dba259a236698c7d65e91a5"
+      "sha256": "9de082a40c5fa0094261dec8dce85e9b0a490d3e891bc2a618c57672648a8604"
     },
     {
       "path": "report/figures/figure02_descriptive.png",
@@ -139,7 +144,7 @@
     {
       "path": "report/figures/figure03_models.pdf",
       "bytes": 26460,
-      "sha256": "2896296ddc1a6b570fa5573fb2eeafdc3e46ad8f6e58c1f05a63d1291b678223"
+      "sha256": "bf2ea89a940b8cac57599d481773b8201ba3d09923470ad724fcd33e9153af70"
     },
     {
       "path": "report/figures/figure03_models.png",
@@ -149,7 +154,7 @@
     {
       "path": "report/figures/figure04_budget.pdf",
       "bytes": 54781,
-      "sha256": "a9a9ff84fb381f7cab5c2268256b5830f83e87303ee8774ce621540758730011"
+      "sha256": "05f3b0f41b40bace21a270cd09de13529d816f3dd87bac95ca7b9088b593b8ef"
     },
     {
       "path": "report/figures/figure04_budget.png",
@@ -159,7 +164,7 @@
     {
       "path": "report/figures/figure05_bias.pdf",
       "bytes": 44362,
-      "sha256": "4e2e39c57083d9a03e4748cb5e909945e2d1f6debc939853916b0a01f99c153f"
+      "sha256": "b85f8004582e2c0d9f68a2d00f707acea74affc8e84fbab18e19816c1753bece"
     },
     {
       "path": "report/figures/figure05_bias.png",
@@ -178,8 +183,8 @@
     },
     {
       "path": "report/report.tex",
-      "bytes": 21974,
-      "sha256": "32a63faa98f73cdbe279fffc0d9f81a8164f4ba362a7bf63e50303fa2287ada9"
+      "bytes": 21962,
+      "sha256": "b6dbfadbd5f4053813a35789aece675e81c301e44f19d5f38e9fb8eb957ed759"
     },
     {
       "path": "report/二次审核与修改记录.md",
@@ -188,33 +193,28 @@
     },
     {
       "path": "report/使用说明.md",
-      "bytes": 3433,
-      "sha256": "121fe27b90d05e47325c8c0b78053e4dd66a70c85af7c0fee43da09130d3e831"
-    },
-    {
-      "path": "report/待填编号-赛题3.pdf",
-      "bytes": 468050,
-      "sha256": "5b73847620535b90cdd4c1801cf4c10435a26f035097fe5c341bb284fdbdc038"
+      "bytes": 3418,
+      "sha256": "0cd7a32890178b5564f93969658d3e767acfc591f64fc8a8dbe81e22723c6689"
     },
     {
       "path": "report/报告可编辑稿.docx",
-      "bytes": 657036,
-      "sha256": "55c4c85027206fdab3e58041c271f9466d49b18c4459c94837156818de4259ce"
+      "bytes": 657033,
+      "sha256": "d76665956efa6e3e1b7cf8a00065e6a70fdf52259e7ae566c829b9d02d62ed1b"
     },
     {
       "path": "report/报告正文.md",
       "bytes": 18041,
-      "sha256": "964d51a2b6d814765b988177b0f09f3c5b912e2919345cac210ac5bc6efb3131"
+      "sha256": "d5ae60850962bdb0907a3d36fc9011a585cfa80167600f51ec068cbe38fec6f7"
     },
     {
       "path": "report/排版检查结果.json",
-      "bytes": 1590,
-      "sha256": "d1de9c24311daf947a2a3e8373ad57ff57d61723041cdf7c0c745b1c648997d2"
+      "bytes": 1637,
+      "sha256": "9f47bb6a018b3102bc8ab096a44722081354a9572744dd49b3d343cba96a9c1b"
     },
     {
       "path": "report/版式与待办说明.json",
-      "bytes": 454,
-      "sha256": "0cd962cdeb3b4737444e536b4f6a6170b6875190a2d9c24618f197e4c543299c"
+      "bytes": 482,
+      "sha256": "0c35abde53e7ca456fd70d403833ab2de32332dc7241a7d2ff4e409dc43c9cf0"
     },
     {
       "path": "report/验证闭环执行方案.md",
@@ -233,8 +233,8 @@
     },
     {
       "path": "scripts/build_submission.py",
-      "bytes": 40831,
-      "sha256": "92ad37d7692e450afa0b400d810b7f4d0952ed3aa519229fdc687ff4ccd15972"
+      "bytes": 40984,
+      "sha256": "8576ad9705e89c185c9ab4b944ec8c82d89c82a57f53d6e60e4ca9e87dc9fd7d"
     },
     {
       "path": "scripts/bundle_deliverables.py",

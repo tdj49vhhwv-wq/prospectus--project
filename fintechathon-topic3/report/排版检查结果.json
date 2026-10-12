@@ -18,7 +18,7 @@
     {
       "pdf_page": 1,
       "role": "cover",
-      "text_characters": 98
+      "text_characters": 100
     },
     {
       "pdf_page": 2,
@@ -67,7 +67,7 @@
     }
   ],
   "remaining": [
-    "fill actual team name and group ID",
-    "confirm current official data-use terms"
+    "confirm current official data-use terms",
+    "confirm organizer accepts Fandol Song typeface or re-export with required SimSun"
   ]
 }

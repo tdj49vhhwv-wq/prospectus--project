@@ -325,7 +325,7 @@ def write_tex(title, subtitle, pages, references, team_name):
 \usepackage[left=24mm,right=24mm,top=22mm,bottom=22mm]{geometry}
 \usepackage{graphicx,float,booktabs,array,caption,titlesec,fancyhdr,indentfirst}
 \usepackage[hidelinks,unicode]{hyperref}
-\hypersetup{pdfauthor={},pdftitle={公开口碑信息对餐饮商户经营风险画像的验证},pdfsubject={赛题三，队名待填写的报告稿}}
+\hypersetup{pdfauthor={},pdftitle={公开口碑信息对餐饮商户经营风险画像的验证},pdfsubject={赛题三数据分析报告}}
 \renewcommand{\normalsize}{\fontsize{10.5bp}{15.75bp}\selectfont}
 \normalsize
 \setlength{\parindent}{21bp}
@@ -482,7 +482,7 @@ def main():
         "body_font_size_pt": 10.5, "body_baseline_pt": 15.75,
         "paragraph_indent_pt": 21, "paragraph_spacing_pt": 0,
         "declared_body_pages": 8, "figures": 5,
-        "remaining": ["fill actual team name and group ID", "confirm current official data-use terms"],
+        "remaining": (["fill actual team name and group ID"] if args.group_id == "待填编号" or args.team_name == "待填写" else []) + ["confirm current official data-use terms", "confirm organizer accepts Fandol Song typeface or re-export with required SimSun"],
     }
     (REPORT / "版式与待办说明.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     print("Generated", destination)

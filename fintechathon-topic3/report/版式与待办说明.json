@@ -1,7 +1,7 @@
 {
-  "pdf": "待填编号-赛题3.pdf",
-  "team_name": "待填写",
-  "group_id": "待填编号",
+  "pdf": "285-赛题3.pdf",
+  "team_name": "285小组",
+  "group_id": "285",
   "body_font": "FandolSong-Regular (open-source Song typeface; not Microsoft SimSun)",
   "body_font_size_pt": 10.5,
   "body_baseline_pt": 15.75,
@@ -10,7 +10,7 @@
   "declared_body_pages": 8,
   "figures": 5,
   "remaining": [
-    "fill actual team name and group ID",
-    "confirm current official data-use terms"
+    "confirm current official data-use terms",
+    "confirm organizer accepts Fandol Song typeface or re-export with required SimSun"
   ]
 }
